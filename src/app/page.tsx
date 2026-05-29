@@ -81,7 +81,7 @@ export default function Home() {
       </section>
 
       {/* Stats */}
-      <section className="bg-cream-dark py-16">
+      <section className="bg-surface-raised py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {stats.map((s) => (
@@ -92,7 +92,7 @@ export default function Home() {
                 >
                   {s.value}
                 </div>
-                <div className="text-sm text-ink/55 tracking-wide">{s.label}</div>
+                <div className="text-sm text-foreground/55 tracking-wide">{s.label}</div>
               </div>
             ))}
           </div>
@@ -100,14 +100,14 @@ export default function Home() {
       </section>
 
       {/* Services preview */}
-      <section className="py-20 bg-cream">
+      <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
               O que fazemos
             </p>
             <h2
-              className="text-ink text-4xl font-bold"
+              className="text-foreground text-4xl font-bold"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               Os Nossos Serviços
@@ -117,16 +117,16 @@ export default function Home() {
             {services.map((s) => (
               <div
                 key={s.title}
-                className="p-7 bg-cream-dark rounded-xl hover:shadow-lg transition-shadow group"
+                className="p-7 bg-surface-elevated rounded-xl hover:shadow-lg hover:shadow-black/40 transition-shadow group"
               >
                 <div className="text-3xl mb-4">{s.icon}</div>
                 <h3
-                  className="text-ink text-lg font-semibold mb-2 group-hover:text-moss transition-colors"
+                  className="text-foreground text-lg font-semibold mb-2 group-hover:text-moss transition-colors"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   {s.title}
                 </h3>
-                <p className="text-sm text-ink/55 leading-relaxed">{s.desc}</p>
+                <p className="text-sm text-foreground/55 leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -192,15 +192,15 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-cream-dark text-center">
+      <section className="py-20 bg-surface-raised text-center">
         <div className="max-w-3xl mx-auto px-4">
           <h2
-            className="text-ink text-4xl font-bold mb-4"
+            className="text-foreground text-4xl font-bold mb-4"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Pronto para Criar um Evento Inesquecível?
           </h2>
-          <p className="text-ink/55 text-lg mb-8">
+          <p className="text-foreground/55 text-lg mb-8">
             Entre em contacto e vamos transformar a sua visão em realidade.
           </p>
           <Link

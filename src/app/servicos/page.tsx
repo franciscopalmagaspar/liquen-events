@@ -57,17 +57,17 @@ function ServiceCard({
   features: string[];
 }) {
   return (
-    <div className="bg-cream rounded-xl p-7 hover:shadow-lg transition-shadow">
+    <div className="bg-surface-elevated rounded-xl p-7 hover:shadow-lg hover:shadow-black/40 transition-shadow">
       <h3
-        className="text-ink text-xl font-bold mb-3"
+        className="text-foreground text-xl font-bold mb-3"
         style={{ fontFamily: "var(--font-playfair)" }}
       >
         {title}
       </h3>
-      <p className="text-ink/60 text-sm leading-relaxed mb-5">{desc}</p>
+      <p className="text-foreground/60 text-sm leading-relaxed mb-5">{desc}</p>
       <ul className="flex flex-col gap-2">
         {features.map((f) => (
-          <li key={f} className="flex items-center gap-2 text-sm text-ink/70">
+          <li key={f} className="flex items-center gap-2 text-sm text-foreground/70">
             <span className="w-1.5 h-1.5 rounded-full bg-moss flex-shrink-0" />
             {f}
           </li>
@@ -87,14 +87,14 @@ export default function ServicosPage() {
       />
 
       {/* Corporate */}
-      <section className="py-20 bg-cream-dark">
+      <section className="py-20 bg-surface-raised">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
             <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
               Para empresas
             </p>
             <h2
-              className="text-ink text-3xl font-bold"
+              className="text-foreground text-3xl font-bold"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               Eventos Corporativos
@@ -109,14 +109,14 @@ export default function ServicosPage() {
       </section>
 
       {/* Social */}
-      <section className="py-20 bg-cream">
+      <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
             <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
               Para pessoas
             </p>
             <h2
-              className="text-ink text-3xl font-bold"
+              className="text-foreground text-3xl font-bold"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               Eventos Sociais
@@ -172,15 +172,15 @@ export default function ServicosPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-cream-dark text-center">
+      <section className="py-16 bg-surface-raised text-center">
         <div className="max-w-2xl mx-auto px-4">
           <h2
-            className="text-ink text-3xl font-bold mb-4"
+            className="text-foreground text-3xl font-bold mb-4"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Tem um Evento em Mente?
           </h2>
-          <p className="text-ink/55 mb-8">
+          <p className="text-foreground/55 mb-8">
             Peça-nos um orçamento sem compromisso e vemos como podemos ajudar.
           </p>
           <Link

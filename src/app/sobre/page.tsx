@@ -37,7 +37,7 @@ export default function SobrePage() {
       />
 
       {/* Story */}
-      <section className="py-20 bg-cream">
+      <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <div>
@@ -45,23 +45,23 @@ export default function SobrePage() {
                 A Nossa História
               </p>
               <h2
-                className="text-ink text-4xl font-bold mb-6 leading-tight"
+                className="text-foreground text-4xl font-bold mb-6 leading-tight"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 Nascemos da Paixão por Criar Momentos Únicos
               </h2>
-              <p className="text-ink/65 text-base leading-relaxed mb-4">
+              <p className="text-foreground/65 text-base leading-relaxed mb-4">
                 A Liquen Events foi fundada em 2014 com uma missão simples: criar
                 eventos que ficam na memória. O nome inspira-se no líquen — um
                 organismo resistente, adaptável e belo, que cresce onde outros
                 não conseguem.
               </p>
-              <p className="text-ink/65 text-base leading-relaxed mb-4">
+              <p className="text-foreground/65 text-base leading-relaxed mb-4">
                 Da mesma forma, a nossa equipa prospera nos desafios. Cada evento
                 diferente é uma oportunidade de crescer, aprender e superar
                 expectativas.
               </p>
-              <p className="text-ink/65 text-base leading-relaxed">
+              <p className="text-foreground/65 text-base leading-relaxed">
                 Ao longo dos anos, construímos uma reputação sólida baseada em
                 resultados excepcionais e relações duradouras com os nossos
                 clientes.
@@ -71,10 +71,10 @@ export default function SobrePage() {
               <div className="rounded-xl h-48 bg-moss/20 flex items-center justify-center text-moss text-xs tracking-widest uppercase font-medium">
                 Desde 2014
               </div>
-              <div className="rounded-xl h-48 bg-cream-dark flex items-center justify-center text-ink/40 text-xs tracking-widest uppercase font-medium">
+              <div className="rounded-xl h-48 bg-surface-elevated flex items-center justify-center text-foreground/40 text-xs tracking-widest uppercase font-medium">
                 Lisboa
               </div>
-              <div className="rounded-xl h-48 bg-cream-dark flex items-center justify-center text-ink/40 text-xs tracking-widest uppercase font-medium">
+              <div className="rounded-xl h-48 bg-surface-elevated flex items-center justify-center text-foreground/40 text-xs tracking-widest uppercase font-medium">
                 Portugal
               </div>
               <div className="rounded-xl h-48 bg-moss/10 flex items-center justify-center text-moss text-xs tracking-widest uppercase font-medium">
@@ -86,14 +86,14 @@ export default function SobrePage() {
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-cream-dark">
+      <section className="py-20 bg-surface-raised">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
               O que nos guia
             </p>
             <h2
-              className="text-ink text-4xl font-bold"
+              className="text-foreground text-4xl font-bold"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               Os Nossos Valores
@@ -101,7 +101,7 @@ export default function SobrePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((v, i) => (
-              <div key={v.title} className="p-7 bg-cream rounded-xl">
+              <div key={v.title} className="p-7 bg-surface-elevated rounded-xl">
                 <div
                   className="text-moss text-3xl font-bold mb-3"
                   style={{ fontFamily: "var(--font-playfair)" }}
@@ -109,12 +109,12 @@ export default function SobrePage() {
                   0{i + 1}
                 </div>
                 <h3
-                  className="text-ink text-lg font-semibold mb-2"
+                  className="text-foreground text-lg font-semibold mb-2"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   {v.title}
                 </h3>
-                <p className="text-sm text-ink/55 leading-relaxed">{v.desc}</p>
+                <p className="text-sm text-foreground/55 leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>
@@ -122,14 +122,14 @@ export default function SobrePage() {
       </section>
 
       {/* Team */}
-      <section className="py-20 bg-cream">
+      <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
               As pessoas
             </p>
             <h2
-              className="text-ink text-4xl font-bold"
+              className="text-foreground text-4xl font-bold"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               A Nossa Equipa
@@ -143,7 +143,7 @@ export default function SobrePage() {
                 >
                   {member.name.charAt(0)}
                 </div>
-                <h3 className="text-ink font-semibold text-base mb-1">{member.name}</h3>
+                <h3 className="text-foreground font-semibold text-base mb-1">{member.name}</h3>
                 <p className="text-sm text-moss">{member.role}</p>
               </div>
             ))}

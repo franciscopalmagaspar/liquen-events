@@ -55,13 +55,13 @@ export default function PortfolioPage() {
         description="Uma seleção dos eventos que mais nos orgulham."
       />
 
-      <section className="py-20 bg-cream">
+      <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((p) => (
               <div
                 key={p.title}
-                className="group rounded-2xl overflow-hidden bg-cream-dark hover:shadow-xl transition-shadow"
+                className="group rounded-2xl overflow-hidden bg-surface-elevated hover:shadow-xl hover:shadow-black/50 transition-shadow"
               >
                 <div
                   className={`h-52 bg-gradient-to-br ${p.gradient} flex items-end p-5`}
@@ -72,19 +72,19 @@ export default function PortfolioPage() {
                 </div>
                 <div className="p-6">
                   <h3
-                    className="text-ink text-xl font-bold mb-2 group-hover:text-moss transition-colors"
+                    className="text-foreground text-xl font-bold mb-2 group-hover:text-moss transition-colors"
                     style={{ fontFamily: "var(--font-playfair)" }}
                   >
                     {p.title}
                   </h3>
-                  <p className="text-sm text-ink/55 leading-relaxed mb-4">
+                  <p className="text-sm text-foreground/55 leading-relaxed mb-4">
                     {p.desc}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {p.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs px-3 py-1 bg-moss/10 text-moss rounded-full font-medium"
+                        className="text-xs px-3 py-1 bg-moss/15 text-moss rounded-full font-medium"
                       >
                         {tag}
                       </span>
