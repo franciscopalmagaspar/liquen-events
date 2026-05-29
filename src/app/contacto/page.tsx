@@ -19,7 +19,7 @@ export default function ContactoPage() {
         description="Estamos prontos para dar vida ao seu próximo evento."
       />
 
-      <section className="py-20 bg-cream">
+      <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
             {/* Info */}
@@ -28,7 +28,7 @@ export default function ContactoPage() {
                 Encontre-nos
               </p>
               <h2
-                className="text-ink text-3xl font-bold mb-8 leading-tight"
+                className="text-foreground text-3xl font-bold mb-8 leading-tight"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 Vamos Falar Sobre o Seu Evento
@@ -57,11 +57,11 @@ export default function ContactoPage() {
                       {item.label.charAt(0)}
                     </div>
                     <div>
-                      <div className="text-xs text-ink/45 tracking-wider uppercase mb-0.5">
+                      <div className="text-xs text-foreground/45 tracking-wider uppercase mb-0.5">
                         {item.label}
                       </div>
-                      <div className="text-ink font-medium text-sm">{item.value}</div>
-                      <div className="text-xs text-ink/45 mt-0.5">{item.sub}</div>
+                      <div className="text-foreground font-medium text-sm">{item.value}</div>
+                      <div className="text-xs text-foreground/45 mt-0.5">{item.sub}</div>
                     </div>
                   </div>
                 ))}
@@ -69,19 +69,19 @@ export default function ContactoPage() {
             </div>
 
             {/* Form */}
-            <div className="bg-cream-dark rounded-2xl p-8">
+            <div className="bg-surface-elevated rounded-2xl p-8">
               {sent ? (
                 <div className="h-full flex flex-col items-center justify-center text-center py-12">
                   <div className="w-16 h-16 rounded-full bg-moss/20 flex items-center justify-center text-moss text-2xl mb-4">
                     ✓
                   </div>
                   <h3
-                    className="text-ink text-2xl font-bold mb-2"
+                    className="text-foreground text-2xl font-bold mb-2"
                     style={{ fontFamily: "var(--font-playfair)" }}
                   >
                     Mensagem Enviada!
                   </h3>
-                  <p className="text-ink/55 text-sm">
+                  <p className="text-foreground/55 text-sm">
                     Entraremos em contacto em menos de 24 horas.
                   </p>
                 </div>
@@ -89,36 +89,36 @@ export default function ContactoPage() {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs text-ink/55 tracking-wider uppercase mb-2">
+                      <label className="block text-xs text-foreground/55 tracking-wider uppercase mb-2">
                         Nome
                       </label>
                       <input
                         type="text"
                         required
-                        className="w-full bg-cream border border-ink/15 rounded-lg px-4 py-3 text-sm text-ink placeholder-ink/30 focus:outline-none focus:border-moss transition-colors"
+                        className="w-full bg-surface border border-foreground/15 rounded-lg px-4 py-3 text-sm text-foreground placeholder-foreground/30 focus:outline-none focus:border-moss transition-colors"
                         placeholder="O seu nome"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-ink/55 tracking-wider uppercase mb-2">
+                      <label className="block text-xs text-foreground/55 tracking-wider uppercase mb-2">
                         E-mail
                       </label>
                       <input
                         type="email"
                         required
-                        className="w-full bg-cream border border-ink/15 rounded-lg px-4 py-3 text-sm text-ink placeholder-ink/30 focus:outline-none focus:border-moss transition-colors"
+                        className="w-full bg-surface border border-foreground/15 rounded-lg px-4 py-3 text-sm text-foreground placeholder-foreground/30 focus:outline-none focus:border-moss transition-colors"
                         placeholder="email@exemplo.com"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs text-ink/55 tracking-wider uppercase mb-2">
+                    <label className="block text-xs text-foreground/55 tracking-wider uppercase mb-2">
                       Tipo de Evento
                     </label>
                     <select
                       required
-                      className="w-full bg-cream border border-ink/15 rounded-lg px-4 py-3 text-sm text-ink focus:outline-none focus:border-moss transition-colors"
+                      className="w-full bg-surface border border-foreground/15 rounded-lg px-4 py-3 text-sm text-foreground focus:outline-none focus:border-moss transition-colors"
                     >
                       <option value="">Selecione um tipo</option>
                       <option>Evento Corporativo</option>
@@ -130,23 +130,23 @@ export default function ContactoPage() {
                   </div>
 
                   <div>
-                    <label className="block text-xs text-ink/55 tracking-wider uppercase mb-2">
+                    <label className="block text-xs text-foreground/55 tracking-wider uppercase mb-2">
                       Data Prevista
                     </label>
                     <input
                       type="date"
-                      className="w-full bg-cream border border-ink/15 rounded-lg px-4 py-3 text-sm text-ink focus:outline-none focus:border-moss transition-colors"
+                      className="w-full bg-surface border border-foreground/15 rounded-lg px-4 py-3 text-sm text-foreground focus:outline-none focus:border-moss transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs text-ink/55 tracking-wider uppercase mb-2">
+                    <label className="block text-xs text-foreground/55 tracking-wider uppercase mb-2">
                       Mensagem
                     </label>
                     <textarea
                       required
                       rows={4}
-                      className="w-full bg-cream border border-ink/15 rounded-lg px-4 py-3 text-sm text-ink placeholder-ink/30 focus:outline-none focus:border-moss transition-colors resize-none"
+                      className="w-full bg-surface border border-foreground/15 rounded-lg px-4 py-3 text-sm text-foreground placeholder-foreground/30 focus:outline-none focus:border-moss transition-colors resize-none"
                       placeholder="Descreva o seu evento, número de convidados e qualquer detalhe relevante..."
                     />
                   </div>

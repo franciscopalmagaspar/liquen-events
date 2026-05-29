@@ -55,14 +55,14 @@ export default function ClientesPage() {
       />
 
       {/* Client logos */}
-      <section className="py-20 bg-cream">
+      <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
               Empresas parceiras
             </p>
             <h2
-              className="text-ink text-3xl font-bold"
+              className="text-foreground text-3xl font-bold"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               Clientes Corporativos
@@ -72,7 +72,7 @@ export default function ClientesPage() {
             {clientLogos.map((name) => (
               <div
                 key={name}
-                className="h-20 bg-cream-dark rounded-xl flex items-center justify-center text-ink/40 text-xs font-semibold tracking-wider uppercase hover:bg-moss/10 hover:text-moss transition-colors"
+                className="h-20 bg-surface-elevated rounded-xl flex items-center justify-center text-foreground/40 text-xs font-semibold tracking-wider uppercase hover:bg-moss/15 hover:text-moss transition-colors"
               >
                 {name}
               </div>
@@ -82,14 +82,14 @@ export default function ClientesPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-cream-dark">
+      <section className="py-20 bg-surface-raised">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
               O que dizem
             </p>
             <h2
-              className="text-ink text-4xl font-bold"
+              className="text-foreground text-4xl font-bold"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               Testemunhos
@@ -97,19 +97,19 @@ export default function ClientesPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {testimonials.map((t) => (
-              <div key={t.name} className="bg-cream rounded-xl p-7 flex flex-col gap-4">
+              <div key={t.name} className="bg-surface-elevated rounded-xl p-7 flex flex-col gap-4">
                 <div
                   className="text-moss text-4xl leading-none"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   "
                 </div>
-                <p className="text-ink/70 text-sm leading-relaxed flex-1 -mt-3">
+                <p className="text-foreground/70 text-sm leading-relaxed flex-1 -mt-3">
                   {t.text}
                 </p>
-                <div className="border-t border-ink/10 pt-4">
-                  <div className="font-semibold text-ink text-sm">{t.name}</div>
-                  <div className="text-xs text-ink/50 mt-0.5">{t.role}</div>
+                <div className="border-t border-foreground/10 pt-4">
+                  <div className="font-semibold text-foreground text-sm">{t.name}</div>
+                  <div className="text-xs text-foreground/50 mt-0.5">{t.role}</div>
                   <div className="text-xs text-moss mt-1 font-medium">{t.event}</div>
                 </div>
               </div>
