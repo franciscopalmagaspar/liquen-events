@@ -27,8 +27,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 bg-cream ${
-        scrolled ? "shadow-md" : ""
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-surface-raised ${
+        scrolled ? "border-b border-foreground/10" : ""
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,7 +41,7 @@ export default function Navbar() {
               LIQUEN
             </span>
             <span
-              className="text-ink text-xl tracking-widest"
+              className="text-foreground text-xl tracking-widest"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               EVENTS
@@ -56,7 +56,7 @@ export default function Navbar() {
                 className={`text-sm font-medium tracking-wide transition-colors hover:text-moss ${
                   pathname === link.href
                     ? "text-moss border-b-2 border-moss pb-0.5"
-                    : "text-ink/60"
+                    : "text-foreground/55"
                 }`}
               >
                 {link.label}
@@ -70,17 +70,17 @@ export default function Navbar() {
             aria-label="Menu"
           >
             <span
-              className={`block w-6 h-0.5 bg-ink transition-all duration-200 mb-1.5 ${
+              className={`block w-6 h-0.5 bg-foreground transition-all duration-200 mb-1.5 ${
                 isOpen ? "rotate-45 translate-y-2" : ""
               }`}
             />
             <span
-              className={`block w-6 h-0.5 bg-ink transition-all duration-200 mb-1.5 ${
+              className={`block w-6 h-0.5 bg-foreground transition-all duration-200 mb-1.5 ${
                 isOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`block w-6 h-0.5 bg-ink transition-all duration-200 ${
+              className={`block w-6 h-0.5 bg-foreground transition-all duration-200 ${
                 isOpen ? "-rotate-45 -translate-y-2" : ""
               }`}
             />
@@ -89,7 +89,7 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 bg-cream border-t border-ink/10 ${
+        className={`md:hidden overflow-hidden transition-all duration-300 bg-surface-raised border-t border-foreground/10 ${
           isOpen ? "max-h-96 pb-4" : "max-h-0"
         }`}
       >
@@ -100,7 +100,7 @@ export default function Navbar() {
               href={link.href}
               onClick={() => setIsOpen(false)}
               className={`py-2 text-sm font-medium tracking-wide transition-colors hover:text-moss ${
-                pathname === link.href ? "text-moss" : "text-ink/60"
+                pathname === link.href ? "text-moss" : "text-foreground/55"
               }`}
             >
               {link.label}
