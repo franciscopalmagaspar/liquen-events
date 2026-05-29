@@ -28,7 +28,7 @@ const projects = [
     title: "Jantar de Gala Awards 2024",
     desc: "Cerimónia de entrega de prémios com gala dinner para 350 convidados no Palácio do Freixo.",
     tags: ["Gala", "350 pax", "Porto"],
-    gradient: "from-ink/80 to-moss-dark",
+    gradient: "from-[#1a1a2e] to-moss-dark",
   },
   {
     category: "Social",
@@ -42,7 +42,7 @@ const projects = [
     title: "Lançamento Produto — Grupo Impresa",
     desc: "Evento de lançamento com cenografia imersiva, live streaming e experiências interativas.",
     tags: ["Lançamento", "400 pax", "Lisboa"],
-    gradient: "from-moss-dark to-ink/70",
+    gradient: "from-moss-dark to-[#1a1a2e]",
   },
 ];
 
@@ -55,36 +55,35 @@ export default function PortfolioPage() {
         description="Uma seleção dos eventos que mais nos orgulham."
       />
 
-      <section className="py-20 bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((p) => (
+      <section className="py-24 bg-surface">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <div className="flex flex-col gap-4">
+            {projects.map((p, i) => (
               <div
                 key={p.title}
-                className="group rounded-2xl overflow-hidden bg-surface-elevated hover:shadow-xl hover:shadow-black/50 transition-shadow"
+                className={`group grid grid-cols-1 lg:grid-cols-2 bg-surface-raised rounded-2xl overflow-hidden hover:bg-surface-elevated transition-colors cursor-pointer ${
+                  i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
+                }`}
               >
-                <div
-                  className={`h-52 bg-gradient-to-br ${p.gradient} flex items-end p-5`}
-                >
-                  <span className="text-xs font-medium tracking-widest uppercase text-cream/70 bg-cream/10 px-3 py-1 rounded-full">
-                    {p.category}
-                  </span>
-                </div>
-                <div className="p-6">
-                  <h3
-                    className="text-foreground text-xl font-bold mb-2 group-hover:text-moss transition-colors"
-                    style={{ fontFamily: "var(--font-playfair)" }}
-                  >
-                    {p.title}
-                  </h3>
-                  <p className="text-sm text-foreground/55 leading-relaxed mb-4">
-                    {p.desc}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
+                <div className={`h-64 lg:h-72 bg-gradient-to-br ${p.gradient}`} />
+                <div className="p-10 flex flex-col justify-between">
+                  <div>
+                    <span className="text-moss text-xs tracking-[0.2em] uppercase font-medium">
+                      {p.category}
+                    </span>
+                    <h3
+                      className="text-foreground text-2xl font-bold mt-3 mb-3 group-hover:text-moss transition-colors"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      {p.title}
+                    </h3>
+                    <p className="text-foreground/50 text-sm leading-relaxed">{p.desc}</p>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mt-8">
                     {p.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs px-3 py-1 bg-moss/15 text-moss rounded-full font-medium"
+                        className="text-xs px-3 py-1 bg-foreground/6 text-foreground/45 rounded-full border border-foreground/8"
                       >
                         {tag}
                       </span>
@@ -97,20 +96,21 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <section className="py-16 bg-moss text-center">
-        <div className="max-w-2xl mx-auto px-4">
+      <section className="py-32 bg-surface text-center border-t border-foreground/8">
+        <div className="max-w-2xl mx-auto px-6">
           <h2
-            className="text-cream text-3xl font-bold mb-4"
+            className="text-foreground text-4xl sm:text-5xl font-bold mb-6 leading-tight"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
-            O Próximo Projeto É o Seu
+            O próximo projeto<br />
+            <em className="not-italic text-moss">é o seu.</em>
           </h2>
-          <p className="text-cream/70 mb-8">
+          <p className="text-foreground/45 mb-10">
             Vamos criar juntos algo que ficará para sempre na memória.
           </p>
           <Link
             href="/contacto"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-cream text-moss-dark font-semibold rounded-lg hover:bg-cream/90 transition-colors text-sm tracking-wide"
+            className="inline-flex items-center gap-2 px-10 py-5 bg-moss text-cream font-semibold rounded-xl hover:bg-moss-dark transition-colors text-sm tracking-wide"
           >
             Falar Connosco →
           </Link>

@@ -55,10 +55,10 @@ export default function ClientesPage() {
       />
 
       {/* Client logos */}
-      <section className="py-20 bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
+      <section className="py-24 bg-surface border-b border-foreground/8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <div className="mb-14">
+            <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-5">
               Empresas parceiras
             </p>
             <h2
@@ -68,11 +68,11 @@ export default function ClientesPage() {
               Clientes Corporativos
             </h2>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-px bg-foreground/8 border border-foreground/8 rounded-2xl overflow-hidden">
             {clientLogos.map((name) => (
               <div
                 key={name}
-                className="h-20 bg-surface-elevated rounded-xl flex items-center justify-center text-foreground/40 text-xs font-semibold tracking-wider uppercase hover:bg-moss/15 hover:text-moss transition-colors"
+                className="h-20 bg-surface flex items-center justify-center text-foreground/30 text-xs font-semibold tracking-wider uppercase hover:bg-surface-elevated hover:text-moss transition-colors"
               >
                 {name}
               </div>
@@ -82,10 +82,10 @@ export default function ClientesPage() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-surface-raised">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
+      <section className="py-24 bg-surface-raised border-b border-foreground/8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <div className="mb-16">
+            <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-5">
               O que dizem
             </p>
             <h2
@@ -95,22 +95,25 @@ export default function ClientesPage() {
               Testemunhos
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {testimonials.map((t) => (
-              <div key={t.name} className="bg-surface-elevated rounded-xl p-7 flex flex-col gap-4">
+              <div
+                key={t.name}
+                className="bg-surface rounded-2xl p-8 flex flex-col gap-5 border border-foreground/8 hover:border-foreground/15 transition-colors"
+              >
                 <div
-                  className="text-moss text-4xl leading-none"
+                  className="text-moss text-4xl leading-none font-bold"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   "
                 </div>
-                <p className="text-foreground/70 text-sm leading-relaxed flex-1 -mt-3">
+                <p className="text-foreground/60 text-sm leading-relaxed flex-1 -mt-2">
                   {t.text}
                 </p>
-                <div className="border-t border-foreground/10 pt-4">
+                <div className="border-t border-foreground/8 pt-5">
                   <div className="font-semibold text-foreground text-sm">{t.name}</div>
-                  <div className="text-xs text-foreground/50 mt-0.5">{t.role}</div>
-                  <div className="text-xs text-moss mt-1 font-medium">{t.event}</div>
+                  <div className="text-xs text-foreground/40 mt-0.5">{t.role}</div>
+                  <div className="text-xs text-moss mt-1.5 font-medium">{t.event}</div>
                 </div>
               </div>
             ))}
@@ -119,20 +122,21 @@ export default function ClientesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-moss text-center">
-        <div className="max-w-2xl mx-auto px-4">
+      <section className="py-32 bg-surface text-center">
+        <div className="max-w-2xl mx-auto px-6">
           <h2
-            className="text-cream text-3xl font-bold mb-4"
+            className="text-foreground text-4xl sm:text-5xl font-bold mb-6 leading-tight"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
-            Junte-se aos Nossos Clientes
+            Junte-se aos nossos<br />
+            <em className="not-italic text-moss">clientes.</em>
           </h2>
-          <p className="text-cream/70 mb-8">
+          <p className="text-foreground/45 mb-10">
             Faça parte da nossa lista de histórias de sucesso.
           </p>
           <Link
             href="/contacto"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-cream text-moss-dark font-semibold rounded-lg hover:bg-cream/90 transition-colors text-sm tracking-wide"
+            className="inline-flex items-center gap-2 px-10 py-5 bg-moss text-cream font-semibold rounded-xl hover:bg-moss-dark transition-colors text-sm tracking-wide"
           >
             Falar Connosco →
           </Link>

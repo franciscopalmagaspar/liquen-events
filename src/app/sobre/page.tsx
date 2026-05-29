@@ -37,47 +37,49 @@ export default function SobrePage() {
       />
 
       {/* Story */}
-      <section className="py-20 bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <section className="py-24 bg-surface">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
             <div>
-              <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
+              <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-5">
                 A Nossa História
               </p>
               <h2
-                className="text-foreground text-4xl font-bold mb-6 leading-tight"
+                className="text-foreground text-4xl font-bold mb-8 leading-tight"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 Nascemos da Paixão por Criar Momentos Únicos
               </h2>
-              <p className="text-foreground/65 text-base leading-relaxed mb-4">
-                A Liquen Events foi fundada em 2014 com uma missão simples: criar
-                eventos que ficam na memória. O nome inspira-se no líquen — um
-                organismo resistente, adaptável e belo, que cresce onde outros
-                não conseguem.
-              </p>
-              <p className="text-foreground/65 text-base leading-relaxed mb-4">
-                Da mesma forma, a nossa equipa prospera nos desafios. Cada evento
-                diferente é uma oportunidade de crescer, aprender e superar
-                expectativas.
-              </p>
-              <p className="text-foreground/65 text-base leading-relaxed">
-                Ao longo dos anos, construímos uma reputação sólida baseada em
-                resultados excepcionais e relações duradouras com os nossos
-                clientes.
-              </p>
+              <div className="flex flex-col gap-4 text-foreground/55 text-base leading-relaxed">
+                <p>
+                  A Liquen Events foi fundada em 2014 com uma missão simples: criar
+                  eventos que ficam na memória. O nome inspira-se no líquen — um
+                  organismo resistente, adaptável e belo, que cresce onde outros
+                  não conseguem.
+                </p>
+                <p>
+                  Da mesma forma, a nossa equipa prospera nos desafios. Cada evento
+                  diferente é uma oportunidade de crescer, aprender e superar
+                  expectativas.
+                </p>
+                <p>
+                  Ao longo dos anos, construímos uma reputação sólida baseada em
+                  resultados excepcionais e relações duradouras com os nossos
+                  clientes.
+                </p>
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-xl h-48 bg-moss/20 flex items-center justify-center text-moss text-xs tracking-widest uppercase font-medium">
+            <div className="grid grid-cols-2 gap-3">
+              <div className="rounded-xl h-52 bg-moss/20 flex items-center justify-center text-moss text-xs tracking-widest uppercase font-medium">
                 Desde 2014
               </div>
-              <div className="rounded-xl h-48 bg-surface-elevated flex items-center justify-center text-foreground/40 text-xs tracking-widest uppercase font-medium">
+              <div className="rounded-xl h-52 bg-surface-elevated flex items-center justify-center text-foreground/30 text-xs tracking-widest uppercase font-medium">
                 Lisboa
               </div>
-              <div className="rounded-xl h-48 bg-surface-elevated flex items-center justify-center text-foreground/40 text-xs tracking-widest uppercase font-medium">
+              <div className="rounded-xl h-52 bg-surface-elevated flex items-center justify-center text-foreground/30 text-xs tracking-widest uppercase font-medium">
                 Portugal
               </div>
-              <div className="rounded-xl h-48 bg-moss/10 flex items-center justify-center text-moss text-xs tracking-widest uppercase font-medium">
+              <div className="rounded-xl h-52 bg-moss/10 flex items-center justify-center text-moss text-xs tracking-widest uppercase font-medium">
                 500+ Eventos
               </div>
             </div>
@@ -86,10 +88,10 @@ export default function SobrePage() {
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-surface-raised">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
+      <section className="py-24 bg-surface-raised border-y border-foreground/8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <div className="mb-16">
+            <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-5">
               O que nos guia
             </p>
             <h2
@@ -99,22 +101,22 @@ export default function SobrePage() {
               Os Nossos Valores
             </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-foreground/8 border border-foreground/8 rounded-2xl overflow-hidden">
             {values.map((v, i) => (
-              <div key={v.title} className="p-7 bg-surface-elevated rounded-xl">
+              <div key={v.title} className="p-8 bg-surface-raised">
                 <div
-                  className="text-moss text-3xl font-bold mb-3"
+                  className="text-foreground/15 text-4xl font-bold mb-6"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   0{i + 1}
                 </div>
                 <h3
-                  className="text-foreground text-lg font-semibold mb-2"
+                  className="text-foreground text-lg font-semibold mb-3"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   {v.title}
                 </h3>
-                <p className="text-sm text-foreground/55 leading-relaxed">{v.desc}</p>
+                <p className="text-sm text-foreground/45 leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>
@@ -122,10 +124,10 @@ export default function SobrePage() {
       </section>
 
       {/* Team */}
-      <section className="py-20 bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
+      <section className="py-24 bg-surface">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <div className="mb-16">
+            <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-5">
               As pessoas
             </p>
             <h2
@@ -137,14 +139,15 @@ export default function SobrePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map((member) => (
-              <div key={member.name} className="text-center group">
-                <div className="w-28 h-28 rounded-full bg-moss/15 mx-auto mb-4 flex items-center justify-center text-moss text-2xl font-bold group-hover:bg-moss/25 transition-colors"
+              <div key={member.name} className="group p-8 bg-surface-raised rounded-2xl border border-foreground/8 hover:border-moss/30 transition-colors">
+                <div
+                  className="w-14 h-14 rounded-full bg-moss/15 mb-5 flex items-center justify-center text-moss text-xl font-bold group-hover:bg-moss/25 transition-colors"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   {member.name.charAt(0)}
                 </div>
                 <h3 className="text-foreground font-semibold text-base mb-1">{member.name}</h3>
-                <p className="text-sm text-moss">{member.role}</p>
+                <p className="text-sm text-moss/80">{member.role}</p>
               </div>
             ))}
           </div>
@@ -152,20 +155,21 @@ export default function SobrePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-moss text-center">
-        <div className="max-w-2xl mx-auto px-4">
+      <section className="py-32 bg-surface text-center border-t border-foreground/8">
+        <div className="max-w-2xl mx-auto px-6">
           <h2
-            className="text-cream text-3xl font-bold mb-4"
+            className="text-foreground text-4xl sm:text-5xl font-bold mb-6 leading-tight"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
-            Vamos Trabalhar Juntos?
+            Vamos trabalhar<br />
+            <em className="not-italic text-moss">juntos?</em>
           </h2>
-          <p className="text-cream/70 mb-8">
+          <p className="text-foreground/45 mb-10">
             Conte-nos o seu próximo evento e nós tratamos do resto.
           </p>
           <Link
             href="/contacto"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-cream text-moss-dark font-semibold rounded-lg hover:bg-cream/90 transition-colors text-sm tracking-wide"
+            className="inline-flex items-center gap-2 px-10 py-5 bg-moss text-cream font-semibold rounded-xl hover:bg-moss-dark transition-colors text-sm tracking-wide"
           >
             Entrar em Contacto →
           </Link>

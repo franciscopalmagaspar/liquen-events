@@ -5,13 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/", label: "Início" },
   { href: "/sobre", label: "Sobre" },
   { href: "/servicos", label: "Serviços" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/galeria", label: "Galeria" },
   { href: "/clientes", label: "Clientes" },
-  { href: "/contacto", label: "Contacto" },
 ];
 
 export default function Navbar() {
@@ -27,41 +25,48 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-surface-raised ${
-        scrolled ? "border-b border-foreground/10" : ""
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-surface-raised/95 backdrop-blur-sm border-b border-foreground/8" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-1">
             <span
-              className="text-moss font-bold text-xl tracking-widest"
+              className="text-moss font-bold text-lg tracking-widest"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               LIQUEN
             </span>
             <span
-              className="text-foreground text-xl tracking-widest"
+              className="text-foreground text-lg tracking-widest"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
-              EVENTS
+              {" "}EVENTS
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-7">
+          <div className="hidden md:flex items-center gap-8">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium tracking-wide transition-colors hover:text-moss ${
-                  pathname === link.href
-                    ? "text-moss border-b-2 border-moss pb-0.5"
-                    : "text-foreground/55"
+                className={`text-sm tracking-wide transition-colors hover:text-foreground ${
+                  pathname === link.href ? "text-foreground" : "text-foreground/45"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
+          </div>
+
+          <div className="hidden md:flex items-center gap-4">
+            <Link
+              href="/contacto"
+              className="px-5 py-2 bg-moss text-cream text-sm font-medium rounded-lg hover:bg-moss-dark transition-colors tracking-wide"
+            >
+              Orçamento
+            </Link>
           </div>
 
           <button
@@ -70,17 +75,17 @@ export default function Navbar() {
             aria-label="Menu"
           >
             <span
-              className={`block w-6 h-0.5 bg-foreground transition-all duration-200 mb-1.5 ${
+              className={`block w-5 h-px bg-foreground transition-all duration-200 mb-1.5 ${
                 isOpen ? "rotate-45 translate-y-2" : ""
               }`}
             />
             <span
-              className={`block w-6 h-0.5 bg-foreground transition-all duration-200 mb-1.5 ${
+              className={`block w-5 h-px bg-foreground transition-all duration-200 mb-1.5 ${
                 isOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`block w-6 h-0.5 bg-foreground transition-all duration-200 ${
+              className={`block w-5 h-px bg-foreground transition-all duration-200 ${
                 isOpen ? "-rotate-45 -translate-y-2" : ""
               }`}
             />
@@ -89,23 +94,30 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 bg-surface-raised border-t border-foreground/10 ${
-          isOpen ? "max-h-96 pb-4" : "max-h-0"
+        className={`md:hidden overflow-hidden transition-all duration-300 bg-surface-raised border-t border-foreground/8 ${
+          isOpen ? "max-h-96 pb-6" : "max-h-0"
         }`}
       >
-        <div className="px-6 pt-2 flex flex-col gap-1">
+        <div className="px-6 pt-4 flex flex-col gap-1">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className={`py-2 text-sm font-medium tracking-wide transition-colors hover:text-moss ${
-                pathname === link.href ? "text-moss" : "text-foreground/55"
+              className={`py-2.5 text-sm tracking-wide transition-colors hover:text-foreground ${
+                pathname === link.href ? "text-foreground" : "text-foreground/45"
               }`}
             >
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/contacto"
+            onClick={() => setIsOpen(false)}
+            className="mt-3 py-3 text-center bg-moss text-cream text-sm font-medium rounded-lg hover:bg-moss-dark transition-colors"
+          >
+            Orçamento
+          </Link>
         </div>
       </div>
     </nav>
