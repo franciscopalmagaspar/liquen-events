@@ -6,6 +6,7 @@ import Image from 'next/image';
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function AdminLogin() {
       const res = await fetch('/api/admin/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ password, name }),
       });
       if (!res.ok) {
         setError('Palavra-passe incorreta.');
@@ -63,6 +64,19 @@ export default function AdminLogin() {
         <form onSubmit={submit} className="flex flex-col gap-6">
           <div>
             <label className="block text-[10px] text-foreground/28 tracking-[0.45em] uppercase mb-3">
+              O teu nome
+            </label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              autoFocus
+              className="w-full bg-transparent border-b border-foreground/15 pb-3 text-sm text-foreground placeholder-foreground/18 focus:outline-none focus:border-moss/55 transition-colors duration-300"
+              placeholder="Ex: Catarina"
+            />
+          </div>
+          <div>
+            <label className="block text-[10px] text-foreground/28 tracking-[0.45em] uppercase mb-3">
               Palavra-passe
             </label>
             <input
@@ -70,7 +84,6 @@ export default function AdminLogin() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              autoFocus
               className="w-full bg-transparent border-b border-foreground/15 pb-3 text-sm text-foreground placeholder-foreground/18 focus:outline-none focus:border-moss/55 transition-colors duration-300"
               placeholder="••••••••"
             />

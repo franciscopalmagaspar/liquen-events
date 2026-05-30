@@ -9,6 +9,7 @@ import type { NextRequest } from "next/server";
  * routes accept either that cookie or the legacy `x-admin-pass` header.
  */
 export const ADMIN_COOKIE = "liquen_admin";
+export const ADMIN_NAME_COOKIE = "liquen_user";
 const SALT = "liquen-admin-v1";
 
 function adminPassword(): string {

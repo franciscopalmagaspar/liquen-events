@@ -11,7 +11,7 @@ const PRIORITY_META: Record<TaskPriority, { label: string; color: string }> = {
 
 const AREAS = ['Comercial', 'Produção', 'Decoração', 'Financeiro', 'Logística', 'Geral'];
 
-export default function Tarefas() {
+export default function Tarefas({ defaultAssignee = '' }: { defaultAssignee?: string }) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [adding, setAdding] = useState(false);
@@ -21,7 +21,7 @@ export default function Tarefas() {
   const [title, setTitle] = useState('');
   const [priority, setPriority] = useState<TaskPriority>('normal');
   const [dueDate, setDueDate] = useState('');
-  const [assignee, setAssignee] = useState('');
+  const [assignee, setAssignee] = useState(defaultAssignee && defaultAssignee !== 'Equipa' ? defaultAssignee : '');
   const [area, setArea] = useState('');
 
   // filter
@@ -56,7 +56,8 @@ export default function Tarefas() {
       if (res.ok) {
         const task = await res.json();
         setTasks((prev) => [task, ...prev]);
-        setTitle(''); setDueDate(''); setPriority('normal'); setAssignee(''); setArea('');
+        setTitle(''); setDueDate(''); setPriority('normal'); setArea('');
+        setAssignee(defaultAssignee && defaultAssignee !== 'Equipa' ? defaultAssignee : '');
       }
     } finally {
       setAdding(false);

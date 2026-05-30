@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import type { Quote } from '../types';
 import AdminClient from './AdminClient';
 import AdminLogin from './AdminLogin';
-import { ADMIN_COOKIE, tokenValid } from '@/lib/admin-auth';
+import { ADMIN_COOKIE, ADMIN_NAME_COOKIE, tokenValid } from '@/lib/admin-auth';
 import { listQuotes } from '@/lib/quotes-store';
 
 export const metadata: Metadata = { title: 'Admin — Líquen Events' };
@@ -25,6 +25,6 @@ export default async function AdminPage() {
   }
 
   const quotes = await getQuotes();
-  const userName = process.env.ADMIN_NAME ?? 'Catarina';
+  const userName = store.get(ADMIN_NAME_COOKIE)?.value || process.env.ADMIN_NAME || 'Equipa';
   return <AdminClient initialQuotes={quotes} userName={userName} />;
 }

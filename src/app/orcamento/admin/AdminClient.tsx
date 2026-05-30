@@ -401,7 +401,7 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
         {/* ── Tarefas ── */}
         {view === 'tarefas' && (
           <div className="px-6 lg:px-12 py-10 lg:py-12 view-in">
-            <Tarefas />
+            <Tarefas defaultAssignee={userName} />
           </div>
         )}
 
