@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import ContactForm from "./ContactForm";
 import FAQ from "./FAQ";
+import FaqJsonLd from "./FaqJsonLd";
 import AnimateIn from "@/components/AnimateIn";
 import Link from "next/link";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Contacto",
+export const metadata: Metadata = pageMetadata({
+  title: "Contacto — Peça o Seu Orçamento de Evento",
   description:
-    "Entre em contacto com a Liquen Events para orçamentos e informações sobre organização de eventos em Portugal. Respondemos em menos de 24 horas.",
-};
+    "Contacte a Líquen Events para organizar o seu evento em Évora, Alentejo, Lisboa ou em qualquer ponto de Portugal. Respondemos em menos de 24 horas com uma proposta à medida.",
+  path: "/contacto",
+  keywords: ["contacto Líquen Events", "orçamento de eventos Évora", "organização de eventos Alentejo"],
+});
 
 const testimonials = [
   {
@@ -54,6 +58,7 @@ const steps = [
 export default function ContactoPage() {
   return (
     <>
+      <FaqJsonLd />
       <ContactForm />
 
       {/* ── Depoimentos ── */}

@@ -2,12 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import AnimateIn from "@/components/AnimateIn";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Serviços",
+export const metadata: Metadata = pageMetadata({
+  title: "Serviços — Casamentos e Eventos Corporativos no Alentejo",
   description:
-    "Eventos corporativos, casamentos, festas e muito mais. Conheça todos os serviços da Liquen Events, com soluções personalizadas adaptadas ao seu estilo e orçamento.",
-};
+    "Organização de casamentos, eventos corporativos, conferências, festas e eventos culturais em Évora, Alentejo, Lisboa e todo o Portugal. Soluções à medida do seu evento.",
+  path: "/servicos",
+  image: "/imagens/EW1_1408.jpg",
+  keywords: [
+    "wedding planner Alentejo",
+    "organização de casamentos Évora",
+    "eventos corporativos Lisboa",
+    "conferências e congressos",
+    "organização de festas Alentejo",
+  ],
+});
 
 const categories = [
   {

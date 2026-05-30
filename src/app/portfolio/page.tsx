@@ -3,12 +3,16 @@ import PageHeader from "@/components/PageHeader";
 import Link from "next/link";
 import AnimateIn from "@/components/AnimateIn";
 import PortfolioClient from "./PortfolioClient";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Portfolio",
+export const metadata: Metadata = pageMetadata({
+  title: "Portfolio de Eventos — Casamentos e Eventos Corporativos",
   description:
-    "Uma seleção dos eventos que mais nos orgulham — corporativos, institucionais e sociais, realizados em Évora e em todo Portugal.",
-};
+    "Veja o nosso portfolio de eventos realizados em Évora, Alentejo e Portugal: casamentos, eventos corporativos e institucionais para clientes como Aernnova, Câmara de Évora e Universidade de Évora.",
+  path: "/portfolio",
+  image: "/imagens/EW1_1392.jpg",
+  keywords: ["portfolio de eventos", "casamentos Alentejo", "eventos corporativos Évora"],
+});
 
 export default function PortfolioPage() {
   return (

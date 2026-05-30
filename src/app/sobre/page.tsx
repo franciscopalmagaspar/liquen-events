@@ -4,12 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import AnimateIn from "@/components/AnimateIn";
 import CountUp from "@/components/CountUp";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Sobre",
+export const metadata: Metadata = pageMetadata({
+  title: "Sobre Nós — Empresa de Eventos em Évora",
   description:
-    "Conheça a Liquen Events — empresa especializada em organização de eventos com sede em Évora. Eventos corporativos, casamentos, celebrações e muito mais.",
-};
+    "Conheça a Líquen Events, empresa de organização de eventos com sede em Évora. Mais de 100 eventos no Alentejo, Lisboa e em todo o Portugal — casamentos, eventos corporativos e celebrações.",
+  path: "/sobre",
+  image: "/imagens/M&F0497.jpg",
+  keywords: ["empresa de eventos Évora", "organização de eventos Alentejo", "sobre Líquen Events"],
+});
 
 const values = [
   {

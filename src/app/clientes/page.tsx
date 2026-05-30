@@ -5,12 +5,15 @@ import Image from "next/image";
 import AnimateIn from "@/components/AnimateIn";
 import CountUp from "@/components/CountUp";
 import ClientLogoGrid from "@/components/ClientLogoGrid";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Clientes",
+export const metadata: Metadata = pageMetadata({
+  title: "Clientes — Quem Confia na Líquen Events",
   description:
-    "Conheça as empresas e famílias que confiam na Liquen Events para os seus momentos mais especiais — José de Mello, Aernnova, Câmara Municipal de Évora e muito mais.",
-};
+    "Empresas e instituições que confiam na Líquen Events em Évora e no Alentejo: José de Mello, Aernnova, Mainova, Universidade de Évora, Câmara Municipal de Évora, Pérez-Llorca e muito mais.",
+  path: "/clientes",
+  keywords: ["clientes Líquen Events", "eventos corporativos Évora", "empresas de eventos Alentejo"],
+});
 
 const testimonials = [
   {
