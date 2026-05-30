@@ -23,16 +23,16 @@ export interface ClientLogo {
 }
 
 export const clientLogos: ClientLogo[] = [
-  { name: "José de Mello",                   logo: "" },
+  { name: "José de Mello",                   logo: "/logos/clientes/jose-de-mello.png" },
   { name: "Aernnova",                        logo: "/logos/clientes/aernnova.avif" },
   { name: "Mainova",                         logo: "/logos/clientes/mainova.avif" },
   { name: "Palácio Duques de Cadaval",       logo: "/logos/clientes/palacio-cadaval.avif" },
   { name: "Ravasqueira",                     logo: "/logos/clientes/ravasqueira.avif" },
-  { name: "Fitapreta Vinhos",                logo: "" },
+  { name: "Fitapreta Vinhos",                logo: "/logos/clientes/fitapreta.png" },
   { name: "Universidade de Évora",           logo: "/logos/clientes/universidade-evora.avif" },
   { name: "Hilton Garden Inn",               logo: "/logos/clientes/hilton-garden-inn.avif" },
   { name: "Convento do Espinheiro",          logo: "/logos/clientes/convento-espinheiro.avif" },
-  { name: "Pérez-Llorca",                    logo: "" },
+  { name: "Pérez-Llorca",                    logo: "/logos/clientes/perez-llorca.png" },
   { name: "Câmara Municipal de Évora",       logo: "/logos/clientes/camara-evora.avif" },
   { name: "PACT",                            logo: "/logos/clientes/pact.avif" },
   { name: "Clínica Dentária Santa Madalena", logo: "/logos/clientes/clinica-santa-madalena.avif" },
