@@ -31,18 +31,26 @@ function getTransport() {
 
 export const MAIL_TO = process.env.MAIL_TO ?? "liquen.alentejo@gmail.com";
 
+interface Attachment {
+  filename: string;
+  content: Buffer | Uint8Array;
+  contentType?: string;
+}
+
 interface SendArgs {
   subject: string;
   html: string;
   text?: string;
   replyTo?: string;
+  to?: string; // overrides the default MAIL_TO (e.g. send to the client)
+  attachments?: Attachment[];
 }
 
 /**
  * Sends an email. Resolves with `{ sent: false }` (never throws) when SMTP
  * isn't configured, so a form submission still completes for the visitor.
  */
-export async function sendMail({ subject, html, text, replyTo }: SendArgs): Promise<{ sent: boolean }> {
+export async function sendMail({ subject, html, text, replyTo, to, attachments }: SendArgs): Promise<{ sent: boolean }> {
   const transport = getTransport();
   if (!transport) {
     console.warn(
@@ -52,7 +60,12 @@ export async function sendMail({ subject, html, text, replyTo }: SendArgs): Prom
   }
 
   const from = process.env.MAIL_FROM ?? process.env.SMTP_USER!;
-  await transport.sendMail({ from, to: MAIL_TO, subject, html, text, replyTo });
+  const attach = attachments?.map((a) => ({
+    filename: a.filename,
+    content: Buffer.isBuffer(a.content) ? a.content : Buffer.from(a.content),
+    contentType: a.contentType,
+  }));
+  await transport.sendMail({ from, to: to ?? MAIL_TO, subject, html, text, replyTo, attachments: attach });
   return { sent: true };
 }
 

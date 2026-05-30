@@ -115,3 +115,30 @@ export interface Quote extends QuoteFormData {
   adminNotes?: string;
   lastUpdated?: string;
 }
+
+// ── Propostas (criadas internamente, enviadas em PDF ao cliente) ──
+export type ProposalStatus = 'rascunho' | 'enviada' | 'aceite' | 'rejeitada';
+
+export interface ProposalLineItem {
+  description: string;
+  qty: number;
+  unitPrice: number; // por unidade, sem IVA
+}
+
+export interface Proposal {
+  id: string;
+  quoteId: string;
+  clientName: string;
+  clientEmail: string;
+  currency: string;
+  lineItems: ProposalLineItem[];
+  vatRate: number; // ex.: 0.23
+  subtotal: number;
+  vat: number;
+  total: number;
+  validUntil?: string;
+  notes?: string;
+  status: ProposalStatus;
+  createdAt: string;
+  sentAt?: string;
+}

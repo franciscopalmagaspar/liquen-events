@@ -4,6 +4,7 @@ import { useState } from 'react';
 import type { Quote, QuoteStatus } from '../types';
 import { formatPrice } from '../pricing';
 import { CATEGORIES, EVENT_TYPES_BY_CATEGORY, PACKAGES } from '../data';
+import ProposalBuilder from './ProposalBuilder';
 
 const STATUS_OPTIONS: { id: QuoteStatus; label: string; color: string }[] = [
   { id: 'pendente', label: 'Pendente', color: 'bg-foreground/10 text-foreground/50' },
@@ -368,6 +369,23 @@ export default function AdminClient({ initialQuotes, adminPass }: Props) {
                     </button>
                   </div>
                 </div>
+
+                {/* Proposal builder → PDF → email */}
+                <ProposalBuilder
+                  quote={selected}
+                  adminPass={adminPass}
+                  onSent={(total) => {
+                    setQuotes((prev) =>
+                      prev.map((q) =>
+                        q.id === selected.id ? { ...q, status: 'cotado', quotedPrice: total } : q
+                      )
+                    );
+                    setSelected((prev) =>
+                      prev ? { ...prev, status: 'cotado', quotedPrice: total } : prev
+                    );
+                    setEditStatus('cotado');
+                  }}
+                />
 
                 <div className="text-foreground/18 text-[10px] text-center">
                   Submetido em{' '}
