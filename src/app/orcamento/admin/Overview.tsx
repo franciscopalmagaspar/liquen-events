@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import type { Quote, QuoteStatus } from '../types';
 import { CATEGORIES, EVENT_TYPES_BY_CATEGORY } from '../data';
+import Reminders from './Reminders';
 
 const eur = (n: number) =>
   new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n || 0);
@@ -119,6 +120,9 @@ export default function Overview({ quotes, userName, onOpen, onGoStats }: Props)
           </div>
         ))}
       </div>
+
+      {/* Reminders */}
+      <Reminders quotes={quotes} onOpen={onOpen} />
 
       <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6">
         {/* Needs attention */}

@@ -14,8 +14,11 @@ import Clientes from './Clientes';
 import Calendario from './Calendario';
 import Propostas from './Propostas';
 import Tarefas from './Tarefas';
+import Fornecedores from './Fornecedores';
+import EventChecklist from './EventChecklist';
+import PaymentsPanel from './PaymentsPanel';
 
-type View = 'overview' | 'pedidos' | 'clientes' | 'calendario' | 'propostas' | 'tarefas' | 'estatisticas' | 'inbox';
+type View = 'overview' | 'pedidos' | 'clientes' | 'calendario' | 'propostas' | 'tarefas' | 'fornecedores' | 'estatisticas' | 'inbox';
 
 const STATUS_OPTIONS: { id: QuoteStatus; label: string; color: string }[] = [
   { id: 'pendente', label: 'Pendente', color: 'bg-foreground/10 text-foreground/50' },
@@ -43,6 +46,9 @@ const NAV: { id: View; label: string; icon: React.ReactNode }[] = [
   )},
   { id: 'tarefas', label: 'Tarefas', icon: (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M9 11l3 3 8-8" strokeLinecap="round" strokeLinejoin="round"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9" strokeLinecap="round"/></svg>
+  )},
+  { id: 'fornecedores', label: 'Fornecedores', icon: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M3 9l1-5h16l1 5M4 9h16v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9z" strokeLinejoin="round"/><path d="M9 13h6" strokeLinecap="round"/></svg>
   )},
   { id: 'estatisticas', label: 'Estatísticas', icon: (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M3 3v18h18" strokeLinecap="round"/><path d="M7 14l3-4 3 3 4-6" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -151,6 +157,7 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
     calendario: 'Calendário',
     propostas: 'Propostas',
     tarefas: 'Tarefas',
+    fornecedores: 'Fornecedores',
     estatisticas: 'Estatísticas',
     inbox: 'Inbox',
   };
@@ -268,6 +275,13 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
         {view === 'tarefas' && (
           <div className="px-5 lg:px-10 py-8">
             <Tarefas />
+          </div>
+        )}
+
+        {/* ── Fornecedores ── */}
+        {view === 'fornecedores' && (
+          <div className="px-5 lg:px-10 py-8">
+            <Fornecedores />
           </div>
         )}
 
@@ -477,6 +491,26 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
                       </button>
                     </div>
                   </div>
+
+                  {/* Production checklist */}
+                  <EventChecklist
+                    key={`cl-${selected.id}`}
+                    quote={selected}
+                    onChange={(checklist) => {
+                      setQuotes((prev) => prev.map((q) => (q.id === selected.id ? { ...q, checklist } : q)));
+                      setSelected((prev) => (prev ? { ...prev, checklist } : prev));
+                    }}
+                  />
+
+                  {/* Payments & invoicing */}
+                  <PaymentsPanel
+                    key={`pay-${selected.id}`}
+                    quote={selected}
+                    onChange={(payments) => {
+                      setQuotes((prev) => prev.map((q) => (q.id === selected.id ? { ...q, payments } : q)));
+                      setSelected((prev) => (prev ? { ...prev, payments } : prev));
+                    }}
+                  />
 
                   <ProposalBuilder
                     quote={selected}

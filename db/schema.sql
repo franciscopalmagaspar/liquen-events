@@ -60,9 +60,24 @@ create table if not exists public.tasks (
 create index if not exists tasks_done_idx on public.tasks (done);
 create index if not exists tasks_due_idx  on public.tasks (due_date);
 
+-- ── Fornecedores / parceiros ────────────────────────────────────
+create table if not exists public.suppliers (
+  id          uuid primary key default gen_random_uuid(),
+  created_at  timestamptz not null default now(),
+  name        text not null,
+  category    text not null default 'Outro',
+  email       text,
+  phone       text,
+  location    text,
+  notes       text
+);
+
+create index if not exists suppliers_category_idx on public.suppliers (category);
+
 -- ── Segurança ───────────────────────────────────────────────────
 -- Ativamos RLS sem políticas públicas: só o servidor (service_role key,
 -- que ignora o RLS) consegue ler/escrever. Os dados ficam privados.
 alter table public.quotes    enable row level security;
 alter table public.proposals enable row level security;
 alter table public.tasks     enable row level security;
+alter table public.suppliers enable row level security;

@@ -111,6 +111,23 @@ export interface QuoteMessage {
   body: string;
 }
 
+export interface ChecklistItem {
+  id: string;
+  label: string;
+  done: boolean;
+}
+
+export type PaymentKind = 'sinal' | 'pagamento' | 'saldo';
+
+export interface Payment {
+  id: string;
+  kind: PaymentKind;
+  amount: number;       // com IVA, em €
+  date: string;         // data do pagamento / previsto
+  paid: boolean;
+  note?: string;
+}
+
 export type TaskPriority = 'baixa' | 'normal' | 'alta';
 
 export interface Task {
@@ -133,6 +150,19 @@ export interface Quote extends QuoteFormData {
   adminNotes?: string;
   lastUpdated?: string;
   messages?: QuoteMessage[];
+  checklist?: ChecklistItem[];
+  payments?: Payment[];
+}
+
+export interface Supplier {
+  id: string;
+  name: string;
+  category: string;
+  email?: string;
+  phone?: string;
+  location?: string;
+  notes?: string;
+  createdAt: string;
 }
 
 // ── Propostas (criadas internamente, enviadas em PDF ao cliente) ──
