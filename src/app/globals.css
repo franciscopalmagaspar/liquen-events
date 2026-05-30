@@ -136,11 +136,35 @@ body::before {
 }
 .footer-ping { animation: footer-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite; }
 
-/* ── Orçamento full-screen mode ── */
+/* ── Orçamento / Back-office full-screen mode ── */
 body.orcamento-mode footer,
 body.orcamento-mode .whatsapp-fixed,
 body.orcamento-mode .scroll-progress {
   display: none !important;
+}
+
+/* ── Back-office: full-screen tool surface (clean & minimal) ── */
+body.admin-mode nav[class*="fixed"] {
+  display: none !important;
+}
+body.admin-mode main {
+  padding-top: 0 !important;
+}
+/* Drop the film grain inside the tool for a crisper, calmer surface */
+body.admin-mode::before {
+  display: none !important;
+}
+/* Quieter, hairline scrollbars inside the back-office panels */
+body.admin-mode ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+body.admin-mode ::-webkit-scrollbar-thumb {
+  background: rgba(222, 218, 212, 0.12);
+  border-radius: 999px;
+}
+body.admin-mode ::-webkit-scrollbar-thumb:hover {
+  background: rgba(222, 218, 212, 0.22);
 }
 
 /* ── Wizard step transitions ── */

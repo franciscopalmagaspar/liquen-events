@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import type { Quote, QuoteStatus } from '../types';
 import { formatPrice } from '../pricing';
@@ -76,6 +76,12 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
   const [refreshing, setRefreshing] = useState(false);
   const [view, setView] = useState<View>('overview');
   const [navOpen, setNavOpen] = useState(false);
+
+  // Full-screen tool surface: hide public nav, grain & chrome.
+  useEffect(() => {
+    document.body.classList.add('admin-mode');
+    return () => document.body.classList.remove('admin-mode');
+  }, []);
 
   function openQuote(q: Quote) {
     setView('pedidos');
