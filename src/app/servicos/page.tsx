@@ -320,68 +320,11 @@ export default function ServicosPage() {
                     {stat.label}
                   </p>
                 </div>
-              </div>
-            </AnimateIn>
-
-            {/* Cards grid */}
-            <div className={`grid gap-2 ${cat.gridCols}`}>
-              {cat.services.map((s, si) => (
-                <AnimateIn key={s.title} delay={si * 55}>
-                  <Link
-                    href={`/servicos/${s.slug}`}
-                    className="group relative block overflow-hidden bg-surface-raised"
-                    style={{ aspectRatio: cat.cardAspect }}
-                  >
-                    <Image
-                      src={s.image}
-                      alt={s.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-
-                    {/* Gradient deepens on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent transition-all duration-500 group-hover:from-black/92 group-hover:via-black/45" />
-
-                    {/* Content — title always visible, features reveal on hover */}
-                    <div className="absolute inset-x-0 bottom-0 p-6">
-                      <p className="text-moss/65 text-[9px] tracking-[0.45em] font-mono uppercase mb-2">
-                        {String(si + 1).padStart(2, "0")}
-                      </p>
-                      <h3
-                        className="text-cream font-bold leading-tight"
-                        style={{
-                          fontFamily: "var(--font-playfair)",
-                          fontSize: "clamp(17px, 1.5vw, 22px)",
-                        }}
-                      >
-                        {s.title}
-                      </h3>
-                      <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
-                        <ul className="overflow-hidden flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 group-hover:delay-100 pt-4">
-                          {s.features.map((f) => (
-                            <li key={f} className="flex items-center gap-2.5 text-xs text-cream/40">
-                              <span className="w-1 h-1 rounded-full bg-moss/65 flex-shrink-0" />
-                              {f}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-
-                    {/* Top-right index */}
-                    <div className="absolute top-4 right-4">
-                      <span className="text-cream/18 text-[9px] tracking-[0.3em] font-mono">
-                        {cat.num}.{String(si + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                  </Link>
-                </AnimateIn>
-              ))}
-            </div>
+              </AnimateIn>
+            ))}
           </div>
-        </section>
-      ))}
+        </div>
+      </section>
 
       {/* ── Photo strip (edge-to-edge) ── */}
       <section className="bg-surface border-t border-foreground/8">
@@ -511,8 +454,9 @@ export default function ServicosPage() {
               <div className={`grid gap-2 ${cat.gridCols}`}>
                 {cat.services.map((s, si) => (
                   <AnimateIn key={s.title} delay={si * 55}>
-                    <div
-                      className="group relative overflow-hidden bg-surface-raised"
+                    <Link
+                      href={`/servicos/${s.slug}`}
+                      className="group relative block overflow-hidden bg-surface-raised"
                       style={{ aspectRatio: cat.cardAspect }}
                     >
                       <Image
@@ -556,7 +500,7 @@ export default function ServicosPage() {
                           {cat.num}.{String(si + 1).padStart(2, "0")}
                         </span>
                       </div>
-                    </div>
+                    </Link>
                   </AnimateIn>
                 ))}
               </div>
