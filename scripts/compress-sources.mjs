@@ -18,7 +18,7 @@ import path from "path";
 const SRC_DIR = path.join(process.cwd(), "public", "imagens");
 const MAX_DIM = 2560;
 const QUALITY = 82;
-const CONCURRENCY = 4;
+const CONCURRENCY = 2;
 const EXT = new Set([".jpg", ".jpeg"]);
 
 const allFiles = (await fs.readdir(SRC_DIR))
@@ -53,9 +53,12 @@ async function processNext() {
       continue;
     }
 
-    // Only overwrite if the result is actually smaller (safety net)
+    // Only overwrite if the result is actually smaller (safety net).
+    // Use atomic write (tmp → rename) to avoid Windows file-lock races.
     if (buf.length < before) {
-      await fs.writeFile(fp, buf);
+      const tmp = fp + ".tmp";
+      await fs.writeFile(tmp, buf);
+      await fs.rename(tmp, fp);
       totalAfter += buf.length;
     } else {
       totalAfter += before;
