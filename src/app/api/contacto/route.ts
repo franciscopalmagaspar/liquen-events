@@ -1,14 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendMail, esc } from '@/lib/mail';
 import { sendPushToAll } from '@/lib/push';
+import { rateLimit, clientIp, sweep } from '@/lib/rate-limit';
+import { contactSchema, firstError } from '@/lib/validation';
 
 export async function POST(request: NextRequest) {
   try {
-    const form = await request.json();
-
-    if (!form || !form.nome || !form.email || !form.mensagem) {
-      return NextResponse.json({ error: 'Dados inválidos' }, { status: 400 });
+    sweep();
+    const limited = rateLimit(`contacto:${clientIp(request)}`, 5, 60_000);
+    if (!limited.ok) {
+      return NextResponse.json(
+        { error: 'Demasiados pedidos. Tente novamente dentro de momentos.' },
+        { status: 429, headers: { 'Retry-After': String(limited.retryAfter ?? 60) } }
+      );
     }
+
+    const raw = await request.json().catch(() => null);
+    const parsed = contactSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json({ error: firstError(parsed.error) }, { status: 400 });
+    }
+    const form = parsed.data;
 
     const row = (label: string, value: unknown) =>
       value
