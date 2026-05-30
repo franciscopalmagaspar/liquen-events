@@ -1,9 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ADMIN_COOKIE, ADMIN_NAME_COOKIE, adminToken, passwordMatches } from "@/lib/admin-auth";
+import { ADMIN_COOKIE, ADMIN_NAME_COOKIE, createSession, verifyCredentials } from "@/lib/admin-auth";
+import { rateLimit, clientIp, sweep } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
+  // Throttle brute-force attempts on the login endpoint.
+  sweep();
+  const limited = rateLimit(`login:${clientIp(request)}`, 10, 60_000);
+  if (!limited.ok) {
+    return NextResponse.json(
+      { error: "Demasiadas tentativas. Aguarde um momento." },
+      { status: 429, headers: { "Retry-After": String(limited.retryAfter ?? 60) } }
+    );
+  }
+
   let password = "";
   let name = "";
   try {
@@ -14,8 +25,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Pedido inválido" }, { status: 400 });
   }
 
-  if (!passwordMatches(password)) {
-    return NextResponse.json({ error: "Palavra-passe incorreta" }, { status: 401 });
+  const user = verifyCredentials(name, password);
+  if (!user) {
+    return NextResponse.json({ error: "Credenciais incorretas" }, { status: 401 });
   }
 
   const res = NextResponse.json({ ok: true });
@@ -25,8 +37,8 @@ export async function POST(request: NextRequest) {
     path: "/",
     maxAge: 60 * 60 * 24 * 30, // 30 dias
   };
-  res.cookies.set(ADMIN_COOKIE, adminToken(), { httpOnly: true, ...cookieBase });
+  res.cookies.set(ADMIN_COOKIE, createSession(user.name), { httpOnly: true, ...cookieBase });
   // Who is logged in — used to greet the partner and default task ownership.
-  if (name) res.cookies.set(ADMIN_NAME_COOKIE, name, { httpOnly: false, ...cookieBase });
+  res.cookies.set(ADMIN_NAME_COOKIE, user.name, { httpOnly: false, ...cookieBase });
   return res;
 }
