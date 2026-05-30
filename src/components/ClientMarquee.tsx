@@ -24,9 +24,9 @@ function Mark({ name, logo }: { name: string; logo: string }) {
     <Image
       src={logo}
       alt={name}
-      width={150}
-      height={48}
-      className="h-7 sm:h-9 w-auto object-contain opacity-40 hover:opacity-75 transition-opacity duration-300 brightness-0 invert flex-shrink-0"
+      width={200}
+      height={64}
+      className="h-10 sm:h-12 w-auto object-contain opacity-50 hover:opacity-85 transition-opacity duration-300 brightness-0 invert flex-shrink-0"
       onError={() => setFailed(true)}
     />
   );

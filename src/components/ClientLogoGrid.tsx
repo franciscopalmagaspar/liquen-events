@@ -12,14 +12,14 @@ function ClientLogo({ client }: { client: Client }) {
   const [failed, setFailed] = useState(false);
 
   return (
-    <div className="h-28 bg-surface flex items-center justify-center px-8 hover:bg-surface-elevated transition-colors group">
+    <div className="h-36 bg-surface flex items-center justify-center px-6 hover:bg-surface-elevated transition-colors group">
       {!failed ? (
         <Image
           src={client.logo}
           alt={client.name}
-          width={140}
-          height={56}
-          className="object-contain max-h-14 w-auto opacity-40 group-hover:opacity-70 transition-opacity duration-300 brightness-0 invert"
+          width={240}
+          height={96}
+          className="object-contain h-20 w-auto max-w-[85%] opacity-55 group-hover:opacity-90 transition-opacity duration-300 brightness-0 invert"
           onError={() => setFailed(true)}
         />
       ) : (
