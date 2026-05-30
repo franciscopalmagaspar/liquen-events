@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import AnimateIn from "@/components/AnimateIn";
 import CountUp from "@/components/CountUp";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -37,6 +38,7 @@ const values = [
 export default function SobrePage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "Sobre", path: "/sobre" }]} />
       <PageHeader
         label="Quem somos"
         title="Sobre a Liquen Events"

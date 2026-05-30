@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import AnimateIn from "@/components/AnimateIn";
+import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -138,6 +139,12 @@ const process = [
 export default function ServicosPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "Serviços", path: "/servicos" }]} />
+      <ServiceJsonLd
+        name="Organização de eventos, casamentos e eventos corporativos"
+        description="Organização de casamentos, eventos corporativos, conferências e celebrações em Évora, Lisboa e todo o Portugal — da decoração à coordenação."
+        path="/servicos"
+      />
       {/* ── Hero ── */}
       <section className="relative min-h-screen flex items-end pb-0 pt-40 bg-surface overflow-hidden">
         <div

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import GaleriaClient from "./GaleriaClient";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -15,6 +16,7 @@ export const metadata: Metadata = pageMetadata({
 export default function GaleriaPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "Galeria", path: "/galeria" }]} />
       <PageHeader
         label="Os nossos momentos"
         title="Galeria"

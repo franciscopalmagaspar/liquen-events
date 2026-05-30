@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import Link from "next/link";
 import AnimateIn from "@/components/AnimateIn";
 import PortfolioClient from "./PortfolioClient";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -17,6 +18,7 @@ export const metadata: Metadata = pageMetadata({
 export default function PortfolioPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "Portfolio", path: "/portfolio" }]} />
       <PageHeader
         label="Os nossos projetos"
         title="Portfolio"

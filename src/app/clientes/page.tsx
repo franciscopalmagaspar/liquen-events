@@ -5,6 +5,7 @@ import Image from "next/image";
 import AnimateIn from "@/components/AnimateIn";
 import CountUp from "@/components/CountUp";
 import ClientLogoGrid from "@/components/ClientLogoGrid";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -73,6 +74,7 @@ const clientLogos = [
 export default function ClientesPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "Clientes", path: "/clientes" }]} />
       <PageHeader
         label="Quem confia em nós"
         title="Os Nossos Clientes"
