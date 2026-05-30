@@ -12,54 +12,33 @@ const clients = [
 ];
 
 const services = [
-  {
-    title: "Eventos Corporativos",
-    desc: "Conferências, teambuildings, lançamentos e jantares de empresa que fortalecem marcas e unem equipas.",
-    image: "/imagens/EW1_1408.jpg",
-    href: "/servicos#empresas",
-  },
-  {
-    title: "Casamentos & Celebrações",
-    desc: "O seu dia mais especial, planeado ao pormenor. Soluções personalizadas adaptadas ao seu estilo, gosto e orçamento.",
-    image: "/imagens/DaniGui_Preview20.jpg",
-    href: "/servicos#celebrações",
-  },
-  {
-    title: "Eventos Culturais",
-    desc: "Experiências culturais únicas e memoráveis, criadas com criatividade e dedicação.",
-    image: "/imagens/20_10_2025_0358.jpg",
-    href: "/servicos#cultura",
-  },
-  {
-    title: "Eventos Privados",
-    desc: "Festas, aniversários e celebrações familiares organizadas com carinho e atenção a cada detalhe.",
-    image: "/imagens/DaniGui_JantarFesta_27.jpg",
-    href: "/servicos#celebrações",
-  },
+  { title: "Corporativos", tag: "Empresas",     image: "/imagens/EW1_1408.jpg",            href: "/servicos#empresas" },
+  { title: "Casamentos",   tag: "Celebrações",  image: "/imagens/DaniGui_Preview20.jpg",   href: "/servicos#celebrações" },
+  { title: "Culturais",    tag: "Cultura",      image: "/imagens/20_10_2025_0358.jpg",     href: "/servicos#cultura" },
+  { title: "Privados",     tag: "Celebrações",  image: "/imagens/DaniGui_JantarFesta_27.jpg", href: "/servicos#celebrações" },
 ];
 
+// Editorial showcase — asymmetric mosaic, image-led, minimal copy
 const featured = [
-  {
-    category: "Corporativo",
-    title: "Aernnova Aerospace",
-    desc: "Evento corporativo de alto nível com produção completa, decoração sofisticada e coordenação impecável.",
-    tags: ["Corporativo", "Évora"],
-    image: "/imagens/EW1_1392.jpg",
-  },
-  {
-    category: "Casamento",
-    title: "Daniela & Guilherme",
-    desc: "Casamento intimista com decoração elegante e coordenação completa do dia, eternizando cada memória.",
-    tags: ["Casamento", "Portugal"],
-    image: "/imagens/DaniGui_Preview12.jpg",
-  },
-  {
-    category: "Casamento",
-    title: "João & Pedro",
-    desc: "Celebração única com decoração personalizada, produção completa e atenção ao detalhe em cada momento.",
-    tags: ["Casamento", "Portugal"],
-    image: "/imagens/JOAO_E_PEDRO_1Y1A3170.jpg",
-  },
+  { title: "Aernnova Aerospace",   category: "Corporativo",  image: "/imagens/EW1_1392.jpg" },
+  { title: "Daniela & Guilherme",  category: "Casamento",    image: "/imagens/DaniGui_Preview12.jpg" },
+  { title: "João & Pedro",         category: "Casamento",    image: "/imagens/JOAO_E_PEDRO_1Y1A3170.jpg" },
+  { title: "Câmara de Évora",      category: "Institucional", image: "/imagens/20_10_2025_0295.jpg" },
+  { title: "Matilde & Filipe",     category: "Casamento",    image: "/imagens/M&F0152.jpg" },
+];
+
+// Full-bleed scrolling ribbon — celebrates the breadth of work
+const ribbon = [
+  "/imagens/Natalia e Jonathan-167.jpg",
+  "/imagens/EW1_0697.jpg",
+  "/imagens/JOAO_E_PEDRO_1Y1A3204.jpg",
+  "/imagens/DaniGui_Adois_61.jpg",
+  "/imagens/20_10_2025_0220.jpg",
+  "/imagens/Inês&Gonçalo_weddingphotos_@carinho.mio-252.jpg",
+  "/imagens/M&F0497.jpg",
+  "/imagens/EW1_1330.jpg",
+  "/imagens/JOAO_E_PEDRO_1Y1A3439.jpg",
+  "/imagens/Matilde&Tomás35.jpg",
 ];
 
 type Stat =
@@ -78,7 +57,6 @@ export default function Home() {
     <>
       {/* ── Hero ── */}
       <section className="relative min-h-screen flex flex-col justify-center px-6 lg:px-16 py-32 overflow-hidden">
-        {/* Full-bleed background */}
         <Image
           src="/imagens/JOAO_E_PEDRO_DJI_20250628213855_0002_D.jpg"
           alt="Líquen Events — evento aéreo"
@@ -87,7 +65,6 @@ export default function Home() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        {/* Layered overlays: depth + smooth fade into page below */}
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/10 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
@@ -98,7 +75,7 @@ export default function Home() {
             Organizamos Eventos · Eternizamos Memórias
           </p>
           <h1
-            className="text-white text-[clamp(52px,9vw,128px)] font-bold leading-[0.9] tracking-tight mb-16"
+            className="text-white text-[clamp(52px,9vw,128px)] font-bold leading-[0.9] tracking-tight mb-14"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             {(
@@ -117,31 +94,25 @@ export default function Home() {
                       animation: `word-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${delay + i * 110}ms both`,
                     }}
                   >
-                    {word}{i < words.length - 1 ? " " : ""}
+                    {word}{i < words.length - 1 ? " " : ""}
                   </span>
                 ))}
               </span>
             ))}
           </h1>
-          <div className="border-t border-white/10 pt-8 grid grid-cols-1 sm:grid-cols-2 gap-8 items-end anim-2">
-            <p className="text-white/55 text-base leading-relaxed max-w-sm">
-              Especialistas em casamentos e eventos corporativos em todo Portugal.
-              Soluções à medida, atenção ao detalhe em cada momento.
-            </p>
-            <div className="flex flex-wrap sm:justify-end items-center gap-4">
-              <Link
-                href="/orcamento"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-moss text-cream text-xs font-medium rounded-sm hover:bg-moss-dark hover:gap-3 transition-all duration-300 tracking-widest uppercase shadow-lg shadow-moss/20"
-              >
-                Pedir Orçamento →
-              </Link>
-              <Link
-                href="/portfolio"
-                className="link-line text-xs text-white/40 hover:text-white/65 transition-colors tracking-[0.2em] uppercase"
-              >
-                Ver portfolio
-              </Link>
-            </div>
+          <div className="border-t border-white/10 pt-8 flex flex-wrap items-center gap-x-6 gap-y-4 anim-2">
+            <Link
+              href="/orcamento"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-moss text-cream text-xs font-medium rounded-sm hover:bg-moss-dark hover:gap-3 transition-all duration-300 tracking-widest uppercase shadow-lg shadow-moss/20"
+            >
+              Pedir Orçamento →
+            </Link>
+            <Link
+              href="/portfolio"
+              className="link-line text-xs text-white/45 hover:text-white/75 transition-colors tracking-[0.2em] uppercase"
+            >
+              Ver portfolio
+            </Link>
           </div>
         </div>
 
@@ -170,11 +141,11 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── Services — 2×2 card grid ── */}
-      <section className="py-28 bg-surface">
+      {/* ── Services — minimal image tiles ── */}
+      <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
-            <div className="flex items-center justify-between mb-16">
+            <div className="flex items-end justify-between mb-12">
               <p className="text-foreground/30 text-xs tracking-[0.3em] uppercase flex items-center gap-3">
                 <span className="w-6 h-px bg-moss rounded-full flex-shrink-0" />
                 O que fazemos
@@ -183,42 +154,35 @@ export default function Home() {
                 href="/servicos"
                 className="group text-xs text-foreground/30 hover:text-foreground/60 transition-colors flex items-center gap-1.5"
               >
-                Ver todos os serviços
+                Ver serviços
                 <span className="group-hover:translate-x-0.5 transition-transform inline-block">→</span>
               </Link>
             </div>
           </AnimateIn>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
             {services.map((s, i) => (
               <AnimateIn key={s.title} delay={i * 60}>
                 <Link
                   href={s.href}
-                  className="group relative block rounded-2xl overflow-hidden"
-                  style={{ aspectRatio: "4/3" }}
-                  data-cursor="Ver"
+                  className="group relative block rounded-xl overflow-hidden"
+                  style={{ aspectRatio: "3/4" }}
                 >
                   <Image
                     src={s.image}
                     alt={s.title}
                     fill
-                    sizes="(max-width: 640px) 100vw, 50vw"
+                    sizes="(max-width: 1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent group-hover:from-black/75 transition-all duration-500" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10">
-                    <div className="w-6 h-px bg-moss/70 mb-5 group-hover:w-12 transition-all duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent group-hover:from-black/70 transition-all duration-500" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
+                    <p className="text-moss/70 text-[9px] tracking-[0.35em] uppercase mb-1.5">{s.tag}</p>
                     <h3
-                      className="text-cream text-xl lg:text-2xl font-bold mb-2 group-hover:text-moss transition-colors duration-200"
+                      className="text-cream text-lg lg:text-2xl font-bold group-hover:text-moss transition-colors duration-200"
                       style={{ fontFamily: "var(--font-playfair)" }}
                     >
                       {s.title}
                     </h3>
-                    <p className="text-cream/50 text-sm leading-relaxed">{s.desc}</p>
-                  </div>
-                  <div className="absolute top-6 right-6">
-                    <span className="text-cream/25 group-hover:text-cream/70 group-hover:translate-x-0.5 transition-all duration-300">
-                      →
-                    </span>
                   </div>
                 </Link>
               </AnimateIn>
@@ -227,11 +191,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Featured work ── */}
-      <section className="py-28 bg-surface border-t border-foreground/8">
+      {/* ── Featured work — editorial mosaic, image-led ── */}
+      <section className="pb-24 bg-surface">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
-            <div className="flex items-center justify-between mb-20">
+            <div className="flex items-end justify-between mb-12">
               <p className="text-foreground/30 text-xs tracking-[0.3em] uppercase flex items-center gap-3">
                 <span className="w-6 h-px bg-moss rounded-full flex-shrink-0" />
                 Trabalho selecionado
@@ -245,57 +209,74 @@ export default function Home() {
               </Link>
             </div>
           </AnimateIn>
-          <div className="flex flex-col gap-3">
-            {featured.map((p, i) => (
-              <AnimateIn key={p.title} delay={i * 60}>
-                <div className="group grid grid-cols-1 lg:grid-cols-5 overflow-hidden rounded-2xl border border-foreground/6 hover:border-foreground/15 transition-all duration-300 bg-surface-raised" data-cursor="Ver">
-                  {/* Thumbnail with category overlay */}
-                  <div
-                    className="lg:col-span-2 relative overflow-hidden"
-                    style={{ minHeight: "260px" }}
+
+          <div className="grid grid-cols-2 lg:grid-cols-12 gap-2 lg:gap-3 auto-rows-[150px] sm:auto-rows-[210px] lg:auto-rows-[200px]">
+            {[
+              "lg:col-span-7 lg:row-span-2",
+              "lg:col-span-5",
+              "lg:col-span-5",
+              "lg:col-span-6 row-span-1 lg:row-span-1",
+              "lg:col-span-6",
+            ].map((span, i) => {
+              const p = featured[i];
+              return (
+                <AnimateIn key={p.title} delay={i * 50} className={`${span} ${i === 0 ? "col-span-2" : ""}`}>
+                  <Link
+                    href="/portfolio"
+                    className="group relative block w-full h-full overflow-hidden rounded-xl"
                   >
                     <Image
                       src={p.image}
                       alt={p.title}
                       fill
-                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      sizes="(max-width: 1024px) 50vw, 50vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                    <span className="absolute bottom-5 left-5 text-[10px] tracking-[0.3em] uppercase text-cream/80 bg-black/25 backdrop-blur-sm px-3 py-1.5 rounded-full border border-cream/10">
-                      {p.category}
-                    </span>
-                  </div>
-                  {/* Content */}
-                  <div className="lg:col-span-3 flex flex-col justify-center p-10 lg:p-14">
-                    <h3
-                      className="text-foreground text-2xl lg:text-4xl font-bold mb-5 group-hover:text-moss transition-colors duration-200 leading-tight"
-                      style={{ fontFamily: "var(--font-playfair)" }}
-                    >
-                      {p.title}
-                    </h3>
-                    <p className="text-foreground/40 text-sm leading-relaxed mb-8">{p.desc}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex flex-wrap gap-2">
-                        {p.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 border border-foreground/10 rounded-full text-foreground/30 text-xs tracking-wide group-hover:border-moss/25 group-hover:text-moss/55 transition-colors duration-300"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <span className="text-foreground/15 group-hover:text-moss/60 group-hover:translate-x-1 transition-all duration-300 text-lg flex-shrink-0 ml-4">
-                        →
-                      </span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent group-hover:from-black/65 transition-all duration-500" />
+                    <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-7">
+                      <p className="text-cream/55 text-[9px] tracking-[0.35em] uppercase mb-1.5">{p.category}</p>
+                      <h3
+                        className="text-cream text-lg lg:text-2xl font-bold group-hover:text-moss transition-colors duration-200"
+                        style={{ fontFamily: "var(--font-playfair)" }}
+                      >
+                        {p.title}
+                      </h3>
                     </div>
-                  </div>
-                </div>
-              </AnimateIn>
-            ))}
+                  </Link>
+                </AnimateIn>
+              );
+            })}
           </div>
         </div>
+      </section>
+
+      {/* ── Gallery ribbon — full-bleed, scrolling ── */}
+      <section className="relative bg-surface border-y border-foreground/8 overflow-hidden py-3">
+        <Link href="/galeria" className="group block">
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-surface to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-surface to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+            <span className="px-6 py-3 bg-surface/70 backdrop-blur-sm border border-cream/10 rounded-full text-cream/80 text-[11px] tracking-[0.3em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              Ver galeria completa →
+            </span>
+          </div>
+          <div className="flex gap-2 animate-marquee w-max">
+            {[...ribbon, ...ribbon].map((src, i) => (
+              <div
+                key={i}
+                className="relative h-[140px] sm:h-[200px] lg:h-[240px] w-[210px] sm:w-[300px] lg:w-[360px] flex-shrink-0 overflow-hidden rounded-lg"
+              >
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  sizes="360px"
+                  className="object-cover group-hover:brightness-75 transition-all duration-500"
+                />
+              </div>
+            ))}
+          </div>
+        </Link>
       </section>
 
       {/* ── Stats — full-bleed moss break ── */}

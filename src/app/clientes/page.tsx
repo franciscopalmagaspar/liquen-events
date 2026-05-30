@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import Link from "next/link";
 import Image from "next/image";
 import AnimateIn from "@/components/AnimateIn";
+import CountUp from "@/components/CountUp";
 import ClientLogoGrid from "@/components/ClientLogoGrid";
 
 export const metadata: Metadata = {
@@ -71,6 +72,32 @@ export default function ClientesPage() {
         title="Os Nossos Clientes"
         description="Empresas e famílias que nos escolheram para os seus momentos mais especiais."
       />
+
+      {/* Stats band */}
+      <section className="bg-surface border-b border-foreground/8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-foreground/[0.06]">
+            {[
+              { kind: "count" as const, to: 16, suffix: "+", label: "Clientes empresariais" },
+              { kind: "count" as const, to: 100, suffix: "+", label: "Eventos realizados" },
+              { kind: "static" as const, value: "5★", label: "Avaliação média" },
+              { kind: "static" as const, value: "24h", label: "Tempo de resposta" },
+            ].map((s, i) => (
+              <AnimateIn key={s.label} delay={i * 70}>
+                <div className="bg-surface flex flex-col items-center justify-center text-center py-14 px-4 gap-3 h-full">
+                  <p
+                    className="text-moss text-4xl lg:text-5xl font-bold leading-none"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    {s.kind === "count" ? <CountUp to={s.to} suffix={s.suffix} /> : s.value}
+                  </p>
+                  <p className="text-foreground/30 text-[10px] tracking-[0.28em] uppercase">{s.label}</p>
+                </div>
+              </AnimateIn>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Client logos */}
       <section className="py-28 bg-surface">

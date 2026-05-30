@@ -353,49 +353,43 @@ export default function GaleriaClient() {
       {/* ── Grid ── */}
       <div style={{ opacity: fading ? 0 : 1, transition: "opacity 0.16s" }}>
 
-        {/* Hero — 3 fotos em destaque */}
+        {/* Hero — mosaico editorial de 5 fotos */}
         {visible.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-0.5 mb-0.5 h-[300px] sm:h-[460px] lg:h-[580px]">
-            {/* Foto grande esquerda */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 grid-rows-2 gap-0.5 mb-0.5 h-[320px] sm:h-[480px] lg:h-[600px]">
+            {/* Foto grande — 2×2 */}
             <button
               onClick={() => setLb(0)}
-              className="relative sm:col-span-2 h-full w-full overflow-hidden group focus:outline-none"
+              className="relative col-span-2 row-span-2 h-full w-full overflow-hidden group focus:outline-none"
             >
-              <Image src={visible[0].src} alt={visible[0].label} fill sizes="(max-width: 640px) 100vw, 67vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" priority />
+              <Image src={visible[0].src} alt={visible[0].label} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" priority />
               <HoverOverlay label={visible[0].label} />
             </button>
 
-            {/* Duas fotos direita — só em sm+ */}
-            {visible.length > 1 && (
-              <div className="hidden sm:flex flex-col gap-0.5 h-full">
+            {/* 4 fotos satélite — só em sm+ */}
+            {[1, 2, 3, 4].map((idx) =>
+              visible.length > idx ? (
                 <button
-                  onClick={() => setLb(1)}
-                  className="relative flex-1 w-full overflow-hidden group focus:outline-none"
+                  key={idx}
+                  onClick={() => setLb(idx)}
+                  className="relative hidden sm:block h-full w-full overflow-hidden group focus:outline-none"
                 >
-                  <Image src={visible[1].src} alt={visible[1].label} fill sizes="33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" priority />
-                  <HoverOverlay label={visible[1].label} />
+                  <Image src={visible[idx].src} alt={visible[idx].label} fill sizes="25vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" priority />
+                  <HoverOverlay label={visible[idx].label} />
                 </button>
-                {visible.length > 2 && (
-                  <button
-                    onClick={() => setLb(2)}
-                    className="relative flex-1 w-full overflow-hidden group focus:outline-none"
-                  >
-                    <Image src={visible[2].src} alt={visible[2].label} fill sizes="33vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" priority />
-                    <HoverOverlay label={visible[2].label} />
-                  </button>
-                )}
-              </div>
+              ) : null
             )}
           </div>
         )}
 
-        {/* Masonry — fotos restantes */}
-        {visible.length > 3 && (
+        {/* Masonry — fotos restantes (satélites 1-4 reaparecem aqui em mobile) */}
+        {visible.length > 1 && (
           <div className="columns-2 md:columns-3 gap-0.5">
-            {visible.slice(3).map((p, i) => (
-              <div key={p.src} className="break-inside-avoid mb-0.5">
+            {visible.slice(1).map((p, i) => {
+              const idx = i + 1;
+              return (
+              <div key={p.src} className={`break-inside-avoid mb-0.5${idx < 5 ? " sm:hidden" : ""}`}>
                 <button
-                  onClick={() => setLb(i + 3)}
+                  onClick={() => setLb(idx)}
                   className="relative w-full overflow-hidden group focus:outline-none"
                   style={{ aspectRatio: aspectFor(i, p.label) }}
                 >
@@ -410,7 +404,8 @@ export default function GaleriaClient() {
                   <HoverOverlay label={p.label} />
                 </button>
               </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

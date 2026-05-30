@@ -365,7 +365,7 @@ export default function ContactForm() {
                         <h2 className="text-foreground text-2xl lg:text-3xl font-bold mb-3 leading-tight" style={{ fontFamily: "var(--font-playfair)" }}>
                           Diga-nos quem é.
                         </h2>
-                        <p className="text-foreground/35 text-sm mb-10">Os seus dados de contacto para entrarmos em touch.</p>
+                        <p className="text-foreground/35 text-sm mb-10">Os seus dados de contacto para falarmos consigo.</p>
                         <div className="flex flex-col gap-10 mb-12">
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                             <div>

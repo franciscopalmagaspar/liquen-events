@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import StickyCTA from "@/components/StickyCTA";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -48,6 +49,7 @@ export default function RootLayout({
   return (
     <html lang="pt" className={`${inter.variable} ${playfair.variable}`}>
       <body className="flex flex-col min-h-screen antialiased">
+        <ScrollProgress />
         <StickyCTA />
         <Navbar />
         <main className="flex-1 pt-16">{children}</main>

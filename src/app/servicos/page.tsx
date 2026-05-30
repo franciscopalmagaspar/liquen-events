@@ -17,7 +17,6 @@ const categories = [
     desc: "Elevamos a imagem da sua marca através de eventos que transformam equipas e celebram conquistas.",
     cardAspect: "3/4",
     gridCols: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
-    panelTranslate: "72%",
     services: [
       {
         title: "Conferências & Congressos",
@@ -52,7 +51,6 @@ const categories = [
     desc: "Os momentos mais importantes da sua vida, planeados ao pormenor com cuidado e elegância.",
     cardAspect: "3/4",
     gridCols: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
-    panelTranslate: "72%",
     services: [
       {
         title: "Casamentos",
@@ -87,7 +85,6 @@ const categories = [
     desc: "Experiências que transcendem o evento e ficam na memória colectiva.",
     cardAspect: "16/9",
     gridCols: "grid-cols-1 sm:grid-cols-2",
-    panelTranslate: "58%",
     services: [
       {
         title: "Eventos Culturais",
@@ -164,8 +161,7 @@ export default function ServicosPage() {
               </h1>
               <div className="border-t border-foreground/8 pt-10 anim-2">
                 <p className="text-foreground/38 text-base leading-[1.8] max-w-sm mb-8">
-                  Especializados em eventos privados, corporativos, culturais e casamentos
-                  — soluções personalizadas adaptadas ao seu estilo, gosto e orçamento.
+                  Corporativos, casamentos, culturais e privados — à medida do seu estilo e orçamento.
                 </p>
                 <Link
                   href="/contacto"
@@ -296,18 +292,15 @@ export default function ServicosPage() {
                     />
 
                     {/* Gradient deepens on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent transition-all duration-500 group-hover:from-black/92 group-hover:via-black/50" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent transition-all duration-500 group-hover:from-black/92 group-hover:via-black/45" />
 
-                    {/* Content panel — slides up on hover */}
-                    <div
-                      className="absolute inset-x-0 bottom-0 p-6 transition-transform duration-500 ease-out group-hover:translate-y-0"
-                      style={{ transform: `translateY(${cat.panelTranslate})` }}
-                    >
+                    {/* Content — title always visible, features reveal on hover */}
+                    <div className="absolute inset-x-0 bottom-0 p-6">
                       <p className="text-moss/65 text-[9px] tracking-[0.45em] font-mono uppercase mb-2">
                         {String(si + 1).padStart(2, "0")}
                       </p>
                       <h3
-                        className="text-cream font-bold leading-tight mb-4"
+                        className="text-cream font-bold leading-tight"
                         style={{
                           fontFamily: "var(--font-playfair)",
                           fontSize: "clamp(17px, 1.5vw, 22px)",
@@ -315,15 +308,16 @@ export default function ServicosPage() {
                       >
                         {s.title}
                       </h3>
-                      <p className="text-cream/42 text-xs leading-relaxed mb-4">{s.desc}</p>
-                      <ul className="flex flex-col gap-2">
-                        {s.features.map((f) => (
-                          <li key={f} className="flex items-center gap-2.5 text-xs text-cream/32">
-                            <span className="w-1 h-1 rounded-full bg-moss/65 flex-shrink-0" />
-                            {f}
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out">
+                        <ul className="overflow-hidden flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 group-hover:delay-100 pt-4">
+                          {s.features.map((f) => (
+                            <li key={f} className="flex items-center gap-2.5 text-xs text-cream/40">
+                              <span className="w-1 h-1 rounded-full bg-moss/65 flex-shrink-0" />
+                              {f}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
 
                     {/* Top-right index */}

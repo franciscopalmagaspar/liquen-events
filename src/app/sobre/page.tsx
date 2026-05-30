@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import Link from "next/link";
 import Image from "next/image";
 import AnimateIn from "@/components/AnimateIn";
+import CountUp from "@/components/CountUp";
 
 export const metadata: Metadata = {
   title: "Sobre",
@@ -85,7 +86,7 @@ export default function SobrePage() {
                       className="text-moss text-4xl font-bold leading-none"
                       style={{ fontFamily: "var(--font-playfair)" }}
                     >
-                      100+
+                      <CountUp to={100} suffix="+" />
                     </p>
                     <p className="text-foreground/28 text-[10px] tracking-[0.28em] uppercase">Eventos</p>
                   </div>
@@ -94,7 +95,7 @@ export default function SobrePage() {
                       className="text-moss text-4xl font-bold leading-none"
                       style={{ fontFamily: "var(--font-playfair)" }}
                     >
-                      16+
+                      <CountUp to={16} suffix="+" />
                     </p>
                     <p className="text-foreground/28 text-[10px] tracking-[0.28em] uppercase">Clientes</p>
                   </div>
@@ -131,6 +132,38 @@ export default function SobrePage() {
             ))}
           </div>
         </AnimateIn>
+      </section>
+
+      {/* Cinematic statement — full bleed */}
+      <section className="relative overflow-hidden border-t border-foreground/8" style={{ minHeight: "clamp(420px, 65vh, 680px)" }}>
+        <Image
+          src="/imagens/M&F0497.jpg"
+          alt="Líquen Events — celebração"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-black/65" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-[#080808]/60" />
+        <div className="relative z-10 h-full flex items-center">
+          <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full py-28">
+            <AnimateIn>
+              <p className="text-cream/40 text-[10px] tracking-[0.5em] uppercase mb-10 flex items-center gap-3">
+                <span className="w-6 h-px bg-moss rounded-full flex-shrink-0" />
+                A nossa filosofia
+              </p>
+            </AnimateIn>
+            <AnimateIn delay={100}>
+              <p
+                className="text-cream font-bold leading-[1.15] max-w-4xl"
+                style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4.2vw, 60px)" }}
+              >
+                Não organizamos apenas eventos.
+                <span className="text-cream/45"> Desenhamos experiências que ficam para sempre na memória de quem as vive.</span>
+              </p>
+            </AnimateIn>
+          </div>
+        </div>
       </section>
 
       {/* Values */}
