@@ -188,7 +188,7 @@ export default function ServicosPage() {
               >
                 <div className="relative overflow-hidden row-span-2">
                   <Image
-                    src="/imagens/DaniGui_Preview12.jpg"
+                    src="/imagens/DaniGui_Adois_61.jpg"
                     alt="Casamentos"
                     fill
                     sizes="(max-width: 1024px) 50vw, 20vw"
