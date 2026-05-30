@@ -45,8 +45,24 @@ create table if not exists public.proposals (
 create index if not exists proposals_quote_id_idx on public.proposals (quote_id);
 create index if not exists proposals_created_at_idx on public.proposals (created_at desc);
 
+-- ── Tarefas internas (back office) ──────────────────────────────
+create table if not exists public.tasks (
+  id          uuid primary key default gen_random_uuid(),
+  created_at  timestamptz not null default now(),
+  title       text not null,
+  done        boolean not null default false,
+  priority    text not null default 'normal',  -- baixa | normal | alta
+  due_date    date,
+  quote_id    text,
+  client_name text
+);
+
+create index if not exists tasks_done_idx on public.tasks (done);
+create index if not exists tasks_due_idx  on public.tasks (due_date);
+
 -- ── Segurança ───────────────────────────────────────────────────
 -- Ativamos RLS sem políticas públicas: só o servidor (service_role key,
 -- que ignora o RLS) consegue ler/escrever. Os dados ficam privados.
 alter table public.quotes    enable row level security;
 alter table public.proposals enable row level security;
+alter table public.tasks     enable row level security;

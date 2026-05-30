@@ -1,0 +1,16 @@
+import { NextRequest, NextResponse } from "next/server";
+import { isAuthed } from "@/lib/admin-auth";
+import { listAllProposals } from "@/lib/proposals-store";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+export async function GET(request: NextRequest) {
+  if (!isAuthed(request)) return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
+  try {
+    return NextResponse.json(await listAllProposals());
+  } catch (err) {
+    console.error("[propostas GET]", err);
+    return NextResponse.json({ error: "Erro interno" }, { status: 500 });
+  }
+}

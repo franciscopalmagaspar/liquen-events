@@ -111,6 +111,19 @@ export interface QuoteMessage {
   body: string;
 }
 
+export type TaskPriority = 'baixa' | 'normal' | 'alta';
+
+export interface Task {
+  id: string;
+  title: string;
+  done: boolean;
+  priority: TaskPriority;
+  dueDate?: string;
+  quoteId?: string;
+  clientName?: string;
+  createdAt: string;
+}
+
 export interface Quote extends QuoteFormData {
   id: string;
   submittedAt: string;

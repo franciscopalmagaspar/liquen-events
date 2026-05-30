@@ -42,6 +42,20 @@ export async function createProposal(p: Proposal): Promise<void> {
   await fs.writeFile(DATA_FILE, JSON.stringify(all, null, 2));
 }
 
+export async function listAllProposals(): Promise<Proposal[]> {
+  const sb = getSupabase();
+  if (sb) {
+    const { data, error } = await sb
+      .from(TABLE)
+      .select("*")
+      .order("created_at", { ascending: false });
+    if (error) throw error;
+    return (data ?? []).map(rowToProposal);
+  }
+  const all = await fileRead();
+  return all.sort((a, b) => +new Date(b.createdAt) - +new Date(a.createdAt));
+}
+
 export async function listProposalsForQuote(quoteId: string): Promise<Proposal[]> {
   const sb = getSupabase();
   if (sb) {

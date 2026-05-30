@@ -10,8 +10,12 @@ import ClientMessenger from './ClientMessenger';
 import StatsDashboard from './StatsDashboard';
 import Inbox from './Inbox';
 import Overview from './Overview';
+import Clientes from './Clientes';
+import Calendario from './Calendario';
+import Propostas from './Propostas';
+import Tarefas from './Tarefas';
 
-type View = 'overview' | 'pedidos' | 'estatisticas' | 'inbox';
+type View = 'overview' | 'pedidos' | 'clientes' | 'calendario' | 'propostas' | 'tarefas' | 'estatisticas' | 'inbox';
 
 const STATUS_OPTIONS: { id: QuoteStatus; label: string; color: string }[] = [
   { id: 'pendente', label: 'Pendente', color: 'bg-foreground/10 text-foreground/50' },
@@ -27,6 +31,18 @@ const NAV: { id: View; label: string; icon: React.ReactNode }[] = [
   )},
   { id: 'pedidos', label: 'Pedidos', icon: (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4" strokeLinecap="round"/></svg>
+  )},
+  { id: 'clientes', label: 'Clientes', icon: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16 5.5a3 3 0 0 1 0 5.5M21 20c0-2.5-1.8-4.3-4-4.8" strokeLinecap="round"/></svg>
+  )},
+  { id: 'calendario', label: 'Calendário', icon: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4" strokeLinecap="round"/></svg>
+  )},
+  { id: 'propostas', label: 'Propostas', icon: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+  )},
+  { id: 'tarefas', label: 'Tarefas', icon: (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M9 11l3 3 8-8" strokeLinecap="round" strokeLinejoin="round"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9" strokeLinecap="round"/></svg>
   )},
   { id: 'estatisticas', label: 'Estatísticas', icon: (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M3 3v18h18" strokeLinecap="round"/><path d="M7 14l3-4 3 3 4-6" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -131,6 +147,10 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
   const VIEW_TITLES: Record<View, string> = {
     overview: 'Visão Geral',
     pedidos: 'Pedidos',
+    clientes: 'Clientes',
+    calendario: 'Calendário',
+    propostas: 'Propostas',
+    tarefas: 'Tarefas',
     estatisticas: 'Estatísticas',
     inbox: 'Inbox',
   };
@@ -220,6 +240,34 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
         {view === 'overview' && (
           <div className="px-5 lg:px-10 py-8">
             <Overview quotes={quotes} userName={userName} onOpen={openQuote} onGoStats={() => setView('estatisticas')} />
+          </div>
+        )}
+
+        {/* ── Clientes ── */}
+        {view === 'clientes' && (
+          <div className="px-5 lg:px-10 py-8">
+            <Clientes quotes={quotes} onOpen={openQuote} />
+          </div>
+        )}
+
+        {/* ── Calendário ── */}
+        {view === 'calendario' && (
+          <div className="px-5 lg:px-10 py-8">
+            <Calendario quotes={quotes} onOpen={openQuote} />
+          </div>
+        )}
+
+        {/* ── Propostas ── */}
+        {view === 'propostas' && (
+          <div className="px-5 lg:px-10 py-8">
+            <Propostas />
+          </div>
+        )}
+
+        {/* ── Tarefas ── */}
+        {view === 'tarefas' && (
+          <div className="px-5 lg:px-10 py-8">
+            <Tarefas />
           </div>
         )}
 
