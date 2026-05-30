@@ -29,7 +29,7 @@ export const clientLogos: ClientLogo[] = [
   { name: "Palácio Duques de Cadaval",       logo: "/logos/clientes/palacio-cadaval.avif" },
   { name: "Ravasqueira",                     logo: "" },
   { name: "Fitapreta Vinhos",                logo: "" },
-  { name: "Universidade de Évora",           logo: "" },
+  { name: "Universidade de Évora",           logo: "/logos/clientes/universidade-evora.avif" },
   { name: "Hilton Garden Inn",               logo: "" },
   { name: "Convento do Espinheiro",          logo: "/logos/clientes/convento-espinheiro.avif" },
   { name: "Pérez-Llorca",                    logo: "" },
