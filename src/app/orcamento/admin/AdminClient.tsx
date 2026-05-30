@@ -21,6 +21,7 @@ import { ToastProvider } from './Toast';
 import CommandPalette, { type Command } from './CommandPalette';
 import NewQuoteModal from './NewQuoteModal';
 import Kanban from './Kanban';
+import NotificationBell from './NotificationBell';
 
 type View = 'overview' | 'pedidos' | 'kanban' | 'clientes' | 'calendario' | 'propostas' | 'tarefas' | 'fornecedores' | 'estatisticas' | 'inbox';
 
@@ -323,6 +324,7 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
             </h1>
           </div>
           <div className="ml-auto flex items-center gap-3 shrink-0">
+            <NotificationBell />
             <button
               onClick={() => setNewQuoteOpen(true)}
               className="flex items-center gap-2 px-4 py-2 bg-moss text-cream text-[10px] tracking-[0.18em] uppercase rounded-md hover:bg-moss-dark transition-colors"

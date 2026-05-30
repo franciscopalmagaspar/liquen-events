@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendMail, esc } from '@/lib/mail';
+import { sendPushToAll } from '@/lib/push';
 
 export async function POST(request: NextRequest) {
   try {
@@ -39,6 +40,17 @@ export async function POST(request: NextRequest) {
       });
     } catch (mailErr) {
       console.error('[contacto POST] email falhou', mailErr);
+    }
+
+    try {
+      await sendPushToAll({
+        title: 'Nova mensagem de contacto',
+        body: `${form.nome}${form.eventType ? ` · ${form.eventType}` : ''}`,
+        url: '/orcamento/admin',
+        tag: 'novo-contacto',
+      });
+    } catch (pushErr) {
+      console.error('[contacto POST] push falhou', pushErr);
     }
 
     return NextResponse.json({ status: 'ok' });

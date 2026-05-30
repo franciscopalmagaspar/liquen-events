@@ -74,6 +74,13 @@ create table if not exists public.suppliers (
 
 create index if not exists suppliers_category_idx on public.suppliers (category);
 
+-- ── Subscrições de notificações push (Web Push) ─────────────────
+create table if not exists public.push_subscriptions (
+  endpoint    text primary key,
+  keys        jsonb not null,
+  created_at  timestamptz not null default now()
+);
+
 -- ── Segurança ───────────────────────────────────────────────────
 -- Ativamos RLS sem políticas públicas: só o servidor (service_role key,
 -- que ignora o RLS) consegue ler/escrever. Os dados ficam privados.
@@ -81,3 +88,4 @@ alter table public.quotes    enable row level security;
 alter table public.proposals enable row level security;
 alter table public.tasks     enable row level security;
 alter table public.suppliers enable row level security;
+alter table public.push_subscriptions enable row level security;

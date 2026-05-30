@@ -4,6 +4,7 @@ import { CATEGORIES, EVENT_TYPES_BY_CATEGORY, PACKAGES } from '../../orcamento/d
 import { sendMail, esc } from '@/lib/mail';
 import { createQuote, listQuotes } from '@/lib/quotes-store';
 import { isAuthed } from '@/lib/admin-auth';
+import { sendPushToAll } from '@/lib/push';
 
 function generateId(): string {
   const now = Date.now().toString(36).toUpperCase();
@@ -91,6 +92,18 @@ export async function POST(request: NextRequest) {
       await createQuote(quote);
     } catch (storeErr) {
       console.error('[orcamento POST] persistência falhou', storeErr);
+    }
+
+    // Push notification to the team's devices.
+    try {
+      await sendPushToAll({
+        title: 'Novo pedido de orçamento',
+        body: `${form.name}${form.guests ? ` · ${form.guests} convidados` : ''}`,
+        url: '/orcamento/admin',
+        tag: 'novo-orcamento',
+      });
+    } catch (pushErr) {
+      console.error('[orcamento POST] push falhou', pushErr);
     }
 
     return NextResponse.json({ id, status: 'ok' });
