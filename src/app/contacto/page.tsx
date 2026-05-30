@@ -5,6 +5,7 @@ import FaqJsonLd from "./FaqJsonLd";
 import AnimateIn from "@/components/AnimateIn";
 import Link from "next/link";
 import { pageMetadata } from "@/lib/page-metadata";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contacto — Peça o Seu Orçamento de Evento",
@@ -58,6 +59,7 @@ const steps = [
 export default function ContactoPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "Contacto", path: "/contacto" }]} />
       <FaqJsonLd />
       <ContactForm />
 
