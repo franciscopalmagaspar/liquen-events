@@ -38,7 +38,7 @@ export const clientLogos: ClientLogo[] = [
   { name: "Clínica Dentária Santa Madalena", logo: "/logos/clientes/clinica-santa-madalena.avif" },
   { name: "Casa Morgado Esporão",            logo: "/logos/clientes/casa-morgado-esporao.avif" },
   { name: "PortugalNuts",                    logo: "/logos/clientes/portugal-nuts.avif" },
-  { name: "ESRI Portugal",                   logo: "" },
+  { name: "ESRI Portugal",                   logo: "/logos/clientes/esri.avif" },
   { name: "Monte do Zambujal",               logo: "/logos/clientes/monte-zambujal.avif" },
   { name: "EDIA",                            logo: "/logos/clientes/edia.avif" },
   { name: "Ordem dos Médicos Veterinários",  logo: "/logos/clientes/omv.avif" },
