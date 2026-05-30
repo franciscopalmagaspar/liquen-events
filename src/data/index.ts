@@ -27,7 +27,7 @@ export const clientLogos: ClientLogo[] = [
   { name: "Aernnova",                        logo: "/logos/clientes/aernnova.avif" },
   { name: "Mainova",                         logo: "/logos/clientes/mainova.avif" },
   { name: "Palácio Duques de Cadaval",       logo: "/logos/clientes/palacio-cadaval.avif" },
-  { name: "Ravasqueira",                     logo: "" },
+  { name: "Ravasqueira",                     logo: "/logos/clientes/ravasqueira.avif" },
   { name: "Fitapreta Vinhos",                logo: "" },
   { name: "Universidade de Évora",           logo: "/logos/clientes/universidade-evora.avif" },
   { name: "Hilton Garden Inn",               logo: "" },
