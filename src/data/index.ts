@@ -30,7 +30,7 @@ export const clientLogos: ClientLogo[] = [
   { name: "Ravasqueira",                     logo: "/logos/clientes/ravasqueira.avif" },
   { name: "Fitapreta Vinhos",                logo: "" },
   { name: "Universidade de Évora",           logo: "/logos/clientes/universidade-evora.avif" },
-  { name: "Hilton Garden Inn",               logo: "" },
+  { name: "Hilton Garden Inn",               logo: "/logos/clientes/hilton-garden-inn.avif" },
   { name: "Convento do Espinheiro",          logo: "/logos/clientes/convento-espinheiro.avif" },
   { name: "Pérez-Llorca",                    logo: "" },
   { name: "Câmara Municipal de Évora",       logo: "/logos/clientes/camara-evora.avif" },
@@ -41,7 +41,7 @@ export const clientLogos: ClientLogo[] = [
   { name: "ESRI Portugal",                   logo: "" },
   { name: "Monte do Zambujal",               logo: "/logos/clientes/monte-zambujal.avif" },
   { name: "EDIA",                            logo: "/logos/clientes/edia.avif" },
-  { name: "Ordem dos Médicos Veterinários",  logo: "" },
+  { name: "Ordem dos Médicos Veterinários",  logo: "/logos/clientes/omv.avif" },
 ];
 
 // ── Testimonials ──────────────────────────────────────────────────────────────
