@@ -236,27 +236,26 @@ function ServiceCard({
       </div>
 
       {/* Bottom content */}
-      <div className="absolute inset-x-0 bottom-0 p-6 lg:p-7">
-        <p className="text-moss/60 text-[9px] tracking-[0.5em] font-mono uppercase mb-2.5">
+      <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 lg:p-7">
+        <p className="text-moss/60 text-[9px] tracking-[0.5em] font-mono uppercase mb-2">
           {String(index + 1).padStart(2, "0")}
         </p>
         <h3
           className="text-cream font-bold leading-tight mb-2"
           style={{
             fontFamily: "var(--font-playfair)",
-            fontSize: "clamp(16px, 1.6vw, 22px)",
+            fontSize: "clamp(15px, 1.6vw, 22px)",
           }}
         >
           {service.title}
         </h3>
-        <div className="max-h-0 group-hover:max-h-[120px] overflow-hidden transition-all duration-500 ease-out">
-          <p className="text-cream/40 text-xs leading-relaxed pb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-400 delay-100">
-            {service.desc}
-          </p>
-          <span className="text-moss text-[10px] tracking-[0.35em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-400 delay-150">
-            Ver mais →
-          </span>
-        </div>
+        {/* Mobile: always show desc; desktop: reveal on hover */}
+        <p className="text-cream/40 text-xs leading-relaxed md:opacity-0 md:max-h-0 md:group-hover:opacity-100 md:group-hover:max-h-[80px] overflow-hidden transition-all duration-500 ease-out">
+          {service.desc}
+        </p>
+        <span className="hidden md:inline text-moss text-[10px] tracking-[0.35em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-400 delay-150">
+          Ver mais →
+        </span>
       </div>
     </Link>
   );
@@ -381,7 +380,7 @@ function DuoGrid({ cat }: { cat: Category }) {
 /* ── Mobile card list ── */
 function MobileCardStack({ cat }: { cat: Category }) {
   return (
-    <div className="grid grid-cols-2 gap-2" style={{ gridAutoRows: "clamp(180px, 42vw, 300px)" }}>
+    <div className="grid grid-cols-2 gap-2" style={{ gridAutoRows: "clamp(200px, 48vw, 320px)" }}>
       {cat.services.map((s, i) => (
         <ServiceCard key={s.title} service={s} index={i} catNum={cat.num} sizes="50vw" />
       ))}
@@ -844,7 +843,7 @@ export default function ServicosPage() {
       {/* ── Second photo strip ── */}
       <section className="bg-surface border-t border-foreground/8">
         <AnimateIn from="fade">
-          <div className="grid grid-cols-3 gap-px" style={{ height: "clamp(200px, 30vw, 440px)" }}>
+          <div className="grid grid-cols-3 gap-px" style={{ height: "clamp(160px, 35vw, 440px)" }}>
             {[
               { src: "/imagens/EW1_1100.jpg", label: "Corporativo", anchor: "#empresas" },
               {
@@ -879,7 +878,7 @@ export default function ServicosPage() {
       <TestimonialsCarousel />
 
       {/* ── Clients ── */}
-      <section className="py-24 bg-surface border-t border-foreground/8">
+      <section className="py-12 md:py-24 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
             <p className="text-foreground/25 text-[10px] tracking-[0.5em] uppercase mb-14 flex items-center gap-3">
@@ -890,7 +889,7 @@ export default function ServicosPage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-px bg-foreground/[0.05]">
             {clients.map((name, i) => (
               <AnimateIn key={name} delay={i * 22}>
-                <div className="bg-surface flex items-center justify-center px-6 py-9 hover:bg-surface-raised transition-colors duration-300">
+                <div className="bg-surface flex items-center justify-center px-4 py-6 sm:px-6 sm:py-9 hover:bg-surface-raised transition-colors duration-300">
                   <span className="text-foreground/25 text-[9px] tracking-[0.38em] uppercase text-center leading-relaxed">
                     {name}
                   </span>
@@ -945,7 +944,7 @@ export default function ServicosPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="relative py-28 lg:py-48 bg-surface border-t border-foreground/8 overflow-hidden">
+      <section className="relative py-14 md:py-28 lg:py-48 bg-surface border-t border-foreground/8 overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
