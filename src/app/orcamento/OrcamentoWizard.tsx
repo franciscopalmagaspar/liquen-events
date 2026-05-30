@@ -137,6 +137,22 @@ export default function OrcamentoWizard() {
       });
       const data = await res.json();
       if (data.id) {
+        // Hand the quote off to the confirmation page so it renders the full
+        // summary even when the host can't persist it server-side (serverless).
+        try {
+          sessionStorage.setItem(
+            `liquen-quote-${data.id}`,
+            JSON.stringify({
+              ...form,
+              id: data.id,
+              submittedAt: new Date().toISOString(),
+              status: 'pendente',
+              priceBreakdown: breakdown,
+            })
+          );
+        } catch {
+          /* sessionStorage unavailable — confirmation falls back gracefully */
+        }
         router.push(`/orcamento/confirmacao/${data.id}`);
       } else {
         setError('Erro ao enviar o pedido. Por favor tente novamente.');
