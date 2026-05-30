@@ -7,6 +7,8 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import StickyCTA from "@/components/StickyCTA";
 import ScrollProgress from "@/components/ScrollProgress";
 import StructuredData from "@/components/StructuredData";
+import PageTransition from "@/components/PageTransition";
+import CustomCursor from "@/components/CustomCursor";
 import { SITE, SITE_KEYWORDS } from "@/lib/site";
 
 const inter = Inter({
@@ -89,6 +91,7 @@ export default function RootLayout({
     <html lang="pt-PT" data-scroll-behavior="smooth" className={`${inter.variable} ${playfair.variable}`}>
       <body className="flex flex-col min-h-screen antialiased">
         <StructuredData />
+        <CustomCursor />
         <a
           href="#conteudo"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-moss focus:text-cream focus:rounded-md focus:text-sm"
@@ -98,7 +101,9 @@ export default function RootLayout({
         <ScrollProgress />
         <StickyCTA />
         <Navbar />
-        <main id="conteudo" className="flex-1 pt-16">{children}</main>
+        <main id="conteudo" className="flex-1 pt-16">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
         <WhatsAppButton />
       </body>

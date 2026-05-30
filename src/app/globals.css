@@ -162,6 +162,11 @@ body.admin-mode main {
 body.admin-mode::before {
   display: none !important;
 }
+/* The back-office is a work tool — use the native cursor there */
+body.admin-mode .cursor-dot,
+body.admin-mode .cursor-ring {
+  display: none !important;
+}
 /* Quieter, hairline scrollbars inside the back-office panels */
 body.admin-mode ::-webkit-scrollbar {
   width: 6px;
@@ -201,6 +206,65 @@ body.admin-mode ::-webkit-scrollbar-thumb:hover {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Route transition (Pixel-Matters-style page reveal) ── */
+@keyframes route-fade {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.route-fade {
+  animation: route-fade 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Magnetic / hover lift used across CTAs ── */
+.lift {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+.lift:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Custom cursor (desktop, fine pointer only) ── */
+@media (pointer: fine) {
+  .cursor-dot,
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9998;
+    pointer-events: none;
+    border-radius: 9999px;
+    margin-left: 0;
+    margin-top: 0;
+    will-change: transform;
+  }
+  .cursor-dot {
+    width: 6px;
+    height: 6px;
+    margin: -3px 0 0 -3px;
+    background: var(--color-moss);
+    transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease;
+  }
+  .cursor-ring {
+    width: 34px;
+    height: 34px;
+    margin: -17px 0 0 -17px;
+    border: 1px solid rgba(74, 124, 89, 0.45);
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+  }
+  .cursor-ring--active {
+    width: 54px;
+    height: 54px;
+    margin: -27px 0 0 -27px;
+    background: rgba(74, 124, 89, 0.08);
+    border-color: rgba(74, 124, 89, 0.7);
+  }
+  .cursor-hidden {
+    opacity: 0;
+  }
+}
+
 /* ── Back-office: gentle view transition ── */
 @keyframes view-in {
   from { opacity: 0; transform: translateY(8px); }
@@ -237,6 +301,7 @@ body.admin-mode ::-webkit-scrollbar-thumb:hover {
   .anim-glow, .anim-scroll-line, .animate-marquee, .animate-scroll-line, .footer-ping { animation: none; }
   .animate-step-forward, .animate-step-back { animation: none; }
   .view-in { animation: none; }
+  .route-fade { animation: none; }
   .cursor-dot, .cursor-ring { display: none; }
 }
 
