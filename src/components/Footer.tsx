@@ -8,6 +8,7 @@ const pages = [
   ["Serviços", "/servicos"],
   ["Portfolio", "/portfolio"],
   ["Galeria", "/galeria"],
+  ["Diário", "/diario"],
   ["Clientes", "/clientes"],
   ["Contacto", "/contacto"],
 ];
