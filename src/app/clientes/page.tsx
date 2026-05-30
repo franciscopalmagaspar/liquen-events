@@ -21,35 +21,33 @@ export const metadata: Metadata = pageMetadata({
 const testimonials = [
   {
     name: "António Bettencourt",
-    role: "Cliente",
     text: "O ambiente criado pela vossa equipa elevou a imagem do nosso evento. Ficámos impressionados com a sofisticação da decoração.",
     event: "Evento Corporativo",
   },
   {
     name: "Alexandra Teixeira",
-    role: "Cliente",
     text: "A dedicação da equipa em criar ambientes mágicos, com decoração impecável e coordenação perfeita, permitiu-nos desfrutar do evento sem qualquer preocupação.",
     event: "Evento Social",
   },
   {
     name: "Stephanie & Mizio",
-    role: "Clientes",
     text: "Everything was exactly how we'd envisioned and you created a beautiful space for us!",
     event: "Evento Privado",
   },
   {
     name: "Teresinha Malta",
-    role: "Cliente",
     text: "Serviço de excelência, com muito carinho e disponibilidade por parte de toda a equipa. Superaram todas as expectativas.",
     event: "Evento Social",
   },
   {
     name: "Ana Pinho",
-    role: "Cliente",
-    text: "Excelente, recomendo!!",
+    text: "Excelente, recomendo sem qualquer reserva. Uma equipa de confiança do início ao fim.",
     event: "Evento Privado",
   },
 ];
+
+const eyebrow = "text-foreground/25 text-[10px] tracking-[0.48em] uppercase flex items-center gap-3";
+const heading = "text-foreground font-bold leading-[1.05]";
 
 export default function ClientesPage() {
   return (
@@ -58,8 +56,24 @@ export default function ClientesPage() {
       <PageHeader
         label="Quem confia em nós"
         title="Os Nossos Clientes"
-        description="Empresas e famílias que nos escolheram para os seus momentos mais especiais."
+        description="Empresas, instituições e famílias que nos escolheram para os seus momentos mais especiais."
       />
+
+      {/* Lead statement */}
+      <section className="py-20 lg:py-28 bg-surface border-b border-foreground/8">
+        <div className="max-w-4xl mx-auto px-6 lg:px-16">
+          <AnimateIn>
+            <p
+              className="text-foreground/55 leading-[1.75]"
+              style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(21px, 2.7vw, 32px)" }}
+            >
+              De grandes empresas a celebrações de família, são dezenas os que confiam à Líquen Events
+              os seus momentos mais importantes — e a essa confiança respondemos com{" "}
+              <span className="text-moss">rigor, criatividade e dedicação</span> em cada detalhe.
+            </p>
+          </AnimateIn>
+        </div>
+      </section>
 
       {/* Stats band */}
       <section className="bg-surface border-b border-foreground/8">
@@ -71,7 +85,7 @@ export default function ClientesPage() {
               { kind: "static" as const, value: "5★", label: "Avaliação média" },
               { kind: "static" as const, value: "24h", label: "Tempo de resposta" },
             ].map((s, i) => (
-              <AnimateIn key={s.label} delay={i * 70}>
+              <AnimateIn key={s.label} delay={i * 70} className="h-full">
                 <div className="bg-surface flex flex-col items-center justify-center text-center py-14 px-4 gap-3 h-full">
                   <p
                     className="text-moss text-4xl lg:text-5xl font-bold leading-none"
@@ -88,45 +102,62 @@ export default function ClientesPage() {
       </section>
 
       {/* Client logos */}
-      <section className="py-28 bg-surface">
+      <section className="py-24 lg:py-28 bg-surface">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
-            <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-20 flex items-center gap-3">
+            <p className={`${eyebrow} mb-6`}>
               <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
-              Empresas parceiras
+              Empresas &amp; instituições
             </p>
+            <h2 className={heading} style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 3.6vw, 46px)" }}>
+              Marcas que confiam em nós
+            </h2>
           </AnimateIn>
-          <AnimateIn delay={80}>
-            <ClientLogoGrid clients={clientLogos} />
+          <AnimateIn delay={120}>
+            <div className="mt-14">
+              <ClientLogoGrid clients={clientLogos} />
+            </div>
           </AnimateIn>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-28 bg-surface border-t border-foreground/8">
+      {/* Testimonials — premium cards */}
+      <section className="py-24 lg:py-28 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
-            <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-20 flex items-center gap-3">
+            <p className={`${eyebrow} mb-6`}>
               <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
-              O que dizem
+              O que dizem de nós
             </p>
+            <h2 className={heading} style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 3.6vw, 46px)" }}>
+              Palavras de quem confiou.
+            </h2>
           </AnimateIn>
-          <div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 mt-14">
             {testimonials.map((t, i) => (
-              <AnimateIn key={t.name} delay={i * 60}>
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-16 py-12 border-t border-foreground/8">
-                  <div className="lg:col-span-1">
-                    <p className="text-foreground text-sm font-semibold mb-1">{t.name}</p>
-                    <p className="text-foreground/35 text-xs leading-relaxed">{t.role}</p>
-                    <p className="text-moss text-xs mt-2 font-medium">{t.event}</p>
-                  </div>
-                  <p className="lg:col-span-4 text-foreground/50 text-base leading-relaxed">
-                    &ldquo;{t.text}&rdquo;
-                  </p>
-                </div>
+              <AnimateIn key={t.name} delay={i * 60} className="h-full">
+                <figure className="h-full flex flex-col border border-foreground/10 rounded-2xl p-8 lg:p-10 bg-surface-raised/30 hover:border-foreground/20 transition-colors duration-500">
+                  <span
+                    className="text-moss/35 text-5xl leading-none mb-4 select-none"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                    aria-hidden
+                  >
+                    &ldquo;
+                  </span>
+                  <blockquote
+                    className="text-foreground/65 leading-[1.7] flex-1"
+                    style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(17px, 1.8vw, 21px)" }}
+                  >
+                    {t.text}
+                  </blockquote>
+                  <figcaption className="mt-8 pt-6 border-t border-foreground/8">
+                    <p className="text-foreground text-sm font-semibold">{t.name}</p>
+                    <p className="text-moss/80 text-xs mt-1 tracking-[0.1em] uppercase">{t.event}</p>
+                  </figcaption>
+                </figure>
               </AnimateIn>
             ))}
-            <div className="border-t border-foreground/8" />
           </div>
         </div>
       </section>
@@ -135,7 +166,7 @@ export default function ClientesPage() {
       <section className="py-16 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
-            <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-10 flex items-center gap-3">
+            <p className={`${eyebrow} mb-10`}>
               <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
               Momentos dos nossos eventos
             </p>
@@ -149,9 +180,10 @@ export default function ClientesPage() {
                 { src: "/imagens/JOAO_E_PEDRO_1Y1A3232.jpg", label: "Casamento", cls: "" },
                 { src: "/imagens/DaniGui_Adois_57.jpg", label: "Jantar", cls: "" },
               ].map((item, i) => (
-                <div key={i} className={`relative overflow-hidden group ${item.cls}`}>
+                <div key={i} className={`relative overflow-hidden rounded-lg group ${item.cls}`}>
                   <Image
-                    src={item.src} {...blurFor(item.src)}
+                    src={item.src}
+                    {...blurFor(item.src)}
                     alt={item.label}
                     fill
                     sizes="(max-width: 768px) 50vw, 25vw"
@@ -169,20 +201,25 @@ export default function ClientesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-40 bg-surface border-t border-foreground/8">
+      <section className="py-32 lg:py-40 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
             <h2
-              className="text-foreground text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-12 max-w-2xl"
+              className="text-foreground text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-8 max-w-2xl"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               Junte-se aos nossos clientes.
             </h2>
           </AnimateIn>
+          <AnimateIn delay={100}>
+            <p className="text-foreground/40 text-base leading-relaxed max-w-md mb-12">
+              Conte-nos a sua ideia e mostramos-lhe como a podemos transformar num evento memorável.
+            </p>
+          </AnimateIn>
           <AnimateIn delay={150}>
             <Link
               href="/contacto"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-moss text-cream font-medium rounded-sm hover:bg-moss-dark hover:gap-5 transition-all duration-300 text-sm tracking-widest uppercase"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-moss text-cream font-medium rounded-sm hover:bg-moss-dark hover:gap-5 transition-all duration-300 text-sm tracking-widest uppercase shadow-lg shadow-moss/15"
             >
               Falar Connosco →
             </Link>

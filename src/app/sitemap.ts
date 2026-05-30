@@ -2,7 +2,6 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/site";
 import { SERVICES } from "./servicos/services-data";
 import { projects } from "./portfolio/projects-data";
-import { posts } from "./diario/posts-data";
 
 const base = SITE.url;
 
@@ -16,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/contacto`,  lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/sobre`,     lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/galeria`,   lastModified: now, changeFrequency: "weekly",  priority: 0.7 },
-    { url: `${base}/diario`,    lastModified: now, changeFrequency: "weekly",  priority: 0.7 },
     { url: `${base}/clientes`,  lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
 
@@ -34,12 +32,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const journal: MetadataRoute.Sitemap = posts.map((p) => ({
-    url: `${base}/diario/${p.slug}`,
-    lastModified: new Date(p.date),
-    changeFrequency: "yearly",
-    priority: 0.6,
-  }));
-
-  return [...core, ...services, ...portfolio, ...journal];
+  return [...core, ...services, ...portfolio];
 }
