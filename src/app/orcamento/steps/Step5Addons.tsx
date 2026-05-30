@@ -4,7 +4,6 @@ import { useState } from 'react';
 import type { QuoteFormData, AddonTier, SelectedAddon } from '../types';
 import type { Action } from '../OrcamentoWizard';
 import { ADDON_CATALOG, ADDON_CATEGORIES } from '../data';
-import { formatPrice } from '../pricing';
 
 interface Props {
   form: QuoteFormData;
@@ -142,7 +141,7 @@ export default function Step5Addons({ form, dispatch }: Props) {
                         <p className="text-foreground/28 text-xs leading-relaxed">{addon.description}</p>
                       </div>
 
-                      {/* Tier selector — shown always, active only when selected */}
+                      {/* Tier selector — quality level (no prices shown to client) */}
                       <div className="flex gap-1 flex-shrink-0">
                         {(['essencial', 'completo', 'premium'] as AddonTier[]).map((t) => (
                           <button
@@ -162,23 +161,6 @@ export default function Step5Addons({ form, dispatch }: Props) {
                             {TIER_LABELS[t]}
                           </button>
                         ))}
-                      </div>
-
-                      {/* Price */}
-                      <div className="text-right flex-shrink-0 min-w-[90px]">
-                        {sel ? (
-                          <p className="text-moss text-xs font-semibold">
-                            {formatPrice(addon.tiers[currentTier].price)}
-                            {addon.pricingType === 'per_pax' && <span className="text-moss/60 font-normal"> /pax</span>}
-                            {addon.pricingType === 'per_unit' && <span className="text-moss/60 font-normal"> /un</span>}
-                          </p>
-                        ) : (
-                          <p className="text-foreground/20 text-[10px]">
-                            {formatPrice(addon.tiers.essencial.price)}
-                            {' – '}
-                            {formatPrice(addon.tiers.premium.price)}
-                          </p>
-                        )}
                       </div>
                     </div>
 

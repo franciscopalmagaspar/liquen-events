@@ -106,6 +106,41 @@ export interface PriceBreakdown {
   isEstimate: boolean;
 }
 
+export interface QuoteMessage {
+  at: string;
+  body: string;
+}
+
+export interface ChecklistItem {
+  id: string;
+  label: string;
+  done: boolean;
+}
+
+export type PaymentKind = 'sinal' | 'pagamento' | 'saldo';
+
+export interface Payment {
+  id: string;
+  kind: PaymentKind;
+  amount: number;       // com IVA, em €
+  date: string;         // data do pagamento / previsto
+  paid: boolean;
+  note?: string;
+}
+
+export type TaskPriority = 'baixa' | 'normal' | 'alta';
+
+export interface Task {
+  id: string;
+  title: string;
+  done: boolean;
+  priority: TaskPriority;
+  dueDate?: string;
+  quoteId?: string;
+  clientName?: string;
+  createdAt: string;
+}
+
 export interface Quote extends QuoteFormData {
   id: string;
   submittedAt: string;
@@ -114,4 +149,45 @@ export interface Quote extends QuoteFormData {
   quotedPrice?: number;
   adminNotes?: string;
   lastUpdated?: string;
+  messages?: QuoteMessage[];
+  checklist?: ChecklistItem[];
+  payments?: Payment[];
+}
+
+export interface Supplier {
+  id: string;
+  name: string;
+  category: string;
+  email?: string;
+  phone?: string;
+  location?: string;
+  notes?: string;
+  createdAt: string;
+}
+
+// ── Propostas (criadas internamente, enviadas em PDF ao cliente) ──
+export type ProposalStatus = 'rascunho' | 'enviada' | 'aceite' | 'rejeitada';
+
+export interface ProposalLineItem {
+  description: string;
+  qty: number;
+  unitPrice: number; // por unidade, sem IVA
+}
+
+export interface Proposal {
+  id: string;
+  quoteId: string;
+  clientName: string;
+  clientEmail: string;
+  currency: string;
+  lineItems: ProposalLineItem[];
+  vatRate: number; // ex.: 0.23
+  subtotal: number;
+  vat: number;
+  total: number;
+  validUntil?: string;
+  notes?: string;
+  status: ProposalStatus;
+  createdAt: string;
+  sentAt?: string;
 }

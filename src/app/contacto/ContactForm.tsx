@@ -79,7 +79,6 @@ const eventCards = [
 ];
 
 const guestRanges = ["Até 30", "30–80", "80–150", "150–300", "300+"];
-const budgetRanges = ["Até 2.000€", "2–5.000€", "5–10.000€", "10–20.000€", "20.000€+"];
 const stepLabels = ["Evento", "Dados", "Detalhes", "Mensagem"];
 
 // ── Helpers ───────────────────────────────────────────────────────
@@ -173,10 +172,31 @@ function WhatsAppIcon() {
 export default function ContactForm() {
   const [step, setStep] = useState(1);
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState<FormData>(EMPTY);
 
   function set(key: keyof FormData, value: string) {
     setForm((f) => ({ ...f, [key]: value }));
+  }
+
+  async function submit() {
+    if (!form.mensagem || sending) return;
+    setSending(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/contacto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("falha");
+      setSent(true);
+    } catch {
+      setError("Não foi possível enviar. Tente novamente ou contacte-nos pelo WhatsApp.");
+    } finally {
+      setSending(false);
+    }
   }
 
   const inputCls =
@@ -324,7 +344,7 @@ export default function ContactForm() {
                 /* ── Steps ── */
                 <>
                   <ProgressBar step={step} />
-                  <form onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+                  <form onSubmit={(e) => { e.preventDefault(); submit(); }}>
 
                     {/* Step 1 — Tipo */}
                     {step === 1 && (
@@ -409,14 +429,6 @@ export default function ContactForm() {
                               ))}
                             </div>
                           </div>
-                          <div>
-                            <label className={labelCls}>Orçamento Estimado</label>
-                            <div className="flex flex-wrap gap-2 pt-1">
-                              {budgetRanges.map((r) => (
-                                <Pill key={r} label={r} selected={form.orcamento === r} onClick={() => set("orcamento", r)} />
-                              ))}
-                            </div>
-                          </div>
                         </div>
                         <div className="flex items-center gap-6">
                           <NavBtn variant="ghost" onClick={() => setStep(2)}>← Voltar</NavBtn>
@@ -458,13 +470,18 @@ export default function ContactForm() {
                           <NavBtn variant="ghost" onClick={() => setStep(3)}>← Voltar</NavBtn>
                           <button
                             type="submit"
-                            disabled={!form.mensagem}
-                            className="inline-flex items-center gap-3 px-9 py-4 bg-moss text-cream font-medium rounded-sm hover:bg-moss-dark hover:gap-5 transition-all duration-300 text-[11px] tracking-[0.3em] uppercase shadow-lg shadow-moss/15 disabled:opacity-30 disabled:cursor-not-allowed"
+                            disabled={!form.mensagem || sending}
+                            className="inline-flex items-center gap-3 px-9 py-4 bg-moss text-cream font-medium rounded-sm hover:bg-moss-dark hover:gap-5 transition-all duration-300 text-[11px] tracking-[0.3em] uppercase shadow-lg shadow-moss/15 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:gap-3"
                           >
-                            Enviar Pedido →
+                            {sending ? "A enviar…" : "Enviar Pedido →"}
                           </button>
                           <p className="text-foreground/20 text-xs tracking-wide">Resposta em 24h</p>
                         </div>
+                        {error && (
+                          <div className="mt-6 p-4 border border-moss/30 bg-moss/8 rounded-sm">
+                            <p className="text-moss/80 text-sm">{error}</p>
+                          </div>
+                        )}
                       </div>
                     )}
                   </form>
