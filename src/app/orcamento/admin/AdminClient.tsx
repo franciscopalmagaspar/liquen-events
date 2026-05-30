@@ -168,6 +168,18 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
     inbox: 'Inbox',
   };
 
+  const VIEW_SUB: Record<View, string> = {
+    overview: 'O resumo do seu dia',
+    pedidos: 'Pedidos de orçamento recebidos',
+    clientes: 'Histórico por cliente',
+    calendario: 'Os seus eventos no tempo',
+    propostas: 'Todas as propostas enviadas',
+    tarefas: 'Organização interna da equipa',
+    fornecedores: 'Parceiros e contactos',
+    estatisticas: 'Métricas e desempenho',
+    inbox: 'Mensagens recebidas',
+  };
+
   return (
     <div className="min-h-screen bg-surface flex">
       {/* ── Sidebar ── */}
@@ -183,18 +195,23 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 px-3 py-5 flex flex-col gap-1">
+        <nav className="flex-1 px-3 py-6 flex flex-col gap-0.5 overflow-y-auto">
           {NAV.map((item) => (
             <button
               key={item.id}
               onClick={() => { setView(item.id); setNavOpen(false); }}
-              className={`group flex items-center gap-3 px-3 py-2.5 rounded-md text-[11px] tracking-[0.18em] uppercase transition-colors ${
+              className={`group relative flex items-center gap-3 pl-4 pr-3 py-2.5 rounded-md text-[11px] tracking-[0.18em] uppercase transition-all duration-200 ${
                 view === item.id
-                  ? 'bg-moss/15 text-moss'
-                  : 'text-foreground/40 hover:text-foreground/70 hover:bg-foreground/4'
+                  ? 'bg-moss/12 text-moss'
+                  : 'text-foreground/40 hover:text-foreground/75 hover:bg-foreground/[0.04]'
               }`}
             >
-              <span className={view === item.id ? 'text-moss' : 'text-foreground/30 group-hover:text-foreground/55'}>
+              <span
+                className={`absolute left-0 top-1/2 -translate-y-1/2 w-0.5 rounded-full bg-moss transition-all duration-300 ${
+                  view === item.id ? 'h-5 opacity-100' : 'h-0 opacity-0'
+                }`}
+              />
+              <span className={view === item.id ? 'text-moss' : 'text-foreground/30 group-hover:text-foreground/60 transition-colors'}>
                 {item.icon}
               </span>
               {item.label}
@@ -231,82 +248,91 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
       {/* ── Main ── */}
       <div className="flex-1 min-w-0 flex flex-col">
         {/* Top bar */}
-        <header className="sticky top-0 z-20 bg-surface/92 backdrop-blur-md border-b border-foreground/8 px-5 lg:px-10 py-4 flex items-center gap-4">
-          <button className="lg:hidden text-foreground/50" onClick={() => setNavOpen(true)} aria-label="Menu">
+        <header className="sticky top-0 z-20 bg-surface/85 backdrop-blur-xl border-b border-foreground/8 px-6 lg:px-12 py-6 flex items-center gap-4">
+          <button className="lg:hidden text-foreground/50 -ml-1" onClick={() => setNavOpen(true)} aria-label="Menu">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round"/></svg>
           </button>
-          <h1 className="text-foreground/80 font-bold text-lg" style={{ fontFamily: 'var(--font-playfair)' }}>
-            {VIEW_TITLES[view]}
-          </h1>
-          <div className="ml-auto flex items-center gap-3">
+          <div className="min-w-0">
+            <p className="eyebrow mb-1.5">{VIEW_SUB[view]}</p>
+            <h1
+              className="text-foreground/90 font-bold leading-none"
+              style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(22px, 3vw, 32px)' }}
+            >
+              {VIEW_TITLES[view]}
+            </h1>
+          </div>
+          <div className="ml-auto flex items-center gap-3 shrink-0">
             <button
               onClick={refresh}
               disabled={refreshing}
-              className="px-4 py-2 border border-foreground/15 text-foreground/40 text-[10px] tracking-[0.2em] uppercase rounded-sm hover:border-foreground/30 hover:text-foreground/60 transition-colors"
+              className="group flex items-center gap-2 px-4 py-2 border border-foreground/12 text-foreground/40 text-[10px] tracking-[0.22em] uppercase rounded-md hover:border-moss/40 hover:text-moss transition-colors"
             >
-              {refreshing ? 'A actualizar…' : 'Actualizar'}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={refreshing ? 'animate-spin' : 'group-hover:rotate-180 transition-transform duration-500'}>
+                <path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {refreshing ? 'A actualizar' : 'Actualizar'}
             </button>
           </div>
         </header>
 
         {/* ── Overview ── */}
         {view === 'overview' && (
-          <div className="px-5 lg:px-10 py-8">
+          <div className="px-6 lg:px-12 py-10 lg:py-12 view-in">
             <Overview quotes={quotes} userName={userName} onOpen={openQuote} onGoStats={() => setView('estatisticas')} />
           </div>
         )}
 
         {/* ── Clientes ── */}
         {view === 'clientes' && (
-          <div className="px-5 lg:px-10 py-8">
+          <div className="px-6 lg:px-12 py-10 lg:py-12 view-in">
             <Clientes quotes={quotes} onOpen={openQuote} />
           </div>
         )}
 
         {/* ── Calendário ── */}
         {view === 'calendario' && (
-          <div className="px-5 lg:px-10 py-8">
+          <div className="px-6 lg:px-12 py-10 lg:py-12 view-in">
             <Calendario quotes={quotes} onOpen={openQuote} />
           </div>
         )}
 
         {/* ── Propostas ── */}
         {view === 'propostas' && (
-          <div className="px-5 lg:px-10 py-8">
+          <div className="px-6 lg:px-12 py-10 lg:py-12 view-in">
             <Propostas />
           </div>
         )}
 
         {/* ── Tarefas ── */}
         {view === 'tarefas' && (
-          <div className="px-5 lg:px-10 py-8">
+          <div className="px-6 lg:px-12 py-10 lg:py-12 view-in">
             <Tarefas />
           </div>
         )}
 
         {/* ── Fornecedores ── */}
         {view === 'fornecedores' && (
-          <div className="px-5 lg:px-10 py-8">
+          <div className="px-6 lg:px-12 py-10 lg:py-12 view-in">
             <Fornecedores />
           </div>
         )}
 
         {/* ── Estatísticas ── */}
         {view === 'estatisticas' && (
-          <div className="px-5 lg:px-10 py-8">
+          <div className="px-6 lg:px-12 py-10 lg:py-12 view-in">
             <StatsDashboard quotes={quotes} />
           </div>
         )}
 
         {/* ── Inbox ── */}
         {view === 'inbox' && (
-          <div className="px-5 lg:px-10 py-8">
+          <div className="px-6 lg:px-12 py-10 lg:py-12 view-in">
             <Inbox />
           </div>
         )}
 
         {/* ── Pedidos ── */}
-        <div className={`px-5 lg:px-10 py-8 ${view === 'pedidos' ? '' : 'hidden'}`}>
+        <div className={`px-6 lg:px-12 py-10 lg:py-12 ${view === 'pedidos' ? 'view-in' : 'hidden'}`}>
           {/* Controls */}
           <div className="flex flex-col lg:flex-row lg:items-center gap-3 mb-6">
             <div className="relative flex-1 max-w-md">
