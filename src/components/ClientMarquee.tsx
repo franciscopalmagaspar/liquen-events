@@ -16,7 +16,7 @@ function Mark({ name, logo }: { name: string; logo: string }) {
   // all clients occupy exactly the same footprint regardless of their shape.
   return (
     <div className="flex-shrink-0 flex items-center justify-center w-32 sm:w-44 h-12 sm:h-16">
-      {failed ? (
+      {failed || !logo ? (
         <span className="text-foreground/25 text-[10px] sm:text-xs font-medium tracking-[0.22em] uppercase text-center leading-tight">
           {name}
         </span>

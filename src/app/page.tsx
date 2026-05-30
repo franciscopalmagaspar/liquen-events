@@ -31,7 +31,7 @@ const ribbon = [
   "/imagens/M&F0497.jpg",
   "/imagens/EW1_1330.jpg",
   "/imagens/JOAO_E_PEDRO_1Y1A3439.jpg",
-  "/imagens/Matilde&Tomás35.jpg",
+  "/imagens/JOAO_E_PEDRO_1Y1A3450.jpg",
 ];
 
 type Stat =

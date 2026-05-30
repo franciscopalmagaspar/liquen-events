@@ -13,7 +13,7 @@ function ClientLogo({ client }: { client: Client }) {
 
   return (
     <div className="h-36 bg-surface flex items-center justify-center px-6 hover:bg-surface-elevated transition-colors group">
-      {!failed ? (
+      {!failed && client.logo ? (
         <Image
           src={client.logo}
           alt={client.name}

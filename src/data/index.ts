@@ -23,25 +23,25 @@ export interface ClientLogo {
 }
 
 export const clientLogos: ClientLogo[] = [
-  { name: "José de Mello",                   logo: "/logos/clientes/jose-de-mello.png" },
+  { name: "José de Mello",                   logo: "" },
   { name: "Aernnova",                        logo: "/logos/clientes/aernnova.avif" },
   { name: "Mainova",                         logo: "/logos/clientes/mainova.avif" },
   { name: "Palácio Duques de Cadaval",       logo: "/logos/clientes/palacio-cadaval.avif" },
-  { name: "Ravasqueira",                     logo: "/logos/clientes/ravasqueira.png" },
-  { name: "Fitapreta Vinhos",                logo: "/logos/clientes/fitapreta.png" },
-  { name: "Universidade de Évora",           logo: "/logos/clientes/universidade-evora.png" },
-  { name: "Hilton Garden Inn",               logo: "/logos/clientes/hilton-garden-inn.png" },
+  { name: "Ravasqueira",                     logo: "" },
+  { name: "Fitapreta Vinhos",                logo: "" },
+  { name: "Universidade de Évora",           logo: "" },
+  { name: "Hilton Garden Inn",               logo: "" },
   { name: "Convento do Espinheiro",          logo: "/logos/clientes/convento-espinheiro.avif" },
-  { name: "Pérez-Llorca",                    logo: "/logos/clientes/perez-llorca.png" },
+  { name: "Pérez-Llorca",                    logo: "" },
   { name: "Câmara Municipal de Évora",       logo: "/logos/clientes/camara-evora.avif" },
   { name: "PACT",                            logo: "/logos/clientes/pact.avif" },
   { name: "Clínica Dentária Santa Madalena", logo: "/logos/clientes/clinica-santa-madalena.avif" },
   { name: "Casa Morgado Esporão",            logo: "/logos/clientes/casa-morgado-esporao.avif" },
   { name: "PortugalNuts",                    logo: "/logos/clientes/portugal-nuts.avif" },
-  { name: "ESRI Portugal",                   logo: "/logos/clientes/esri.png" },
+  { name: "ESRI Portugal",                   logo: "" },
   { name: "Monte do Zambujal",               logo: "/logos/clientes/monte-zambujal.avif" },
   { name: "EDIA",                            logo: "/logos/clientes/edia.avif" },
-  { name: "Ordem dos Médicos Veterinários",  logo: "/logos/clientes/omv.png" },
+  { name: "Ordem dos Médicos Veterinários",  logo: "" },
 ];
 
 // ── Testimonials ──────────────────────────────────────────────────────────────
