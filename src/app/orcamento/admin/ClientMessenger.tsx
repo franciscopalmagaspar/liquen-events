@@ -5,11 +5,10 @@ import type { Quote, QuoteMessage } from '../types';
 
 interface Props {
   quote: Quote;
-  adminPass: string;
   onSent?: (messages: QuoteMessage[]) => void;
 }
 
-export default function ClientMessenger({ quote, adminPass, onSent }: Props) {
+export default function ClientMessenger({ quote, onSent }: Props) {
   const [messages, setMessages] = useState<QuoteMessage[]>(quote.messages ?? []);
   const [text, setText] = useState('');
   const [sending, setSending] = useState(false);
@@ -25,7 +24,7 @@ export default function ClientMessenger({ quote, adminPass, onSent }: Props) {
     try {
       const res = await fetch(`/api/orcamento/${quote.id}/mensagem`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-admin-pass': adminPass },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: body }),
       });
       const data = await res.json();

@@ -18,10 +18,9 @@ const STATUS_OPTIONS: { id: QuoteStatus; label: string; color: string }[] = [
 
 interface Props {
   initialQuotes: Quote[];
-  adminPass: string;
 }
 
-export default function AdminClient({ initialQuotes, adminPass }: Props) {
+export default function AdminClient({ initialQuotes }: Props) {
   const [quotes, setQuotes] = useState<Quote[]>(initialQuotes);
   const [selected, setSelected] = useState<Quote | null>(null);
   const [filterStatus, setFilterStatus] = useState<QuoteStatus | 'all'>('all');
@@ -43,13 +42,18 @@ export default function AdminClient({ initialQuotes, adminPass }: Props) {
     setRefreshing(true);
     try {
       const res = await fetch('/api/orcamento', {
-        headers: { 'x-admin-pass': adminPass },
+        headers: { 'x-admin-refresh': '1' },
       });
       const data = await res.json();
-      setQuotes(data);
+      if (Array.isArray(data)) setQuotes(data);
     } finally {
       setRefreshing(false);
     }
+  }
+
+  async function logout() {
+    await fetch('/api/admin/logout', { method: 'POST' });
+    window.location.href = '/orcamento/admin';
   }
 
   async function saveChanges() {
@@ -60,7 +64,6 @@ export default function AdminClient({ initialQuotes, adminPass }: Props) {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'x-admin-pass': adminPass,
         },
         body: JSON.stringify({
           status: editStatus,
@@ -128,6 +131,12 @@ export default function AdminClient({ initialQuotes, adminPass }: Props) {
               className="px-4 py-2 border border-foreground/15 text-foreground/40 text-[10px] tracking-[0.2em] uppercase rounded-sm hover:border-foreground/30 hover:text-foreground/60 transition-colors"
             >
               {refreshing ? 'A actualizar…' : 'Actualizar'}
+            </button>
+            <button
+              onClick={logout}
+              className="px-4 py-2 text-foreground/30 text-[10px] tracking-[0.2em] uppercase rounded-sm hover:text-foreground/60 transition-colors"
+            >
+              Sair
             </button>
           </div>
         </div>
@@ -399,7 +408,6 @@ export default function AdminClient({ initialQuotes, adminPass }: Props) {
                 {/* Proposal builder → PDF → email */}
                 <ProposalBuilder
                   quote={selected}
-                  adminPass={adminPass}
                   onSent={(total) => {
                     setQuotes((prev) =>
                       prev.map((q) =>
@@ -417,7 +425,6 @@ export default function AdminClient({ initialQuotes, adminPass }: Props) {
                 <ClientMessenger
                   key={selected.id}
                   quote={selected}
-                  adminPass={adminPass}
                   onSent={(messages) => {
                     setQuotes((prev) =>
                       prev.map((q) => (q.id === selected.id ? { ...q, messages } : q))

@@ -6,12 +6,12 @@ import { getQuote, updateQuote } from '@/lib/quotes-store';
 import { createProposal, listProposalsForQuote } from '@/lib/proposals-store';
 import { renderProposalPdf } from '@/lib/proposal-pdf';
 import { sendMail, esc, MAIL_TO } from '@/lib/mail';
+import { isAuthed } from '@/lib/admin-auth';
 
 export const runtime = 'nodejs';
 
 function authorized(request: NextRequest): boolean {
-  const pass = request.headers.get('x-admin-pass');
-  return pass === (process.env.ADMIN_PASSWORD ?? 'liquen2026');
+  return isAuthed(request);
 }
 
 const eur = (n: number) =>

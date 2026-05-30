@@ -8,11 +8,10 @@ const eur = (n: number) =>
 
 interface Props {
   quote: Quote;
-  adminPass: string;
   onSent?: (total: number) => void;
 }
 
-export default function ProposalBuilder({ quote, adminPass, onSent }: Props) {
+export default function ProposalBuilder({ quote, onSent }: Props) {
   const seedPrice = quote.quotedPrice || quote.priceBreakdown?.subtotal || 0;
   const [items, setItems] = useState<ProposalLineItem[]>([
     { description: 'Organização e produção do evento', qty: 1, unitPrice: Math.round(seedPrice) },
@@ -45,7 +44,7 @@ export default function ProposalBuilder({ quote, adminPass, onSent }: Props) {
     try {
       const res = await fetch(`/api/orcamento/${quote.id}/proposta`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-admin-pass': adminPass },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ lineItems: items, vatRate, validUntil: validUntil || undefined, notes: notes || undefined }),
       });
       const data = await res.json();

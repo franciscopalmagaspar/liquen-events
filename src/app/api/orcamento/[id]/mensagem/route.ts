@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import type { QuoteMessage } from '../../../../orcamento/types';
 import { getQuote, updateQuote } from '@/lib/quotes-store';
 import { sendMail, esc, MAIL_TO } from '@/lib/mail';
+import { isAuthed } from '@/lib/admin-auth';
 
 export const runtime = 'nodejs';
 
 function authorized(request: NextRequest): boolean {
-  const pass = request.headers.get('x-admin-pass');
-  return pass === (process.env.ADMIN_PASSWORD ?? 'liquen2026');
+  return isAuthed(request);
 }
 
 // Reply to the client by email, from within the dashboard.

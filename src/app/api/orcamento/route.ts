@@ -3,6 +3,7 @@ import type { Quote, QuoteFormData, PriceBreakdown } from '../../orcamento/types
 import { CATEGORIES, EVENT_TYPES_BY_CATEGORY, PACKAGES } from '../../orcamento/data';
 import { sendMail, esc } from '@/lib/mail';
 import { createQuote, listQuotes } from '@/lib/quotes-store';
+import { isAuthed } from '@/lib/admin-auth';
 
 function generateId(): string {
   const now = Date.now().toString(36).toUpperCase();
@@ -100,10 +101,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET(request: NextRequest) {
-  const pass = request.headers.get('x-admin-pass');
-  const adminPass = process.env.ADMIN_PASSWORD ?? 'liquen2026';
-
-  if (pass !== adminPass) {
+  if (!isAuthed(request)) {
     return NextResponse.json({ error: 'Não autorizado' }, { status: 401 });
   }
 

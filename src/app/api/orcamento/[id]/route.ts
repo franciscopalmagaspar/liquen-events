@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import type { Quote } from '../../../orcamento/types';
 import { getQuote, updateQuote } from '@/lib/quotes-store';
+import { isAuthed } from '@/lib/admin-auth';
 
 export async function GET(
   request: NextRequest,
@@ -23,10 +24,7 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const pass = request.headers.get('x-admin-pass');
-  const adminPass = process.env.ADMIN_PASSWORD ?? 'liquen2026';
-
-  if (pass !== adminPass) {
+  if (!isAuthed(request)) {
     return NextResponse.json({ error: 'Não autorizado' }, { status: 401 });
   }
 
