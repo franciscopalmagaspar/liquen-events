@@ -24,7 +24,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => { setIsOpen(false); }, [pathname]);
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <nav
@@ -82,22 +84,28 @@ export default function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Menu"
           >
-            <span className={`block w-[18px] h-px bg-foreground/60 transition-all duration-300 mb-1.5 ${isOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block w-[18px] h-px bg-foreground/60 transition-all duration-300 mb-1.5 ${isOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-[18px] h-px bg-foreground/60 transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            <span
+              className={`block w-[18px] h-px bg-foreground/60 transition-all duration-300 mb-1.5 ${isOpen ? "rotate-45 translate-y-2" : ""}`}
+            />
+            <span
+              className={`block w-[18px] h-px bg-foreground/60 transition-all duration-300 mb-1.5 ${isOpen ? "opacity-0" : ""}`}
+            />
+            <span
+              className={`block w-[18px] h-px bg-foreground/60 transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-2" : ""}`}
+            />
           </button>
         </div>
       </div>
 
       <div
         className={`md:hidden overflow-hidden transition-all duration-400 bg-surface/96 backdrop-blur-md border-t border-foreground/6 ${
-          isOpen ? "max-h-96 pb-8" : "max-h-0"
+          isOpen ? "max-h-[80vh] pb-8" : "max-h-0"
         }`}
       >
         <div className="px-6 pt-6 flex flex-col">
           <Link
             href="/orcamento"
-            className="mb-5 inline-block text-center text-[11px] tracking-[0.22em] uppercase bg-moss text-cream px-5 py-3 rounded-sm"
+            className="mb-5 inline-block text-center text-[11px] tracking-[0.22em] uppercase bg-moss text-cream px-5 py-3.5 rounded-sm"
             style={{
               opacity: isOpen ? 1 : 0,
               transform: isOpen ? "none" : "translateY(6px)",
@@ -129,7 +137,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contacto"
-            className="mt-4 inline-block text-center text-[11px] tracking-[0.22em] uppercase border border-foreground/15 text-foreground/40 px-5 py-3 rounded-sm hover:border-foreground/30 hover:text-foreground/65 transition-colors"
+            className="mt-4 inline-block text-center text-[11px] tracking-[0.22em] uppercase border border-foreground/15 text-foreground/40 px-5 py-3.5 rounded-sm hover:border-foreground/30 hover:text-foreground/65 transition-colors"
             style={{
               opacity: isOpen ? 1 : 0,
               transform: isOpen ? "none" : "translateY(6px)",

@@ -79,12 +79,16 @@ export default function TestimonialsCarousel() {
                 key={i}
                 onClick={() => goTo(i)}
                 aria-label={`Testemunho ${i + 1}`}
-                className={`h-px transition-all duration-400 ${
-                  i === active
-                    ? "w-8 bg-moss"
-                    : "w-4 bg-foreground/20 hover:bg-foreground/40"
+                className={`py-5 flex-shrink-0 transition-all duration-400 ${
+                  i === active ? "w-8" : "w-4"
                 }`}
-              />
+              >
+                <span
+                  className={`block h-px w-full ${
+                    i === active ? "bg-moss" : "bg-foreground/20 hover:bg-foreground/40"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </AnimateIn>
