@@ -31,24 +31,28 @@ const categories = [
     services: [
       {
         title: "Conferências & Congressos",
+        slug: "eventos-corporativos",
         desc: "Organização completa de conferências empresariais, da logística ao audiovisual e gestão de convidados.",
         features: ["Audiovisual profissional", "Coffee breaks", "Gestão de inscrições", "Sala de conferências"],
         image: "/imagens/EW1_1330.jpg",
       },
       {
         title: "Teambuilding",
+        slug: "eventos-corporativos",
         desc: "Actividades e experiências que unem equipas e fortalecem a cultura organizacional.",
         features: ["Actividades indoor e outdoor", "Facilitação profissional", "Catering personalizado", "Fotografia"],
         image: "/imagens/EW1_0576.jpg",
       },
       {
         title: "Lançamentos de Produto",
+        slug: "eventos-corporativos",
         desc: "Eventos de impacto para apresentar novos produtos ao mercado com criatividade e precisão.",
         features: ["Conceito criativo", "Cenografia", "Media & PR", "Conteúdo digital"],
         image: "/imagens/EW1_0697.jpg",
       },
       {
         title: "Jantares de Empresa",
+        slug: "eventos-corporativos",
         desc: "Desde jantares de Natal a gala awards, criamos momentos de celebração corporativa memoráveis.",
         features: ["Decoração temática", "Menu personalizado", "Entretenimento", "Coordenação total"],
         image: "/imagens/EW1_1404.jpg",
@@ -65,24 +69,28 @@ const categories = [
     services: [
       {
         title: "Casamentos",
+        slug: "casamentos",
         desc: "O vosso dia mais especial, planeado ao pormenor. Da escolha do espaço ao último detalhe.",
         features: ["Wedding planning completo", "Decoração floral", "Catering premium", "Coordenação do dia"],
         image: "/imagens/DaniGui_Preview18.jpg",
       },
       {
         title: "Batizados & Comunhões",
+        slug: "festas-e-aniversarios",
         desc: "Celebrações familiares íntimas e cheias de significado, organizadas com carinho.",
         features: ["Decoração personalizada", "Catering familiar", "Animação infantil", "Fotografia"],
         image: "/imagens/DaniGui_JantarFesta_11.jpg",
       },
       {
         title: "Festas de Aniversário",
+        slug: "festas-e-aniversarios",
         desc: "Festas temáticas ou clássicas para todas as idades. Cada aniversário é uma história.",
         features: ["Conceito temático", "Decoração completa", "Catering & bolo", "Entretenimento"],
         image: "/imagens/DaniGui_JantarFesta_1.jpg",
       },
       {
         title: "Jantares de Gala",
+        slug: "jantares-de-gala",
         desc: "Eventos sociais de prestígio com ambiente sofisticado e coordenação impecável.",
         features: ["Mesa posta premium", "Chef convidado", "Wine pairing", "Animação cultural"],
         image: "/imagens/JOAO_E_PEDRO_IMGL2180.jpg",
@@ -99,12 +107,14 @@ const categories = [
     services: [
       {
         title: "Eventos Culturais",
+        slug: "eventos-culturais",
         desc: "Experiências culturais únicas criadas com criatividade, dedicação e atenção a cada pormenor.",
         features: ["Conceito criativo", "Decoração temática", "Produção completa", "Coordenação total"],
         image: "/imagens/20_10_2025_0302.jpg",
       },
       {
         title: "Exposições & Inaugurações",
+        slug: "eventos-culturais",
         desc: "Abertura de espaços e exposições com ambiente cuidado e coordenação profissional.",
         features: ["Cenografia", "Catering", "Gestão de convidados", "Fotografia"],
         image: "/imagens/20_10_2025_0044.jpg",
@@ -296,8 +306,9 @@ export default function ServicosPage() {
             <div className={`grid gap-2 ${cat.gridCols}`}>
               {cat.services.map((s, si) => (
                 <AnimateIn key={s.title} delay={si * 55}>
-                  <div
-                    className="group relative overflow-hidden cursor-default bg-surface-raised"
+                  <Link
+                    href={`/servicos/${s.slug}`}
+                    className="group relative block overflow-hidden bg-surface-raised"
                     style={{ aspectRatio: cat.cardAspect }}
                   >
                     <Image
@@ -343,7 +354,7 @@ export default function ServicosPage() {
                         {cat.num}.{String(si + 1).padStart(2, "0")}
                       </span>
                     </div>
-                  </div>
+                  </Link>
                 </AnimateIn>
               ))}
             </div>

@@ -75,11 +75,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     images: [SITE.ogImage],
   },
-  icons: {
-    icon: "/logo-liquen.png",
-    shortcut: "/logo-liquen.png",
-    apple: "/logo-liquen.png",
-  },
+  // Favicon/ícones gerados a partir de src/app/icon.png e apple-icon.png (logo Líquen).
   // Add GOOGLE_SITE_VERIFICATION in the environment to verify Search Console.
   verification: process.env.GOOGLE_SITE_VERIFICATION
     ? { google: process.env.GOOGLE_SITE_VERIFICATION }
