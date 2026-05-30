@@ -1,24 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
 import type { Quote, QuoteFormData, PriceBreakdown } from '../../orcamento/types';
 import { CATEGORIES, EVENT_TYPES_BY_CATEGORY, PACKAGES } from '../../orcamento/data';
 import { sendMail, esc } from '@/lib/mail';
-
-const DATA_FILE = path.join(process.cwd(), 'data', 'quotes.json');
-
-async function readQuotes(): Promise<Quote[]> {
-  try {
-    const raw = await fs.readFile(DATA_FILE, 'utf-8');
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
-}
-
-async function writeQuotes(quotes: Quote[]): Promise<void> {
-  await fs.writeFile(DATA_FILE, JSON.stringify(quotes, null, 2));
-}
+import { createQuote, listQuotes } from '@/lib/quotes-store';
 
 function generateId(): string {
   const now = Date.now().toString(36).toUpperCase();
@@ -101,13 +85,11 @@ export async function POST(request: NextRequest) {
       console.error('[orcamento POST] email falhou', mailErr);
     }
 
-    // Best-effort local persistence (works in dev; no-op on read-only hosts).
+    // Persist (Supabase when configured; local file in dev).
     try {
-      const quotes = await readQuotes();
-      quotes.push(quote);
-      await writeQuotes(quotes);
-    } catch (fsErr) {
-      console.warn('[orcamento POST] persistência em ficheiro indisponível', fsErr);
+      await createQuote(quote);
+    } catch (storeErr) {
+      console.error('[orcamento POST] persistência falhou', storeErr);
     }
 
     return NextResponse.json({ id, status: 'ok' });
@@ -125,6 +107,11 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Não autorizado' }, { status: 401 });
   }
 
-  const quotes = await readQuotes();
-  return NextResponse.json(quotes.reverse());
+  try {
+    const quotes = await listQuotes();
+    return NextResponse.json(quotes);
+  } catch (err) {
+    console.error('[orcamento GET]', err);
+    return NextResponse.json({ error: 'Erro interno' }, { status: 500 });
+  }
 }

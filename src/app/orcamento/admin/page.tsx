@@ -2,18 +2,13 @@ import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import type { Quote } from '../types';
 import AdminClient from './AdminClient';
+import { listQuotes } from '@/lib/quotes-store';
 
 export const metadata: Metadata = { title: 'Admin — Orçamentos' };
 
-async function getQuotes(adminPass: string): Promise<Quote[]> {
+async function getQuotes(): Promise<Quote[]> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
-    const res = await fetch(`${baseUrl}/api/orcamento`, {
-      headers: { 'x-admin-pass': adminPass },
-      cache: 'no-store',
-    });
-    if (!res.ok) return [];
-    return res.json();
+    return await listQuotes();
   } catch {
     return [];
   }
@@ -56,7 +51,7 @@ export default async function AdminPage({
     redirect('/orcamento/admin');
   }
 
-  const quotes = await getQuotes(pass);
+  const quotes = await getQuotes();
 
   return <AdminClient initialQuotes={quotes} adminPass={pass} />;
 }
