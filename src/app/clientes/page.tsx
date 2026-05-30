@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import Link from "next/link";
 import Image from "next/image";
+import { blurFor } from "@/lib/blur";
 import AnimateIn from "@/components/AnimateIn";
 import CountUp from "@/components/CountUp";
 import ClientLogoGrid from "@/components/ClientLogoGrid";
@@ -171,7 +172,7 @@ export default function ClientesPage() {
               ].map((item, i) => (
                 <div key={i} className={`relative overflow-hidden group ${item.cls}`}>
                   <Image
-                    src={item.src}
+                    src={item.src} {...blurFor(item.src)}
                     alt={item.label}
                     fill
                     sizes="(max-width: 768px) 50vw, 25vw"

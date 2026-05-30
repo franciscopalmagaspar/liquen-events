@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import Link from "next/link";
 import Image from "next/image";
+import { blurFor } from "@/lib/blur";
 import AnimateIn from "@/components/AnimateIn";
 import CountUp from "@/components/CountUp";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
@@ -125,7 +126,7 @@ export default function SobrePage() {
             ].map((item, i) => (
               <div key={i} className="relative overflow-hidden group">
                 <Image
-                  src={item.src}
+                  src={item.src} {...blurFor(item.src)}
                   alt={item.label}
                   fill
                   sizes="(max-width: 768px) 50vw, 25vw"
@@ -141,7 +142,7 @@ export default function SobrePage() {
       {/* Cinematic statement */}
       <section className="relative overflow-hidden border-t border-foreground/8" style={{ minHeight: "clamp(320px, 55vh, 680px)" }}>
         <Image
-          src="/imagens/M&F0497.jpg"
+          src="/imagens/M&F0497.jpg" {...blurFor("/imagens/M&F0497.jpg")}
           alt="Líquen Events — celebração"
           fill
           sizes="100vw"

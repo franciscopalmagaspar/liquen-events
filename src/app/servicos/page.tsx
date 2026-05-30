@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { blurFor } from "@/lib/blur";
 import AnimateIn from "@/components/AnimateIn";
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -240,7 +241,7 @@ export default function ServicosPage() {
               >
                 <div className="relative overflow-hidden row-span-2">
                   <Image
-                    src="/imagens/DaniGui_Adois_61.jpg"
+                    src="/imagens/DaniGui_Adois_61.jpg" {...blurFor("/imagens/DaniGui_Adois_61.jpg")}
                     alt="Casamentos"
                     fill
                     sizes="(max-width: 1024px) 50vw, 20vw"
@@ -251,7 +252,7 @@ export default function ServicosPage() {
                 </div>
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/imagens/EW1_1414.jpg"
+                    src="/imagens/EW1_1414.jpg" {...blurFor("/imagens/EW1_1414.jpg")}
                     alt="Eventos corporativos"
                     fill
                     priority
@@ -262,7 +263,7 @@ export default function ServicosPage() {
                 </div>
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/imagens/20_10_2025_0220.jpg"
+                    src="/imagens/20_10_2025_0220.jpg" {...blurFor("/imagens/20_10_2025_0220.jpg")}
                     alt="Eventos culturais"
                     fill
                     sizes="(max-width: 1024px) 50vw, 15vw"
@@ -340,7 +341,7 @@ export default function ServicosPage() {
             ].map((item, i) => (
               <div key={i} className="relative overflow-hidden group">
                 <Image
-                  src={item.src}
+                  src={item.src} {...blurFor(item.src)}
                   alt={item.label}
                   fill
                   sizes="33vw"
@@ -460,7 +461,7 @@ export default function ServicosPage() {
                       style={{ aspectRatio: cat.cardAspect }}
                     >
                       <Image
-                        src={s.image}
+                        src={s.image} {...blurFor(s.image)}
                         alt={s.title}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
@@ -586,7 +587,7 @@ export default function ServicosPage() {
             ].map((item) => (
               <a key={item.src} href={item.anchor} className="relative overflow-hidden group block">
                 <Image
-                  src={item.src}
+                  src={item.src} {...blurFor(item.src)}
                   alt={item.label}
                   fill
                   sizes="33vw"

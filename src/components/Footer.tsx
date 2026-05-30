@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { blurFor } from "@/lib/blur";
 import WhatsAppIcon from "./WhatsAppIcon";
 import { WHATSAPP_HREF } from "@/data";
 
@@ -28,7 +29,7 @@ export default function Footer() {
         {stripPhotos.map((p, i) => (
           <div key={i} className={`relative overflow-hidden group ${p.span}`}>
             <Image
-              src={p.src}
+              src={p.src} {...blurFor(p.src)}
               alt=""
               fill
               sizes="(max-width: 768px) 50vw, 25vw"

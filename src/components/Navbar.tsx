@@ -51,6 +51,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                aria-current={pathname === link.href ? "page" : undefined}
                 className={`link-line text-[11px] tracking-[0.2em] uppercase transition-colors duration-300 ${
                   pathname === link.href
                     ? "text-moss nav-active"
@@ -112,6 +113,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
+              aria-current={pathname === link.href ? "page" : undefined}
               className={`py-4 text-[11px] tracking-[0.22em] uppercase border-b border-foreground/6 ${
                 pathname === link.href ? "text-moss" : "text-foreground/40 hover:text-foreground/70"
               }`}

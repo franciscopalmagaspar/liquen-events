@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { blurFor } from "@/lib/blur";
 import PageHeader from "@/components/PageHeader";
 import AnimateIn from "@/components/AnimateIn";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
@@ -37,7 +38,7 @@ export default function DiarioPage() {
             <AnimateIn>
               <Link href={`/diario/${lead.slug}`} className="group grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16 items-center">
                 <div className="relative overflow-hidden rounded-xl aspect-[4/3]">
-                  <Image src={lead.cover} alt={lead.title} fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" priority />
+                  <Image src={lead.cover} {...blurFor(lead.cover)} alt={lead.title} fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" priority />
                 </div>
                 <div>
                   <div className="flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-foreground/35 mb-5">
@@ -65,7 +66,7 @@ export default function DiarioPage() {
                 <AnimateIn key={p.slug} delay={i * 70}>
                   <Link href={`/diario/${p.slug}`} className="group block">
                     <div className="relative overflow-hidden rounded-xl aspect-[3/2] mb-5">
-                      <Image src={p.cover} alt={p.title} fill sizes="(max-width:1024px) 50vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                      <Image src={p.cover} {...blurFor(p.cover)} alt={p.title} fill sizes="(max-width:1024px) 50vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                     </div>
                     <div className="flex items-center gap-3 text-[10px] tracking-[0.3em] uppercase text-foreground/35 mb-3">
                       <span className="text-moss">{p.category}</span>

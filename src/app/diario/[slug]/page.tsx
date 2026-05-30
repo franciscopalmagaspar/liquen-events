@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { blurFor } from "@/lib/blur";
 import { BreadcrumbJsonLd, JsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
 import { SITE } from "@/lib/site";
@@ -64,7 +65,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {/* Hero */}
       <article>
         <header className="relative min-h-[60vh] flex items-end overflow-hidden">
-          <Image src={post.cover} alt={post.title} fill priority sizes="100vw" className="object-cover" />
+          <Image src={post.cover} {...blurFor(post.cover)} alt={post.title} fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/15" />
           <div className="relative z-10 w-full max-w-3xl mx-auto px-6 lg:px-8 pb-16">
             <nav className="flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-cream/45 mb-6">
@@ -120,7 +121,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {others.map((o) => (
                   <Link key={o.slug} href={`/diario/${o.slug}`} className="group relative overflow-hidden rounded-xl aspect-[16/9]">
-                    <Image src={o.cover} alt={o.title} fill sizes="50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <Image src={o.cover} {...blurFor(o.cover)} alt={o.title} fill sizes="50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent" />
                     <div className="absolute bottom-0 p-6">
                       <p className="text-moss/70 text-[9px] tracking-[0.35em] uppercase mb-1.5">{o.category}</p>
