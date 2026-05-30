@@ -113,8 +113,8 @@ export default function SobrePage() {
             style={{ height: "clamp(180px, 28vw, 380px)" }}
           >
             {[
-              { src: "/imagens/DaniGui_Preview19.jpg", label: "Casamento" },
-              { src: "/imagens/EW1_1395.jpg", label: "Corporativo" },
+              { src: "/imagens/Natalia e Jonathan-167.jpg", label: "Casamento" },
+              { src: "/imagens/EW1_1342.jpg", label: "Corporativo" },
               { src: "/imagens/JOAO_E_PEDRO_1Y1A3179.jpg", label: "Casamento" },
               { src: "/imagens/20_10_2025_0375.jpg", label: "Evento" },
             ].map((item, i) => (

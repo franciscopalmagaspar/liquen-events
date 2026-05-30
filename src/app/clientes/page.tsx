@@ -128,11 +128,11 @@ export default function ClientesPage() {
           <AnimateIn from="fade" delay={80}>
             <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] gap-3">
               {[
-                { src: "/imagens/EW1_1392.jpg", label: "Corporativo", cls: "md:row-span-2" },
-                { src: "/imagens/DaniGui_Preview12.jpg", label: "Casamento", cls: "" },
-                { src: "/imagens/20_10_2025_0295.jpg", label: "Conferência", cls: "" },
-                { src: "/imagens/JOAO_E_PEDRO_1Y1A3170.jpg", label: "Casamento", cls: "" },
-                { src: "/imagens/DaniGui_JantarFesta_1.jpg", label: "Jantar", cls: "" },
+                { src: "/imagens/EW1_1393.jpg", label: "Corporativo", cls: "md:row-span-2" },
+                { src: "/imagens/DaniGui_Preview70.jpg", label: "Casamento", cls: "" },
+                { src: "/imagens/20_10_2025_0407.jpg", label: "Conferência", cls: "" },
+                { src: "/imagens/JOAO_E_PEDRO_1Y1A3232.jpg", label: "Casamento", cls: "" },
+                { src: "/imagens/DaniGui_Adois_57.jpg", label: "Jantar", cls: "" },
               ].map((item, i) => (
                 <div key={i} className={`relative overflow-hidden group ${item.cls}`}>
                   <Image

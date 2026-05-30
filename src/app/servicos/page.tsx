@@ -35,13 +35,13 @@ const categories = [
         title: "Lançamentos de Produto",
         desc: "Eventos de impacto para apresentar novos produtos ao mercado com criatividade e precisão.",
         features: ["Conceito criativo", "Cenografia", "Media & PR", "Conteúdo digital"],
-        image: "/imagens/EW1_0362.jpg",
+        image: "/imagens/EW1_0697.jpg",
       },
       {
         title: "Jantares de Empresa",
         desc: "Desde jantares de Natal a gala awards, criamos momentos de celebração corporativa memoráveis.",
         features: ["Decoração temática", "Menu personalizado", "Entretenimento", "Coordenação total"],
-        image: "/imagens/EW1_1392.jpg",
+        image: "/imagens/EW1_1404.jpg",
       },
     ],
   },
@@ -58,7 +58,7 @@ const categories = [
         title: "Casamentos",
         desc: "O vosso dia mais especial, planeado ao pormenor. Da escolha do espaço ao último detalhe.",
         features: ["Wedding planning completo", "Decoração floral", "Catering premium", "Coordenação do dia"],
-        image: "/imagens/DaniGui_Preview12.jpg",
+        image: "/imagens/DaniGui_Preview18.jpg",
       },
       {
         title: "Batizados & Comunhões",
@@ -76,7 +76,7 @@ const categories = [
         title: "Jantares de Gala",
         desc: "Eventos sociais de prestígio com ambiente sofisticado e coordenação impecável.",
         features: ["Mesa posta premium", "Chef convidado", "Wine pairing", "Animação cultural"],
-        image: "/imagens/JOAO_E_PEDRO_1Y1A3170.jpg",
+        image: "/imagens/JOAO_E_PEDRO_IMGL2180.jpg",
       },
     ],
   },
@@ -93,7 +93,7 @@ const categories = [
         title: "Eventos Culturais",
         desc: "Experiências culturais únicas criadas com criatividade, dedicação e atenção a cada pormenor.",
         features: ["Conceito criativo", "Decoração temática", "Produção completa", "Coordenação total"],
-        image: "/imagens/20_10_2025_0295.jpg",
+        image: "/imagens/20_10_2025_0302.jpg",
       },
       {
         title: "Exposições & Inaugurações",
@@ -199,7 +199,7 @@ export default function ServicosPage() {
                 </div>
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/imagens/EW1_1392.jpg"
+                    src="/imagens/EW1_1414.jpg"
                     alt="Eventos corporativos"
                     fill
                     sizes="(max-width: 1024px) 50vw, 15vw"
@@ -209,7 +209,7 @@ export default function ServicosPage() {
                 </div>
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/imagens/20_10_2025_0295.jpg"
+                    src="/imagens/20_10_2025_0220.jpg"
                     alt="Eventos culturais"
                     fill
                     sizes="(max-width: 1024px) 50vw, 15vw"
@@ -348,7 +348,7 @@ export default function ServicosPage() {
             style={{ height: "clamp(180px, 28vw, 400px)" }}
           >
             {[
-              { src: "/imagens/EW1_0688.jpg", label: "Eventos Corporativos" },
+              { src: "/imagens/EW1_1100.jpg", label: "Eventos Corporativos" },
               { src: "/imagens/DaniGui_Preview19.jpg", label: "Casamentos" },
               { src: "/imagens/DaniGui_JantarFesta_17.jpg", label: "Celebrações" },
             ].map((item, i) => (

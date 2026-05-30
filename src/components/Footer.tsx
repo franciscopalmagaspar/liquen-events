@@ -11,9 +11,9 @@ const pages = [
 ];
 
 const stripPhotos = [
-  { src: "/imagens/DJI_20250913190635_0120_D.jpg", span: "col-span-2" },
-  { src: "/imagens/DaniGui_Preview12.jpg",          span: "col-span-1" },
-  { src: "/imagens/EW1_1395.jpg",                   span: "col-span-1" },
+  { src: "/imagens/JOAO_E_PEDRO_DJI_20250628213935_0005_D.jpg", span: "col-span-2" },
+  { src: "/imagens/M&F0152.jpg",                                 span: "col-span-1" },
+  { src: "/imagens/EW1_1428.jpg",                                span: "col-span-1" },
 ];
 
 export default function Footer() {

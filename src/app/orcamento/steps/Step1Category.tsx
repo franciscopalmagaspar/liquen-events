@@ -11,9 +11,9 @@ interface Props {
 }
 
 const CATEGORY_IMAGES: Record<string, string> = {
-  empresas:     '/imagens/EW1_1392.jpg',
-  particulares: '/imagens/DaniGui_Preview12.jpg',
-  cultural:     '/imagens/20_10_2025_0295.jpg',
+  empresas:     '/imagens/EW1_1398.jpg',
+  particulares: '/imagens/DaniGui_JantarFesta_24.jpg',
+  cultural:     '/imagens/20_10_2025_0227.jpg',
 };
 
 const NUMS = ['01', '02', '03'];
