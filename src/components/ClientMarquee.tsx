@@ -3,43 +3,50 @@
 import Image from "next/image";
 import { useState } from "react";
 import { clientLogos } from "@/data";
+import { logoHeight, logoDimsFor } from "@/lib/logo";
 
 /**
- * Scrolling band of client logos on the homepage. Each logo is rendered white
- * over the dark band; if a logo file is missing it falls back to the client
- * name as text, so the band never breaks while logos are being added.
+ * Scrolling band of client logos on the homepage. Logos are balanced optically
+ * by area (see logoHeight) and width-capped so no wordmark runs away. Rendered
+ * white over the dark band; a missing logo falls back to the client name.
  */
 function Mark({ name, logo }: { name: string; logo: string }) {
   const [failed, setFailed] = useState(false);
 
-  // Every logo lives in an identical fixed box and is centred inside it, so
-  // all clients occupy exactly the same footprint regardless of their shape.
-  return (
-    <div className="flex-shrink-0 flex items-center h-9 sm:h-11">
-      {failed || !logo ? (
+  if (failed || !logo) {
+    return (
+      <div className="flex-shrink-0 flex items-center h-11">
         <span className="text-foreground/25 text-[10px] sm:text-xs font-medium tracking-[0.2em] uppercase whitespace-nowrap">
           {name}
         </span>
-      ) : (
-        <Image
-          src={logo}
-          alt={name}
-          width={400}
-          height={120}
-          className="h-full w-auto object-contain opacity-60 hover:opacity-90 transition-opacity duration-300 brightness-0 invert"
-          onError={() => setFailed(true)}
-        />
-      )}
+      </div>
+    );
+  }
+
+  const h = logoHeight(logo);
+  const d = logoDimsFor(logo);
+
+  return (
+    <div className="flex-shrink-0 flex items-center justify-center h-12">
+      <Image
+        src={logo}
+        alt={name}
+        width={d[0]}
+        height={d[1]}
+        style={{ height: `${h}px` }}
+        className="w-auto max-w-[140px] sm:max-w-[170px] object-contain opacity-60 hover:opacity-90 transition-opacity duration-300 brightness-0 invert"
+        onError={() => setFailed(true)}
+      />
     </div>
   );
 }
 
 export default function ClientMarquee() {
   return (
-    <div className="relative py-6 border-y border-foreground/8 overflow-hidden">
+    <div className="relative py-7 border-y border-foreground/8 overflow-hidden">
       <div className="absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none" />
-      <div className="flex items-center gap-10 sm:gap-16 animate-marquee whitespace-nowrap">
+      <div className="flex items-center gap-12 sm:gap-16 animate-marquee whitespace-nowrap">
         {[...clientLogos, ...clientLogos].map((c, i) => (
           <Mark key={i} name={c.name} logo={c.logo} />
         ))}
