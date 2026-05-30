@@ -138,7 +138,8 @@ body::before {
 
 /* ── Orçamento full-screen mode ── */
 body.orcamento-mode footer,
-body.orcamento-mode .whatsapp-fixed {
+body.orcamento-mode .whatsapp-fixed,
+body.orcamento-mode .scroll-progress {
   display: none !important;
 }
 
