@@ -1,19 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // ── Imagens: servir AVIF/WebP modernos e em cache longo ──
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [360, 480, 640, 768, 1024, 1280, 1536, 1920],
     imageSizes: [16, 32, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 31_536_000, // 1 ano
+    minimumCacheTTL: 31_536_000,
   },
 
-  // ── Higiene de produção ──
-  poweredByHeader: false,        // não expõe "X-Powered-By: Next.js"
+  poweredByHeader: false,
   reactStrictMode: true,
+  productionBrowserSourceMaps: false,
 
-  // ── Cabeçalhos: segurança + cache agressivo dos estáticos ──
   async headers() {
     const securityHeaders = [
       { key: "X-Content-Type-Options", value: "nosniff" },
@@ -33,7 +31,6 @@ const nextConfig: NextConfig = {
     return [
       { source: "/:path*", headers: securityHeaders },
       {
-        // Fotografias e logótipos: imutáveis, cache de 1 ano
         source: "/imagens/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },

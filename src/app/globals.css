@@ -191,6 +191,10 @@ body.admin-mode ::-webkit-scrollbar-thumb:hover {
   animation: step-back 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* ── Hide scrollbar visually, keep scroll functional ── */
+.scroll-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scroll-hide::-webkit-scrollbar { display: none; }
+
 /* ── Word-rise hero animation ── */
 @keyframes word-rise {
   from { opacity: 0; transform: translateY(36px); }

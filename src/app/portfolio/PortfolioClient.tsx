@@ -13,8 +13,8 @@ function Showcase({ p, index }: { p: Project; index: number }) {
   const reversed = index % 2 === 1;
 
   return (
-    <div className="group py-16 lg:py-24 border-t border-foreground/8">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+    <div className="group py-10 lg:py-20 border-t border-foreground/8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center">
 
         {/* ── Visual ── */}
         <div className={reversed ? "lg:order-2" : ""}>
@@ -62,16 +62,16 @@ function Showcase({ p, index }: { p: Project; index: number }) {
           </div>
 
           <h3
-            className="text-foreground text-3xl lg:text-5xl font-bold mb-6 leading-[1.05] group-hover:text-moss transition-colors duration-300"
+            className="text-foreground text-2xl md:text-3xl lg:text-5xl font-bold mb-6 leading-[1.05] group-hover:text-moss transition-colors duration-300"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             {p.title}
           </h3>
 
-          <p className="text-foreground/40 text-sm leading-[1.9] mb-10 max-w-md">{p.desc}</p>
+          <p className="text-foreground/40 text-sm leading-[1.9] mb-7 lg:mb-10 max-w-md">{p.desc}</p>
 
           {/* Meta */}
-          <div className="flex gap-12 mb-10">
+          <div className="flex gap-8 lg:gap-12 mb-8 lg:mb-10">
             <div>
               <p className="text-foreground/22 text-[10px] tracking-[0.35em] uppercase mb-1.5">Ano</p>
               <p className="text-foreground/65 text-sm tabular-nums">{p.year}</p>
@@ -82,7 +82,7 @@ function Showcase({ p, index }: { p: Project; index: number }) {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2 mb-12">
+          <div className="flex flex-wrap gap-2 mb-8 lg:mb-12">
             {p.tags.map((tag) => (
               <span
                 key={tag}
@@ -120,7 +120,7 @@ export default function PortfolioClient() {
       {/* Filter bar */}
       <div className="sticky top-16 z-40 bg-surface/92 backdrop-blur-md border-b border-foreground/8 py-5">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <div className="flex gap-2 overflow-x-auto">
+          <div className="flex gap-2 overflow-x-auto scroll-hide pb-1">
             {categories.map((cat) => (
               <button
                 key={cat}

@@ -46,16 +46,16 @@ export default function SobrePage() {
       />
 
       {/* Story */}
-      <section className="py-28 bg-surface">
+      <section className="py-16 lg:py-28 bg-surface">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-start">
             <AnimateIn from="left">
               <div>
-                <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-10 flex items-center gap-3">
+                <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-6 lg:mb-10 flex items-center gap-3">
                   <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
                   A Nossa História
                 </p>
-                <div className="flex flex-col gap-5 text-foreground/45 text-base leading-[1.85]">
+                <div className="flex flex-col gap-4 text-foreground/45 text-sm sm:text-base leading-[1.85]">
                   <p>
                     A Líquen Events é uma empresa especializada em planear e executar
                     eventos únicos, transformando as suas ideias em experiências memoráveis.
@@ -74,31 +74,29 @@ export default function SobrePage() {
               </div>
             </AnimateIn>
             <AnimateIn from="right" delay={120}>
-              <div className="flex flex-col gap-8">
-                {/* Mission — editorial left-border quote */}
-                <div className="border-l-2 border-moss/50 pl-8 py-2">
-                  <p className="text-foreground/25 text-[10px] tracking-[0.38em] uppercase mb-4">A nossa missão</p>
+              <div className="flex flex-col gap-6 lg:gap-8">
+                <div className="border-l-2 border-moss/50 pl-6 lg:pl-8 py-2">
+                  <p className="text-foreground/25 text-[10px] tracking-[0.38em] uppercase mb-3">A nossa missão</p>
                   <p
-                    className="text-foreground/70 text-2xl leading-snug"
+                    className="text-foreground/70 text-xl sm:text-2xl leading-snug"
                     style={{ fontFamily: "var(--font-playfair)" }}
                   >
                     Organizamos eventos,<br />eternizamos memórias.
                   </p>
                 </div>
-                {/* Stats — flat grid */}
                 <div className="grid grid-cols-2 gap-px bg-foreground/[0.06]">
-                  <div className="bg-surface flex flex-col items-center justify-center py-10 gap-1.5">
+                  <div className="bg-surface flex flex-col items-center justify-center py-8 lg:py-10 gap-1.5">
                     <p
-                      className="text-moss text-4xl font-bold leading-none"
+                      className="text-moss text-3xl sm:text-4xl font-bold leading-none"
                       style={{ fontFamily: "var(--font-playfair)" }}
                     >
                       <CountUp to={100} suffix="+" />
                     </p>
                     <p className="text-foreground/28 text-[10px] tracking-[0.28em] uppercase">Eventos</p>
                   </div>
-                  <div className="bg-surface flex flex-col items-center justify-center py-10 gap-1.5">
+                  <div className="bg-surface flex flex-col items-center justify-center py-8 lg:py-10 gap-1.5">
                     <p
-                      className="text-moss text-4xl font-bold leading-none"
+                      className="text-moss text-3xl sm:text-4xl font-bold leading-none"
                       style={{ fontFamily: "var(--font-playfair)" }}
                     >
                       <CountUp to={19} suffix="+" />
@@ -112,12 +110,12 @@ export default function SobrePage() {
         </div>
       </section>
 
-      {/* Photo strip — edge-to-edge */}
+      {/* Photo strip */}
       <section className="bg-surface border-t border-foreground/8">
         <AnimateIn from="fade">
           <div
             className="grid grid-cols-2 lg:grid-cols-4 gap-px"
-            style={{ height: "clamp(180px, 28vw, 380px)" }}
+            style={{ height: "clamp(160px, 28vw, 380px)" }}
           >
             {[
               { src: "/imagens/Natalia e Jonathan-167.jpg", label: "Casamento" },
@@ -140,8 +138,8 @@ export default function SobrePage() {
         </AnimateIn>
       </section>
 
-      {/* Cinematic statement — full bleed */}
-      <section className="relative overflow-hidden border-t border-foreground/8" style={{ minHeight: "clamp(420px, 65vh, 680px)" }}>
+      {/* Cinematic statement */}
+      <section className="relative overflow-hidden border-t border-foreground/8" style={{ minHeight: "clamp(320px, 55vh, 680px)" }}>
         <Image
           src="/imagens/M&F0497.jpg"
           alt="Líquen Events — celebração"
@@ -152,9 +150,9 @@ export default function SobrePage() {
         <div className="absolute inset-0 bg-black/65" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-[#080808]/60" />
         <div className="relative z-10 h-full flex items-center">
-          <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full py-28">
+          <div className="max-w-7xl mx-auto px-6 lg:px-16 w-full py-16 lg:py-28">
             <AnimateIn>
-              <p className="text-cream/40 text-[10px] tracking-[0.5em] uppercase mb-10 flex items-center gap-3">
+              <p className="text-cream/40 text-[10px] tracking-[0.5em] uppercase mb-6 lg:mb-10 flex items-center gap-3">
                 <span className="w-6 h-px bg-moss rounded-full flex-shrink-0" />
                 A nossa filosofia
               </p>
@@ -162,7 +160,7 @@ export default function SobrePage() {
             <AnimateIn delay={100}>
               <p
                 className="text-cream font-bold leading-[1.15] max-w-4xl"
-                style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4.2vw, 60px)" }}
+                style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(22px, 4.2vw, 60px)" }}
               >
                 Não organizamos apenas eventos.
                 <span className="text-cream/45"> Desenhamos experiências que ficam para sempre na memória de quem as vive.</span>
@@ -173,10 +171,10 @@ export default function SobrePage() {
       </section>
 
       {/* Values */}
-      <section className="py-28 bg-surface border-t border-foreground/8">
+      <section className="py-16 lg:py-28 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
-            <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-20 flex items-center gap-3">
+            <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-10 lg:mb-20 flex items-center gap-3">
               <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
               O que nos guia
             </p>
@@ -184,11 +182,11 @@ export default function SobrePage() {
           <div>
             {values.map((v, i) => (
               <AnimateIn key={v.title} delay={i * 60}>
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-20 py-10 border-t border-foreground/8">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-3 lg:gap-20 py-6 lg:py-10 border-t border-foreground/8">
                   <div className="lg:col-span-1 flex items-start gap-4">
-                    <span className="text-foreground/15 text-xs font-mono mt-1">0{i + 1}</span>
+                    <span className="text-foreground/15 text-xs font-mono mt-1 flex-shrink-0">0{i + 1}</span>
                     <h3
-                      className="text-foreground text-lg font-bold"
+                      className="text-foreground text-base lg:text-lg font-bold"
                       style={{ fontFamily: "var(--font-playfair)" }}
                     >
                       {v.title}
@@ -206,35 +204,33 @@ export default function SobrePage() {
       </section>
 
       {/* Team */}
-      <section className="py-28 bg-surface border-t border-foreground/8">
+      <section className="py-16 lg:py-28 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
-            <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-20 flex items-center gap-3">
+            <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-10 lg:mb-20 flex items-center gap-3">
               <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
               As pessoas
             </p>
           </AnimateIn>
           <AnimateIn delay={80}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-foreground/[0.06]">
-              {/* Left — identity */}
-              <div className="bg-surface p-12 lg:p-16">
+              <div className="bg-surface p-8 lg:p-16">
                 <h3
                   className="text-foreground font-bold leading-none mb-3"
-                  style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(32px, 4vw, 52px)" }}
+                  style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 52px)" }}
                 >
                   Catarina Gaspar
                 </h3>
-                <p className="text-foreground/38 text-sm mb-8">Fundadora & CEO</p>
+                <p className="text-foreground/38 text-sm mb-6">Fundadora & CEO</p>
                 <p className="text-foreground/22 text-[10px] tracking-[0.35em] uppercase flex items-center gap-2">
                   <span className="w-1 h-1 rounded-full bg-moss flex-shrink-0" />
                   Évora, Portugal
                 </p>
               </div>
-              {/* Right — quote */}
-              <div className="bg-surface p-12 lg:p-16 border-t lg:border-t-0 border-foreground/[0.06]">
-                <span className="block text-moss/25 text-6xl font-bold leading-none mb-6" style={{ fontFamily: "var(--font-playfair)" }}>&ldquo;</span>
+              <div className="bg-surface p-8 lg:p-16 border-t lg:border-t-0 border-foreground/[0.06]">
+                <span className="block text-moss/25 text-5xl lg:text-6xl font-bold leading-none mb-5" style={{ fontFamily: "var(--font-playfair)" }}>&ldquo;</span>
                 <p
-                  className="text-foreground/55 text-lg leading-[1.7]"
+                  className="text-foreground/55 text-base lg:text-lg leading-[1.7]"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   Cada evento é uma oportunidade única de criar algo extraordinário. É o que nos move todos os dias.
@@ -246,11 +242,11 @@ export default function SobrePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-40 bg-surface border-t border-foreground/8">
+      <section className="py-20 lg:py-40 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
             <h2
-              className="text-foreground text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-12 max-w-2xl"
+              className="text-foreground text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight mb-10 lg:mb-12 max-w-2xl"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               Vamos trabalhar juntos?
@@ -259,7 +255,7 @@ export default function SobrePage() {
           <AnimateIn delay={150}>
             <Link
               href="/contacto"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-moss text-cream font-medium rounded-sm hover:bg-moss-dark hover:gap-5 transition-all duration-300 text-sm tracking-widest uppercase"
+              className="inline-flex items-center gap-3 px-7 py-4 bg-moss text-cream font-medium rounded-sm hover:bg-moss-dark hover:gap-5 transition-all duration-300 text-sm tracking-widest uppercase"
             >
               Entrar em Contacto →
             </Link>

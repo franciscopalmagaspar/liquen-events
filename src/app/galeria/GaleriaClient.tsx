@@ -345,12 +345,14 @@ export default function GaleriaClient() {
   return (
     <>
       {/* ── Filtros ── */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className="flex gap-2 mb-8 overflow-x-auto pb-1 scrollbar-none"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
         {CATS.map((c) => (
           <button
             key={c}
             onClick={() => switchCat(c)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs tracking-[0.12em] uppercase transition-all duration-300 ${
+            className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full text-xs tracking-[0.12em] uppercase transition-all duration-300 ${
               cat === c
                 ? "bg-moss text-cream shadow-lg shadow-moss/20"
                 : "bg-foreground/5 text-foreground/40 hover:bg-foreground/10 hover:text-foreground/70"
@@ -395,7 +397,7 @@ export default function GaleriaClient() {
 
         {/* Masonry — fotos restantes (satélites 1-4 reaparecem aqui em mobile) */}
         {visible.length > 1 && (
-          <div className="columns-2 md:columns-3 gap-0.5">
+          <div className="columns-1 sm:columns-2 md:columns-3 gap-0.5">
             {visible.slice(1).map((p, i) => {
               const idx = i + 1;
               return (

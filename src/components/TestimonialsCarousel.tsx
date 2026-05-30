@@ -2,33 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import AnimateIn from "./AnimateIn";
-
-const testimonials = [
-  {
-    name: "António Bettencourt",
-    role: "Evento Corporativo",
-    quote:
-      "O ambiente criado pela vossa equipa elevou a imagem do nosso evento. Ficámos impressionados com a sofisticação da decoração.",
-  },
-  {
-    name: "Alexandra Teixeira",
-    role: "Evento Social",
-    quote:
-      "A dedicação da equipa em criar ambientes mágicos, com decoração impecável e coordenação perfeita, permitiu-nos desfrutar do evento sem qualquer preocupação.",
-  },
-  {
-    name: "Stephanie & Mizio",
-    role: "Evento Privado",
-    quote:
-      "Everything was exactly how we'd envisioned and you created a beautiful space for us!",
-  },
-  {
-    name: "Teresinha Malta",
-    role: "Evento Social",
-    quote:
-      "Serviço de excelência, com muito carinho e disponibilidade por parte de toda a equipa. Superaram todas as expectativas.",
-  },
-];
+import { testimonials } from "@/data";
 
 export default function TestimonialsCarousel() {
   const [active, setActive] = useState(0);
@@ -52,7 +26,7 @@ export default function TestimonialsCarousel() {
   const t = testimonials[active];
 
   return (
-    <section className="relative py-32 bg-surface border-t border-foreground/6 overflow-hidden">
+    <section className="relative py-20 lg:py-32 bg-surface border-t border-foreground/6 overflow-hidden">
       {/* Decorative background quotation mark */}
       <div aria-hidden className="absolute -top-8 -left-6 pointer-events-none select-none">
         <span
@@ -65,7 +39,7 @@ export default function TestimonialsCarousel() {
 
       <div className="max-w-7xl mx-auto px-6 lg:px-16 relative z-10">
         <AnimateIn>
-          <div className="flex items-center gap-4 mb-16">
+          <div className="flex items-center gap-4 mb-10 lg:mb-16">
             <span className="block w-8 h-px bg-moss/50 flex-shrink-0" />
             <p className="text-foreground/28 text-[10px] tracking-[0.48em] uppercase">
               O que dizem os clientes
@@ -83,7 +57,7 @@ export default function TestimonialsCarousel() {
               }}
             >
               <p
-                className="text-foreground text-2xl sm:text-3xl lg:text-[2.2rem] font-bold leading-[1.3] mb-12"
+                className="text-foreground text-xl sm:text-2xl lg:text-[2.2rem] font-bold leading-[1.35] mb-8 lg:mb-12"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 &ldquo;{t.quote}&rdquo;
@@ -99,7 +73,7 @@ export default function TestimonialsCarousel() {
           </div>
 
           {/* Dots */}
-          <div className="flex gap-2.5 mt-14">
+          <div className="flex gap-2.5 mt-10 lg:mt-14">
             {testimonials.map((_, i) => (
               <button
                 key={i}
