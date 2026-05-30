@@ -19,6 +19,7 @@ import EventChecklist from './EventChecklist';
 import PaymentsPanel from './PaymentsPanel';
 import { ToastProvider } from './Toast';
 import CommandPalette, { type Command } from './CommandPalette';
+import NewQuoteModal from './NewQuoteModal';
 
 type View = 'overview' | 'pedidos' | 'clientes' | 'calendario' | 'propostas' | 'tarefas' | 'fornecedores' | 'estatisticas' | 'inbox';
 
@@ -79,6 +80,7 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
   const [view, setView] = useState<View>('overview');
   const [navOpen, setNavOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const [newQuoteOpen, setNewQuoteOpen] = useState(false);
 
   // Full-screen tool surface: hide public nav, grain & chrome.
   useEffect(() => {
@@ -99,13 +101,20 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
   }, []);
 
   const paletteCommands: Command[] = useMemo(
-    () =>
-      NAV.map((item) => ({
+    () => [
+      {
+        id: 'action-new-quote',
+        label: 'Novo pedido (registo manual)',
+        group: 'Ações',
+        run: () => setNewQuoteOpen(true),
+      },
+      ...NAV.map((item) => ({
         id: `nav-${item.id}`,
         label: item.label,
         group: 'Navegar',
         run: () => setView(item.id),
       })),
+    ],
     []
   );
 
@@ -216,6 +225,11 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
         quotes={quotes}
         onOpenQuote={openQuote}
       />
+      <NewQuoteModal
+        open={newQuoteOpen}
+        onClose={() => setNewQuoteOpen(false)}
+        onCreated={(q) => { setQuotes((prev) => [q, ...prev]); openQuote(q); }}
+      />
       {/* ── Sidebar ── */}
       <aside
         className={`fixed lg:sticky top-0 z-40 h-screen w-60 shrink-0 bg-surface-raised/60 border-r border-foreground/8 flex flex-col transition-transform duration-300 ${
@@ -296,6 +310,14 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
             </h1>
           </div>
           <div className="ml-auto flex items-center gap-3 shrink-0">
+            <button
+              onClick={() => setNewQuoteOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-moss text-cream text-[10px] tracking-[0.18em] uppercase rounded-md hover:bg-moss-dark transition-colors"
+              title="Criar pedido manualmente"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M12 5v14M5 12h14" strokeLinecap="round" /></svg>
+              Novo
+            </button>
             <button
               onClick={() => setPaletteOpen(true)}
               className="hidden sm:flex items-center gap-2 px-3 py-2 border border-foreground/12 text-foreground/35 text-[10px] tracking-[0.15em] uppercase rounded-md hover:border-foreground/25 hover:text-foreground/55 transition-colors"
