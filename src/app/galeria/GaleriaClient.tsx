@@ -263,6 +263,18 @@ function aspectFor(i: number, label: Label): string {
   return ASPECTS[i % ASPECTS.length];
 }
 
+// Descriptive alt text for image SEO/accessibility (instead of a bare label)
+const ALT_BY_LABEL: Record<Label, string> = {
+  Casamento: "Casamento organizado pela Líquen Events no Alentejo",
+  Corporativo: "Evento corporativo organizado pela Líquen Events",
+  Conferência: "Conferência organizada pela Líquen Events em Évora",
+  Aéreo: "Vista aérea de evento da Líquen Events",
+  Evento: "Evento organizado pela Líquen Events em Portugal",
+};
+function altFor(label: Label): string {
+  return ALT_BY_LABEL[label] ?? `Evento da Líquen Events — ${label}`;
+}
+
 const CATS = ["Todos","Casamento","Corporativo","Conferência","Aéreo","Evento"] as const;
 type Cat = (typeof CATS)[number];
 const PAGE = 24;
@@ -333,12 +345,14 @@ export default function GaleriaClient() {
   return (
     <>
       {/* ── Filtros ── */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className="flex gap-2 mb-8 overflow-x-auto pb-1 scrollbar-none"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
         {CATS.map((c) => (
           <button
             key={c}
             onClick={() => switchCat(c)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs tracking-[0.12em] uppercase transition-all duration-300 ${
+            className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full text-xs tracking-[0.12em] uppercase transition-all duration-300 ${
               cat === c
                 ? "bg-moss text-cream shadow-lg shadow-moss/20"
                 : "bg-foreground/5 text-foreground/40 hover:bg-foreground/10 hover:text-foreground/70"
@@ -361,7 +375,7 @@ export default function GaleriaClient() {
               onClick={() => setLb(0)}
               className="relative col-span-2 row-span-2 h-full w-full overflow-hidden group focus:outline-none"
             >
-              <Image src={visible[0].src} alt={visible[0].label} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" priority />
+              <Image src={visible[0].src} alt={altFor(visible[0].label)} fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" priority />
               <HoverOverlay label={visible[0].label} />
             </button>
 
@@ -373,7 +387,7 @@ export default function GaleriaClient() {
                   onClick={() => setLb(idx)}
                   className="relative hidden sm:block h-full w-full overflow-hidden group focus:outline-none"
                 >
-                  <Image src={visible[idx].src} alt={visible[idx].label} fill sizes="25vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" priority />
+                  <Image src={visible[idx].src} alt={altFor(visible[idx].label)} fill sizes="25vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" priority />
                   <HoverOverlay label={visible[idx].label} />
                 </button>
               ) : null
@@ -383,7 +397,7 @@ export default function GaleriaClient() {
 
         {/* Masonry — fotos restantes (satélites 1-4 reaparecem aqui em mobile) */}
         {visible.length > 1 && (
-          <div className="columns-2 md:columns-3 gap-0.5">
+          <div className="columns-1 sm:columns-2 md:columns-3 gap-0.5">
             {visible.slice(1).map((p, i) => {
               const idx = i + 1;
               return (
@@ -395,7 +409,7 @@ export default function GaleriaClient() {
                 >
                   <Image
                     src={p.src}
-                    alt={p.label}
+                    alt={altFor(p.label)}
                     fill
                     sizes="(max-width: 768px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
@@ -476,7 +490,7 @@ export default function GaleriaClient() {
               <Image
                 key={lb}
                 src={pool[lb].src}
-                alt={pool[lb].label}
+                alt={altFor(pool[lb].label)}
                 fill
                 sizes="90vw"
                 className="object-contain lb-photo-in"

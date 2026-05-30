@@ -22,9 +22,17 @@
 }
 
 /* ── Scrollbar ── */
-::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar { width: 3px; height: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #2d5c3e; }
+::-webkit-scrollbar-thumb { background: #2d5c3e; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #4a7c59; }
+
+/* ── Focus: refined, accessible, on-brand ── */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #080808, 0 0 0 3px rgba(74, 124, 89, 0.6);
+  border-radius: 2px;
+}
 
 /* ── Smooth scroll ── */
 html { scroll-behavior: smooth; }
@@ -183,16 +191,52 @@ body.admin-mode ::-webkit-scrollbar-thumb:hover {
   animation: step-back 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* ── Hide scrollbar visually, keep scroll functional ── */
+.scroll-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scroll-hide::-webkit-scrollbar { display: none; }
+
 /* ── Word-rise hero animation ── */
 @keyframes word-rise {
   from { opacity: 0; transform: translateY(36px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Back-office: gentle view transition ── */
+@keyframes view-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.view-in {
+  animation: view-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Back-office: hairline panel + soft hover lift ── */
+.bo-panel {
+  border: 1px solid rgba(222, 218, 212, 0.08);
+  border-radius: 10px;
+  background: rgba(15, 15, 15, 0.35);
+}
+.bo-panel-hover {
+  transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+.bo-panel-hover:hover {
+  border-color: rgba(222, 218, 212, 0.16);
+  background: rgba(15, 15, 15, 0.6);
+}
+
+/* Eyebrow label — shared editorial micro-heading */
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(222, 218, 212, 0.28);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .anim-0, .anim-1, .anim-2, .anim-3 { animation: none; opacity: 1; }
   .anim-glow, .anim-scroll-line, .animate-marquee, .animate-scroll-line, .footer-ping { animation: none; }
   .animate-step-forward, .animate-step-back { animation: none; }
+  .view-in { animation: none; }
   .cursor-dot, .cursor-ring { display: none; }
 }
 

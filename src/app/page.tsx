@@ -3,13 +3,7 @@ import Image from "next/image";
 import AnimateIn from "@/components/AnimateIn";
 import CountUp from "@/components/CountUp";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
-
-const clients = [
-  "Jose de Mello", "Fita Preta", "Câmara Municipal de Évora", "Portugal NUTS",
-  "Aernnova Aerospace", "Mainova", "Universidade de Évora", "Convento do Espinheiro",
-  "Perez Llorca", "PACT", "Casa Morgado Esporão", "Monte do Zambujal",
-  "EDIA", "ESRI", "Palácio Cadaval", "Clínica Santa",
-];
+import { clients } from "@/data";
 
 const services = [
   { title: "Corporativos", tag: "Empresas",     image: "/imagens/EW1_1408.jpg",            href: "/servicos#empresas" },
@@ -18,16 +12,14 @@ const services = [
   { title: "Privados",     tag: "Celebrações",  image: "/imagens/DaniGui_JantarFesta_27.jpg", href: "/servicos#celebrações" },
 ];
 
-// Editorial showcase — asymmetric mosaic, image-led, minimal copy
 const featured = [
-  { title: "Aernnova Aerospace",   category: "Corporativo",  image: "/imagens/EW1_1392.jpg" },
-  { title: "Daniela & Guilherme",  category: "Casamento",    image: "/imagens/DaniGui_Preview12.jpg" },
-  { title: "João & Pedro",         category: "Casamento",    image: "/imagens/JOAO_E_PEDRO_1Y1A3170.jpg" },
+  { title: "Aernnova Aerospace",   category: "Corporativo",   image: "/imagens/EW1_1392.jpg" },
+  { title: "Daniela & Guilherme",  category: "Casamento",     image: "/imagens/DaniGui_Preview12.jpg" },
+  { title: "João & Pedro",         category: "Casamento",     image: "/imagens/JOAO_E_PEDRO_1Y1A3170.jpg" },
   { title: "Câmara de Évora",      category: "Institucional", image: "/imagens/20_10_2025_0295.jpg" },
-  { title: "Matilde & Filipe",     category: "Casamento",    image: "/imagens/M&F0152.jpg" },
+  { title: "Matilde & Filipe",     category: "Casamento",     image: "/imagens/M&F0152.jpg" },
 ];
 
-// Full-bleed scrolling ribbon — celebrates the breadth of work
 const ribbon = [
   "/imagens/Natalia e Jonathan-167.jpg",
   "/imagens/EW1_0697.jpg",
@@ -46,7 +38,7 @@ type Stat =
   | { kind: "static"; value: string; label: string };
 
 const stats: Stat[] = [
-  { kind: "count",  to: 16,  suffix: "+", label: "Clientes empresariais" },
+  { kind: "count",  to: 19,  suffix: "+", label: "Clientes empresariais" },
   { kind: "count",  to: 100, suffix: "+", label: "Eventos realizados" },
   { kind: "static", value: "5★",          label: "Avaliação dos clientes" },
   { kind: "count",  to: 100, suffix: "%", label: "Soluções personalizadas" },
@@ -56,7 +48,7 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative min-h-screen flex flex-col justify-center px-6 lg:px-16 py-32 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col justify-center px-6 lg:px-16 py-24 lg:py-32 overflow-hidden">
         <Image
           src="/imagens/JOAO_E_PEDRO_DJI_20250628213855_0002_D.jpg"
           alt="Líquen Events — evento aéreo"
@@ -65,17 +57,17 @@ export default function Home() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/10 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-black/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/90 via-[#080808]/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <p className="text-white/50 text-xs tracking-[0.4em] uppercase mb-12 anim-0 flex items-center gap-3">
+          <p className="text-white/50 text-xs tracking-[0.4em] uppercase mb-8 lg:mb-12 anim-0 flex items-center gap-3">
             <span className="inline-block w-6 h-px bg-moss rounded-full flex-shrink-0" />
             Organizamos Eventos · Eternizamos Memórias
           </p>
           <h1
-            className="text-white text-[clamp(52px,9vw,128px)] font-bold leading-[0.9] tracking-tight mb-14"
+            className="text-white text-[clamp(52px,9vw,128px)] font-bold leading-[0.9] tracking-tight mb-12 lg:mb-14"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             {(
@@ -85,7 +77,7 @@ export default function Home() {
                 { words: ["memória."],       delay: 520, moss: true },
               ] as { words: string[]; delay: number; moss?: boolean }[]
             ).map(({ words, delay, moss }) => (
-              <span key={words.join("")} className="block">
+              <span key={words.join("")} className="flex flex-wrap" style={{ gap: "0.28em" }}>
                 {words.map((word, i) => (
                   <span
                     key={word + i}
@@ -94,13 +86,13 @@ export default function Home() {
                       animation: `word-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${delay + i * 110}ms both`,
                     }}
                   >
-                    {word}{i < words.length - 1 ? " " : ""}
+                    {word}
                   </span>
                 ))}
               </span>
             ))}
           </h1>
-          <div className="border-t border-white/10 pt-8 flex flex-wrap items-center gap-x-6 gap-y-4 anim-2">
+          <div className="border-t border-white/10 pt-7 flex flex-wrap items-center gap-x-6 gap-y-4 anim-2">
             <Link
               href="/orcamento"
               className="inline-flex items-center gap-2 px-7 py-3.5 bg-moss text-cream text-xs font-medium rounded-sm hover:bg-moss-dark hover:gap-3 transition-all duration-300 tracking-widest uppercase shadow-lg shadow-moss/20"
@@ -116,24 +108,23 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 anim-3">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3 anim-3">
           <span className="text-white/25 text-[9px] tracking-[0.5em] uppercase">Scroll</span>
-          <div className="h-12 w-px overflow-hidden">
+          <div className="h-10 w-px overflow-hidden">
             <div className="w-full h-full bg-gradient-to-b from-white/50 to-transparent animate-scroll-line" />
           </div>
         </div>
       </section>
 
       {/* ── Clients marquee ── */}
-      <div className="relative py-7 border-y border-foreground/8 overflow-hidden">
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none" />
-        <div className="flex gap-20 animate-marquee whitespace-nowrap">
+      <div className="relative py-6 border-y border-foreground/8 overflow-hidden">
+        <div className="absolute inset-y-0 left-0 w-16 sm:w-24 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-16 sm:w-24 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none" />
+        <div className="flex gap-14 sm:gap-20 animate-marquee whitespace-nowrap">
           {[...clients, ...clients].map((c, i) => (
             <span
               key={i}
-              className="text-foreground/20 text-xs font-medium tracking-[0.3em] uppercase flex-shrink-0 hover:text-foreground/50 transition-colors cursor-default"
+              className="text-foreground/20 text-[10px] sm:text-xs font-medium tracking-[0.3em] uppercase flex-shrink-0 hover:text-foreground/50 transition-colors cursor-default"
             >
               {c}
             </span>
@@ -142,10 +133,10 @@ export default function Home() {
       </div>
 
       {/* ── Services — minimal image tiles ── */}
-      <section className="py-24 bg-surface">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+      <section className="py-16 lg:py-24 bg-surface">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-16">
           <AnimateIn>
-            <div className="flex items-end justify-between mb-12">
+            <div className="flex items-end justify-between mb-8 lg:mb-12">
               <p className="text-foreground/30 text-xs tracking-[0.3em] uppercase flex items-center gap-3">
                 <span className="w-6 h-px bg-moss rounded-full flex-shrink-0" />
                 O que fazemos
@@ -159,7 +150,7 @@ export default function Home() {
               </Link>
             </div>
           </AnimateIn>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-3">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
             {services.map((s, i) => (
               <AnimateIn key={s.title} delay={i * 60}>
                 <Link
@@ -171,14 +162,14 @@ export default function Home() {
                     src={s.image}
                     alt={s.title}
                     fill
-                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent group-hover:from-black/70 transition-all duration-500" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
-                    <p className="text-moss/70 text-[9px] tracking-[0.35em] uppercase mb-1.5">{s.tag}</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-6">
+                    <p className="text-moss/70 text-[8px] sm:text-[9px] tracking-[0.35em] uppercase mb-1">{s.tag}</p>
                     <h3
-                      className="text-cream text-lg lg:text-2xl font-bold group-hover:text-moss transition-colors duration-200"
+                      className="text-cream text-base sm:text-lg lg:text-2xl font-bold group-hover:text-moss transition-colors duration-200"
                       style={{ fontFamily: "var(--font-playfair)" }}
                     >
                       {s.title}
@@ -191,11 +182,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Featured work — editorial mosaic, image-led ── */}
-      <section className="pb-24 bg-surface">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+      {/* ── Featured work — editorial mosaic ── */}
+      <section className="pb-16 lg:pb-24 bg-surface">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-16">
           <AnimateIn>
-            <div className="flex items-end justify-between mb-12">
+            <div className="flex items-end justify-between mb-8 lg:mb-12">
               <p className="text-foreground/30 text-xs tracking-[0.3em] uppercase flex items-center gap-3">
                 <span className="w-6 h-px bg-moss rounded-full flex-shrink-0" />
                 Trabalho selecionado
@@ -210,7 +201,7 @@ export default function Home() {
             </div>
           </AnimateIn>
 
-          <div className="grid grid-cols-2 lg:grid-cols-12 gap-2 lg:gap-3 auto-rows-[150px] sm:auto-rows-[210px] lg:auto-rows-[200px]">
+          <div className="grid grid-cols-2 lg:grid-cols-12 gap-2 lg:gap-3 auto-rows-[180px] sm:auto-rows-[220px] lg:auto-rows-[200px]">
             {[
               "lg:col-span-7 lg:row-span-2",
               "lg:col-span-5",
@@ -220,7 +211,7 @@ export default function Home() {
             ].map((span, i) => {
               const p = featured[i];
               return (
-                <AnimateIn key={p.title} delay={i * 50} className={`${span} ${i === 0 ? "col-span-2" : ""}`}>
+                <AnimateIn key={p.title} delay={i * 50} className={`${span} ${i === 0 ? "col-span-2 row-span-2" : ""}`}>
                   <Link
                     href="/portfolio"
                     className="group relative block w-full h-full overflow-hidden rounded-xl"
@@ -229,14 +220,14 @@ export default function Home() {
                       src={p.image}
                       alt={p.title}
                       fill
-                      sizes="(max-width: 1024px) 50vw, 50vw"
+                      sizes="(max-width: 640px) 50vw, 50vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent group-hover:from-black/65 transition-all duration-500" />
-                    <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-7">
-                      <p className="text-cream/55 text-[9px] tracking-[0.35em] uppercase mb-1.5">{p.category}</p>
+                    <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-7">
+                      <p className="text-cream/55 text-[8px] sm:text-[9px] tracking-[0.35em] uppercase mb-1">{p.category}</p>
                       <h3
-                        className="text-cream text-lg lg:text-2xl font-bold group-hover:text-moss transition-colors duration-200"
+                        className="text-cream text-sm sm:text-lg lg:text-2xl font-bold group-hover:text-moss transition-colors duration-200 leading-tight"
                         style={{ fontFamily: "var(--font-playfair)" }}
                       >
                         {p.title}
@@ -250,21 +241,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Gallery ribbon — full-bleed, scrolling ── */}
-      <section className="relative bg-surface border-y border-foreground/8 overflow-hidden py-3">
+      {/* ── Gallery ribbon ── */}
+      <section className="relative bg-surface border-y border-foreground/8 overflow-hidden py-2 sm:py-3">
         <Link href="/galeria" className="group block">
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-surface to-transparent z-20 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-surface to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 left-0 w-20 sm:w-32 bg-gradient-to-r from-surface to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-20 sm:w-32 bg-gradient-to-l from-surface to-transparent z-20 pointer-events-none" />
           <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-            <span className="px-6 py-3 bg-surface/70 backdrop-blur-sm border border-cream/10 rounded-full text-cream/80 text-[11px] tracking-[0.3em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              Ver galeria completa →
+            <span className="px-5 py-2.5 bg-surface/70 backdrop-blur-sm border border-cream/10 rounded-full text-cream/80 text-[10px] sm:text-[11px] tracking-[0.3em] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              Ver galeria →
             </span>
           </div>
           <div className="flex gap-2 animate-marquee w-max">
             {[...ribbon, ...ribbon].map((src, i) => (
               <div
                 key={i}
-                className="relative h-[140px] sm:h-[200px] lg:h-[240px] w-[210px] sm:w-[300px] lg:w-[360px] flex-shrink-0 overflow-hidden rounded-lg"
+                className="relative h-[120px] sm:h-[180px] lg:h-[240px] w-[180px] sm:w-[270px] lg:w-[360px] flex-shrink-0 overflow-hidden rounded-lg"
               >
                 <Image
                   src={src}
@@ -279,8 +270,8 @@ export default function Home() {
         </Link>
       </section>
 
-      {/* ── Stats — full-bleed moss break ── */}
-      <section className="py-24 bg-moss-dark relative overflow-hidden">
+      {/* ── Stats ── */}
+      <section className="py-16 lg:py-24 bg-moss-dark relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -289,11 +280,11 @@ export default function Home() {
           }}
         />
         <div className="max-w-7xl mx-auto px-6 lg:px-16 relative">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-20">
             {stats.map((s, i) => (
               <AnimateIn key={s.label} delay={i * 80}>
                 <div
-                  className="text-cream text-5xl sm:text-6xl lg:text-7xl font-bold mb-4"
+                  className="text-cream text-4xl sm:text-5xl lg:text-7xl font-bold mb-3 lg:mb-4"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
                   {s.kind === "count" ? (
@@ -302,8 +293,8 @@ export default function Home() {
                     s.value
                   )}
                 </div>
-                <div className="w-6 h-px bg-cream/25 mb-3" />
-                <div className="text-cream/50 text-xs tracking-[0.2em] uppercase">
+                <div className="w-5 h-px bg-cream/25 mb-2 lg:mb-3" />
+                <div className="text-cream/50 text-[10px] sm:text-xs tracking-[0.2em] uppercase">
                   {s.label}
                 </div>
               </AnimateIn>
@@ -315,47 +306,130 @@ export default function Home() {
       {/* ── Testimonials ── */}
       <TestimonialsCarousel />
 
-      {/* ── CTA ── */}
-      <section className="relative py-44 overflow-hidden">
-        <Image
-          src="/imagens/J&P-DJI_20250628164714_0165_D.jpg"
-          alt="Líquen Events — celebração"
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-black/72" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080808]/70 via-transparent to-[#080808]/70" />
+      {/* ── SEO content — organização de eventos em Évora, Lisboa e Portugal ── */}
+      <section className="py-28 bg-surface border-t border-foreground/8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-20">
+            <AnimateIn>
+              <div>
+                <p className="text-foreground/30 text-xs tracking-[0.3em] uppercase mb-6 flex items-center gap-3">
+                  <span className="w-6 h-px bg-moss rounded-full flex-shrink-0" />
+                  Onde atuamos
+                </p>
+                <h2
+                  className="text-foreground font-bold leading-[1.05]"
+                  style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(30px, 4vw, 52px)" }}
+                >
+                  Organização de eventos em Évora, Lisboa e todo o Portugal
+                </h2>
+              </div>
+            </AnimateIn>
+            <AnimateIn delay={120}>
+              <div className="flex flex-col gap-5 text-foreground/45 text-[15px] leading-[1.85] lg:pt-14">
+                <p>
+                  A <strong className="text-foreground/70 font-medium">Líquen Events</strong> é uma
+                  empresa de organização de eventos com sede em Évora, no coração do Alentejo. Criamos{" "}
+                  <strong className="text-foreground/70 font-medium">casamentos</strong>,{" "}
+                  <strong className="text-foreground/70 font-medium">eventos corporativos</strong>,
+                  conferências, festas e celebrações em Évora, Lisboa e em todo o território nacional.
+                </p>
+                <p>
+                  Desde o conceito à execução, tratamos de cada detalhe — decoração, catering,
+                  fornecedores, logística e coordenação no dia — para que só tenha de viver o momento.
+                  Cada evento é planeado à medida do seu estilo, gosto e orçamento.
+                </p>
+                <p>
+                  Quer esteja a planear um casamento no Alentejo, um evento de empresa em Lisboa ou
+                  uma celebração privada em qualquer ponto de Portugal, a nossa equipa criativa
+                  transforma a sua visão numa experiência memorável.
+                </p>
+              </div>
+            </AnimateIn>
+          </div>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-16 relative z-10">
+          {/* Areas served — internal-link friendly chips */}
+          <AnimateIn delay={200}>
+            <div className="mt-14 pt-10 border-t border-foreground/8 flex flex-wrap gap-x-3 gap-y-3">
+              {[
+                "Casamentos no Alentejo",
+                "Eventos corporativos em Lisboa",
+                "Conferências em Évora",
+                "Festas privadas",
+                "Eventos culturais",
+                "Wedding planning",
+              ].map((t) => (
+                <span
+                  key={t}
+                  className="text-xs tracking-wide text-foreground/40 border border-foreground/12 rounded-full px-4 py-2"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </AnimateIn>
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="relative py-24 lg:py-60 bg-surface border-t border-foreground/8 overflow-hidden">
+        <span
+          aria-hidden
+          className="absolute -bottom-10 -right-10 select-none pointer-events-none font-bold leading-none text-foreground/[0.028]"
+          style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(140px, 34vw, 560px)" }}
+        >
+          Memória
+        </span>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-16 relative">
           <AnimateIn>
-            <p className="text-white/35 text-xs tracking-[0.3em] uppercase mb-10 flex items-center gap-3">
-              <span className="w-6 h-px bg-moss rounded-full flex-shrink-0" />
-              <span className="text-moss">Próximo passo</span>
+            <p className="text-foreground/22 text-[9px] tracking-[0.55em] uppercase mb-10 lg:mb-20 flex items-center gap-3">
+              <span className="w-5 h-px bg-moss flex-shrink-0" />
+              Próximo passo
             </p>
           </AnimateIn>
-          <AnimateIn delay={80}>
+
+          <AnimateIn delay={60}>
             <h2
-              className="text-white text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-12 max-w-2xl"
-              style={{ fontFamily: "var(--font-playfair)" }}
+              className="font-bold leading-[0.88] tracking-tight text-foreground mb-10 lg:mb-20"
+              style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(48px, 13vw, 196px)" }}
             >
-              Vamos trabalhar juntos?
+              Tem um evento<br />
+              <span className="text-moss">em mente?</span>
             </h2>
           </AnimateIn>
-          <AnimateIn delay={180}>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/contacto"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-moss text-cream font-medium rounded-sm hover:bg-moss-dark hover:gap-5 transition-all duration-300 text-sm tracking-widest uppercase shadow-lg shadow-moss/25"
-              >
-                Entrar em contacto →
-              </Link>
-              <Link
-                href="/portfolio"
-                className="inline-flex items-center gap-3 px-8 py-4 border border-white/20 text-white/55 font-medium rounded-sm hover:border-white/40 hover:text-white/85 transition-all duration-300 text-sm tracking-widest uppercase"
-              >
-                Ver o nosso trabalho
-              </Link>
+
+          <AnimateIn delay={110}>
+            <div className="w-full h-px bg-foreground/8 mb-10 lg:mb-16" />
+          </AnimateIn>
+
+          <AnimateIn delay={170}>
+            <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 lg:gap-12">
+              <div>
+                <p className="text-foreground/18 text-[9px] tracking-[0.5em] uppercase mb-3">Email</p>
+                <a
+                  href="mailto:liquen.alentejo@gmail.com"
+                  className="group flex items-center gap-3 text-foreground/50 hover:text-foreground transition-colors duration-500 break-all sm:break-normal"
+                  style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(16px, 2.4vw, 34px)" }}
+                >
+                  liquen.alentejo@gmail.com
+                  <span className="hidden sm:inline-block w-8 h-px bg-foreground/20 group-hover:w-16 group-hover:bg-moss transition-all duration-500 flex-shrink-0" />
+                </a>
+              </div>
+
+              <div className="flex flex-wrap gap-3 flex-shrink-0">
+                <Link
+                  href="/contacto"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 bg-moss text-cream font-medium hover:bg-moss-dark hover:gap-4 transition-all duration-300 text-xs tracking-widest uppercase shadow-lg shadow-moss/15"
+                >
+                  Iniciar projeto →
+                </Link>
+                <Link
+                  href="/portfolio"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 border border-foreground/12 text-foreground/40 font-medium hover:border-foreground/28 hover:text-foreground/70 transition-all duration-300 text-xs tracking-widest uppercase"
+                >
+                  Ver portfolio
+                </Link>
+              </div>
             </div>
           </AnimateIn>
         </div>

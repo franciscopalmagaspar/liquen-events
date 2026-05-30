@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import GaleriaClient from "./GaleriaClient";
+import { BreadcrumbJsonLd } from "@/components/JsonLd";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata: Metadata = {
-  title: "Galeria",
+export const metadata: Metadata = pageMetadata({
+  title: "Galeria de Eventos — Évora e Alentejo",
   description:
-    "Veja os momentos e detalhes dos eventos organizados pela Liquen Events em Évora e em todo o Portugal.",
-};
+    "Galeria de fotografias dos eventos organizados pela Líquen Events em Évora, Alentejo e todo o Portugal — casamentos, eventos corporativos, conferências e celebrações.",
+  path: "/galeria",
+  image: "/imagens/DaniGui_Preview20.jpg",
+  keywords: ["galeria de eventos", "fotografias de casamentos Alentejo", "eventos Évora"],
+});
 
 export default function GaleriaPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: "Galeria", path: "/galeria" }]} />
       <PageHeader
         label="Os nossos momentos"
         title="Galeria"

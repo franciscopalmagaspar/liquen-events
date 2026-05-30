@@ -1,0 +1,46 @@
+// ── Shared constants ─────────────────────────────────────────────────────────
+
+export const WHATSAPP_PHONE = "351919259820";
+export const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_PHONE}`;
+export const WHATSAPP_HREF_CTA = `${WHATSAPP_HREF}?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20organiza%C3%A7%C3%A3o%20de%20eventos.`;
+
+// ── Clients ───────────────────────────────────────────────────────────────────
+
+export const clients = [
+  "José de Mello", "Aernnova", "Mainova", "Palácio Cadaval", "Ravasqueira",
+  "Fitapreta Vinhos", "Universidade de Évora", "Hilton Garden Inn", "Convento do Espinheiro",
+  "Pérez-Llorca", "Câmara Municipal de Évora", "PACT", "Clínica Santa Madalena",
+  "Casa Morgado Esporão", "PortugalNuts", "ESRI Portugal", "Monte do Zambujal",
+  "EDIA", "Ordem dos Médicos Veterinários",
+] as const;
+
+// ── Testimonials ──────────────────────────────────────────────────────────────
+
+export interface Testimonial {
+  name: string;
+  role: string;
+  quote: string;
+}
+
+export const testimonials: Testimonial[] = [
+  {
+    name: "António Bettencourt",
+    role: "Evento Corporativo",
+    quote: "O ambiente criado pela vossa equipa elevou a imagem do nosso evento. Ficámos impressionados com a sofisticação da decoração.",
+  },
+  {
+    name: "Alexandra Teixeira",
+    role: "Evento Social",
+    quote: "A dedicação da equipa em criar ambientes mágicos, com decoração impecável e coordenação perfeita, permitiu-nos desfrutar do evento sem qualquer preocupação.",
+  },
+  {
+    name: "Stephanie & Mizio",
+    role: "Evento Privado",
+    quote: "Everything was exactly how we'd envisioned and you created a beautiful space for us!",
+  },
+  {
+    name: "Teresinha Malta",
+    role: "Evento Social",
+    quote: "Serviço de excelência, com muito carinho e disponibilidade por parte de toda a equipa. Superaram todas as expectativas.",
+  },
+];
