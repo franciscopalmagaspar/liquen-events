@@ -173,7 +173,7 @@ export default function OrcamentoWizard() {
       case 6:
         return <Step6Preferences form={form} dispatch={dispatch} />;
       case 7:
-        return <Step7Contact form={form} dispatch={dispatch} breakdown={breakdown} />;
+        return <Step7Contact form={form} dispatch={dispatch} />;
       default:
         return null;
     }
@@ -273,8 +273,8 @@ export default function OrcamentoWizard() {
             </div>
           </div>
 
-          {/* Price sidebar */}
-          <PriceSidebar form={form} breakdown={breakdown} currentStep={step} />
+          {/* Summary sidebar */}
+          <PriceSidebar form={form} currentStep={step} />
         </div>
       </div>
     </div>

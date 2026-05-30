@@ -3,16 +3,13 @@
 import type { QuoteFormData } from '../types';
 import type { Action } from '../OrcamentoWizard';
 import { CATEGORIES, EVENT_TYPES_BY_CATEGORY, PACKAGES } from '../data';
-import { formatPrice } from '../pricing';
-import type { PriceBreakdown } from '../types';
 
 interface Props {
   form: QuoteFormData;
   dispatch: React.Dispatch<Action>;
-  breakdown: PriceBreakdown;
 }
 
-export default function Step7Contact({ form, dispatch, breakdown }: Props) {
+export default function Step7Contact({ form, dispatch }: Props) {
   const inputClass =
     'w-full bg-transparent border-b border-foreground/15 pb-3 text-sm text-foreground placeholder-foreground/18 focus:outline-none focus:border-moss/55 transition-colors duration-300';
   const labelClass =
@@ -34,7 +31,7 @@ export default function Step7Contact({ form, dispatch, breakdown }: Props) {
         Dados de<br />contacto
       </h2>
       <p className="text-foreground/35 text-sm leading-relaxed mb-10 max-w-md">
-        Quase pronto. Precisamos apenas dos seus dados para enviar a proposta.
+        Quase pronto. Precisamos apenas dos seus dados para elaborar a proposta.
       </p>
 
       {/* Summary card */}
@@ -78,16 +75,6 @@ export default function Step7Contact({ form, dispatch, breakdown }: Props) {
             </p>
           </div>
         </div>
-        {breakdown.total > 0 && (
-          <div className="mt-3 pt-3 border-t border-foreground/8 flex items-center justify-between">
-            <span className="text-foreground/35 text-xs">Estimativa total c/IVA</span>
-            <span className="text-moss font-semibold">
-              {breakdown.isEstimate
-                ? `${formatPrice(breakdown.rangeMin)} – ${formatPrice(breakdown.rangeMax)}`
-                : formatPrice(breakdown.total)}
-            </span>
-          </div>
-        )}
       </div>
 
       {/* Contact form */}

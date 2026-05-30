@@ -74,16 +74,6 @@ export default function Step6Preferences({ form, dispatch }: Props) {
                   >
                     {u.label}
                   </span>
-                  {u.surcharge > 0 && (
-                    <span className="text-[9px] tracking-[0.1em] px-1.5 py-0.5 rounded bg-foreground/8 text-foreground/40">
-                      {u.surchargeLabel}
-                    </span>
-                  )}
-                  {u.surcharge === 0 && (
-                    <span className="text-[9px] tracking-[0.1em] text-moss/60">
-                      {u.surchargeLabel}
-                    </span>
-                  )}
                 </div>
                 <p className="text-foreground/30 text-[10px] leading-relaxed">
                   {u.description}

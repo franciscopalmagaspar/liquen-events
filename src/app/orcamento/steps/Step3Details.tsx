@@ -47,7 +47,7 @@ export default function Step3Details({ form, dispatch }: Props) {
         Detalhes<br />do evento
       </h2>
       <p className="text-foreground/35 text-sm leading-relaxed mb-10 max-w-md">
-        Quanto mais detalhe partilhar, mais precisa será a estimativa de orçamento.
+        Quanto mais detalhe partilhar, mais personalizada será a nossa proposta.
       </p>
 
       <div className="flex flex-col gap-9">

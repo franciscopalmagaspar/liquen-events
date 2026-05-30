@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { Quote } from '../../types';
-import { formatPrice } from '../../pricing';
 import { CATEGORIES, EVENT_TYPES_BY_CATEGORY, PACKAGES } from '../../data';
 
 export const metadata: Metadata = { title: 'Pedido Recebido' };
@@ -163,18 +162,11 @@ export default async function ConfirmacaoPage({
               </div>
             )}
 
-            {/* Estimate */}
-            <div className="px-6 py-5 flex items-center justify-between">
-              <div>
-                <p className="text-foreground/22 text-[10px] tracking-[0.3em] uppercase mb-1">
-                  Estimativa de Orçamento
-                </p>
-                <p className="text-foreground/30 text-[10px]">Valor indicativo · sujeito a proposta formal</p>
-              </div>
-              <p className="text-moss font-semibold text-sm">
-                {quote.priceBreakdown?.isEstimate
-                  ? `${formatPrice(quote.priceBreakdown.rangeMin)} – ${formatPrice(quote.priceBreakdown.rangeMax)}`
-                  : formatPrice(quote.priceBreakdown?.total ?? 0)}
+            {/* Footer note */}
+            <div className="px-6 py-5 flex items-center gap-3">
+              <span className="w-1 h-1 rounded-full bg-moss/50 shrink-0" />
+              <p className="text-foreground/30 text-[10px] leading-relaxed">
+                Proposta formal enviada após análise do pedido pela nossa equipa.
               </p>
             </div>
           </div>
