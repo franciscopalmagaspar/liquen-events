@@ -7,6 +7,7 @@ import { isAuthed } from '@/lib/admin-auth';
 import { sendPushToAll } from '@/lib/push';
 import { rateLimit, clientIp, sweep } from '@/lib/rate-limit';
 import { quotePayloadSchema, firstError } from '@/lib/validation';
+import { log } from '@/lib/logger';
 
 function generateId(): string {
   const now = Date.now().toString(36).toUpperCase();
@@ -95,14 +96,14 @@ export async function POST(request: NextRequest) {
         replyTo: form.email,
       });
     } catch (mailErr) {
-      console.error('[orcamento POST] email falhou', mailErr);
+      log.error('orcamento: email falhou', mailErr, { id });
     }
 
     // Persist (Supabase when configured; local file in dev).
     try {
       await createQuote(quote);
     } catch (storeErr) {
-      console.error('[orcamento POST] persistência falhou', storeErr);
+      log.error('orcamento: persistência falhou', storeErr, { id });
     }
 
     // Push notification to the team's devices.
@@ -114,12 +115,12 @@ export async function POST(request: NextRequest) {
         tag: 'novo-orcamento',
       });
     } catch (pushErr) {
-      console.error('[orcamento POST] push falhou', pushErr);
+      log.error('orcamento: push falhou', pushErr, { id });
     }
 
     return NextResponse.json({ id, status: 'ok' });
   } catch (err) {
-    console.error('[orcamento POST]', err);
+    log.error('orcamento POST falhou', err);
     return NextResponse.json({ error: 'Erro interno' }, { status: 500 });
   }
 }
@@ -133,7 +134,7 @@ export async function GET(request: NextRequest) {
     const quotes = await listQuotes();
     return NextResponse.json(quotes);
   } catch (err) {
-    console.error('[orcamento GET]', err);
+    log.error('orcamento GET falhou', err);
     return NextResponse.json({ error: 'Erro interno' }, { status: 500 });
   }
 }

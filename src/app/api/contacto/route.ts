@@ -3,6 +3,7 @@ import { sendMail, esc } from '@/lib/mail';
 import { sendPushToAll } from '@/lib/push';
 import { rateLimit, clientIp, sweep } from '@/lib/rate-limit';
 import { contactSchema, firstError } from '@/lib/validation';
+import { log } from '@/lib/logger';
 
 export async function POST(request: NextRequest) {
   try {
@@ -51,7 +52,7 @@ export async function POST(request: NextRequest) {
         replyTo: form.email,
       });
     } catch (mailErr) {
-      console.error('[contacto POST] email falhou', mailErr);
+      log.error('contacto: email falhou', mailErr);
     }
 
     try {
@@ -62,12 +63,12 @@ export async function POST(request: NextRequest) {
         tag: 'novo-contacto',
       });
     } catch (pushErr) {
-      console.error('[contacto POST] push falhou', pushErr);
+      log.error('contacto: push falhou', pushErr);
     }
 
     return NextResponse.json({ status: 'ok' });
   } catch (err) {
-    console.error('[contacto POST]', err);
+    log.error('contacto POST falhou', err);
     return NextResponse.json({ error: 'Erro interno' }, { status: 500 });
   }
 }

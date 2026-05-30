@@ -63,11 +63,14 @@ export default function AdminLogin() {
         </h1>
         <form onSubmit={submit} className="flex flex-col gap-6">
           <div>
-            <label className="block text-[10px] text-foreground/28 tracking-[0.45em] uppercase mb-3">
+            <label htmlFor="login-name" className="block text-[10px] text-foreground/28 tracking-[0.45em] uppercase mb-3">
               O teu nome
             </label>
             <input
+              id="login-name"
+              name="name"
               type="text"
+              autoComplete="username"
               value={name}
               onChange={(e) => setName(e.target.value)}
               autoFocus
@@ -76,19 +79,27 @@ export default function AdminLogin() {
             />
           </div>
           <div>
-            <label className="block text-[10px] text-foreground/28 tracking-[0.45em] uppercase mb-3">
+            <label htmlFor="login-password" className="block text-[10px] text-foreground/28 tracking-[0.45em] uppercase mb-3">
               Palavra-passe
             </label>
             <input
+              id="login-password"
+              name="password"
               type="password"
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              aria-invalid={error ? true : undefined}
               className="w-full bg-transparent border-b border-foreground/15 pb-3 text-sm text-foreground placeholder-foreground/18 focus:outline-none focus:border-moss/55 transition-colors duration-300"
               placeholder="••••••••"
             />
           </div>
-          {error && <p className="text-moss/80 text-xs">{error}</p>}
+          {error && (
+            <p role="alert" aria-live="assertive" className="text-moss/80 text-xs">
+              {error}
+            </p>
+          )}
           <button
             type="submit"
             disabled={loading}
