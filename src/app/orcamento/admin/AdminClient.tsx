@@ -17,6 +17,8 @@ import Tarefas from './Tarefas';
 import Fornecedores from './Fornecedores';
 import EventChecklist from './EventChecklist';
 import PaymentsPanel from './PaymentsPanel';
+import { ToastProvider } from './Toast';
+import CommandPalette, { type Command } from './CommandPalette';
 
 type View = 'overview' | 'pedidos' | 'clientes' | 'calendario' | 'propostas' | 'tarefas' | 'fornecedores' | 'estatisticas' | 'inbox';
 
@@ -76,12 +78,36 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
   const [refreshing, setRefreshing] = useState(false);
   const [view, setView] = useState<View>('overview');
   const [navOpen, setNavOpen] = useState(false);
+  const [paletteOpen, setPaletteOpen] = useState(false);
 
   // Full-screen tool surface: hide public nav, grain & chrome.
   useEffect(() => {
     document.body.classList.add('admin-mode');
     return () => document.body.classList.remove('admin-mode');
   }, []);
+
+  // ⌘K / Ctrl+K opens the command palette.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setPaletteOpen((o) => !o);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  const paletteCommands: Command[] = useMemo(
+    () =>
+      NAV.map((item) => ({
+        id: `nav-${item.id}`,
+        label: item.label,
+        group: 'Navegar',
+        run: () => setView(item.id),
+      })),
+    []
+  );
 
   function openQuote(q: Quote) {
     setView('pedidos');
@@ -181,7 +207,15 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
   };
 
   return (
+    <ToastProvider>
     <div className="min-h-screen bg-surface flex">
+      <CommandPalette
+        open={paletteOpen}
+        onClose={() => setPaletteOpen(false)}
+        navCommands={paletteCommands}
+        quotes={quotes}
+        onOpenQuote={openQuote}
+      />
       {/* ── Sidebar ── */}
       <aside
         className={`fixed lg:sticky top-0 z-40 h-screen w-60 shrink-0 bg-surface-raised/60 border-r border-foreground/8 flex flex-col transition-transform duration-300 ${
@@ -262,6 +296,15 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
             </h1>
           </div>
           <div className="ml-auto flex items-center gap-3 shrink-0">
+            <button
+              onClick={() => setPaletteOpen(true)}
+              className="hidden sm:flex items-center gap-2 px-3 py-2 border border-foreground/12 text-foreground/35 text-[10px] tracking-[0.15em] uppercase rounded-md hover:border-foreground/25 hover:text-foreground/55 transition-colors"
+              title="Pesquisar (Ctrl K)"
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" strokeLinecap="round" /></svg>
+              Pesquisar
+              <kbd className="text-[8px] border border-foreground/15 rounded px-1 py-0.5 ml-1">⌘K</kbd>
+            </button>
             <button
               onClick={refresh}
               disabled={refreshing}
@@ -576,5 +619,6 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
         </div>
       </div>
     </div>
+    </ToastProvider>
   );
 }
