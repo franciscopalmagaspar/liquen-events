@@ -527,9 +527,11 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
               })}
             </div>
 
-            {/* Detail */}
+            {/* Detail — in-grid sticky panel on desktop, slide-over drawer on mobile */}
             {selected ? (
-              <div className="border border-foreground/10 rounded-md sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto">
+              <>
+              <div className="fixed inset-0 z-40 bg-black/50 xl:hidden" onClick={() => setSelected(null)} />
+              <div className="fixed xl:static inset-y-0 right-0 z-50 xl:z-auto w-full max-w-md xl:max-w-none xl:w-auto bg-surface-raised xl:bg-transparent border-l xl:border border-foreground/10 xl:rounded-md xl:sticky xl:top-24 max-h-screen xl:max-h-[calc(100vh-7rem)] overflow-y-auto shadow-2xl xl:shadow-none">
                 <div className="px-5 py-4 border-b border-foreground/8 flex items-center justify-between sticky top-0 bg-surface-raised/80 backdrop-blur-sm">
                   <div>
                     <p className="text-foreground/22 text-[10px] tracking-[0.3em] uppercase mb-1">{selected.id}</p>
@@ -672,6 +674,7 @@ export default function AdminClient({ initialQuotes, userName = 'Catarina' }: Pr
                   </div>
                 </div>
               </div>
+              </>
             ) : (
               <div className="hidden xl:flex items-center justify-center border border-foreground/6 rounded-md text-foreground/18 text-sm">
                 Seleccione um pedido para ver detalhes
