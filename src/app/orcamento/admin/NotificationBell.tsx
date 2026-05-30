@@ -81,16 +81,25 @@ export default function NotificationBell() {
 
   if (state === 'granted') {
     return (
-      <span
-        className="flex items-center gap-2 px-3 py-2 text-moss text-[10px] tracking-[0.15em] uppercase"
-        title="Notificações ativas neste dispositivo"
+      <button
+        onClick={async () => {
+          try {
+            const res = await fetch('/api/cron/reminders', { cache: 'no-store' });
+            const data = await res.json();
+            toast(data.sent > 0 ? 'Resumo enviado para os teus dispositivos' : 'Sem novidades para notificar agora', data.sent > 0 ? 'success' : 'info');
+          } catch {
+            toast('Não foi possível enviar', 'error');
+          }
+        }}
+        className="flex items-center gap-2 px-3 py-2 text-moss text-[10px] tracking-[0.15em] uppercase rounded-md hover:bg-moss/8 transition-colors"
+        title="Notificações ativas — clique para enviar o resumo agora"
       >
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
           <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" strokeLinecap="round" strokeLinejoin="round" />
           <path d="M13.7 21a2 2 0 0 1-3.4 0" strokeLinecap="round" />
         </svg>
         Ativas
-      </span>
+      </button>
     );
   }
 
