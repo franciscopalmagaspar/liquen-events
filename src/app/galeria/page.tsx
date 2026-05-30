@@ -14,10 +14,10 @@ export default function GaleriaPage() {
       <PageHeader
         label="Os nossos momentos"
         title="Galeria"
-        description="Mais de 230 fotografias que capturam a essência dos eventos que criámos — casamentos, eventos corporativos, conferências e muito mais."
+        description="Casamentos, eventos corporativos e celebrações — capturados ao pormenor."
       />
 
-      <section className="py-20 bg-surface">
+      <section className="py-16 bg-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
           <GaleriaClient />
         </div>
