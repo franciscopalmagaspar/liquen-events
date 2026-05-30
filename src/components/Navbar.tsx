@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const links = [
@@ -18,41 +19,43 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => { setIsOpen(false); }, [pathname]);
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-surface-raised/95 backdrop-blur-sm border-b border-foreground/8" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-surface/92 backdrop-blur-md border-b border-foreground/6"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-16">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-1">
-            <span
-              className="text-moss font-bold text-lg tracking-widest"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              LIQUEN
-            </span>
-            <span
-              className="text-foreground text-lg tracking-widest"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              {" "}EVENTS
-            </span>
+        <div className="flex items-center justify-between h-[68px]">
+          <Link href="/" className="flex items-center shrink-0">
+            <Image
+              src="/logo-liquen-branco.png"
+              alt="Líquen Events"
+              width={128}
+              height={44}
+              className="object-contain"
+              priority
+            />
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-9">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm tracking-wide transition-colors hover:text-foreground ${
-                  pathname === link.href ? "text-foreground" : "text-foreground/45"
+                className={`link-line text-[11px] tracking-[0.2em] uppercase transition-colors duration-300 ${
+                  pathname === link.href
+                    ? "text-moss nav-active"
+                    : "text-foreground/38 hover:text-foreground/75"
                 }`}
               >
                 {link.label}
@@ -60,63 +63,82 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             <Link
               href="/contacto"
-              className="px-5 py-2 bg-moss text-cream text-sm font-medium rounded-lg hover:bg-moss-dark transition-colors tracking-wide"
+              className="text-[11px] tracking-[0.2em] uppercase border border-foreground/18 text-foreground/40 px-5 py-2 rounded-sm hover:border-foreground/35 hover:text-foreground/65 transition-all duration-300"
             >
-              Orçamento
+              Contacto
+            </Link>
+            <Link
+              href="/orcamento"
+              className="text-[11px] tracking-[0.2em] uppercase bg-moss text-cream px-5 py-2 rounded-sm hover:bg-moss-dark transition-all duration-300"
+            >
+              Orçamento →
             </Link>
           </div>
 
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-2 -mr-2"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Menu"
           >
-            <span
-              className={`block w-5 h-px bg-foreground transition-all duration-200 mb-1.5 ${
-                isOpen ? "rotate-45 translate-y-2" : ""
-              }`}
-            />
-            <span
-              className={`block w-5 h-px bg-foreground transition-all duration-200 mb-1.5 ${
-                isOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block w-5 h-px bg-foreground transition-all duration-200 ${
-                isOpen ? "-rotate-45 -translate-y-2" : ""
-              }`}
-            />
+            <span className={`block w-[18px] h-px bg-foreground/60 transition-all duration-300 mb-1.5 ${isOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-[18px] h-px bg-foreground/60 transition-all duration-300 mb-1.5 ${isOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-[18px] h-px bg-foreground/60 transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-2" : ""}`} />
           </button>
         </div>
       </div>
 
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 bg-surface-raised border-t border-foreground/8 ${
-          isOpen ? "max-h-96 pb-6" : "max-h-0"
+        className={`md:hidden overflow-hidden transition-all duration-400 bg-surface/96 backdrop-blur-md border-t border-foreground/6 ${
+          isOpen ? "max-h-96 pb-8" : "max-h-0"
         }`}
       >
-        <div className="px-6 pt-4 flex flex-col gap-1">
-          {links.map((link) => (
+        <div className="px-6 pt-6 flex flex-col">
+          <Link
+            href="/orcamento"
+            className="mb-5 inline-block text-center text-[11px] tracking-[0.22em] uppercase bg-moss text-cream px-5 py-3 rounded-sm"
+            style={{
+              opacity: isOpen ? 1 : 0,
+              transform: isOpen ? "none" : "translateY(6px)",
+              transition: isOpen
+                ? "opacity 0.3s ease 50ms, transform 0.3s ease 50ms"
+                : "opacity 0.1s ease, transform 0.1s ease",
+            }}
+          >
+            Pedir Orçamento →
+          </Link>
+          {links.map((link, i) => (
             <Link
               key={link.href}
               href={link.href}
-              onClick={() => setIsOpen(false)}
-              className={`py-2.5 text-sm tracking-wide transition-colors hover:text-foreground ${
-                pathname === link.href ? "text-foreground" : "text-foreground/45"
+              className={`py-4 text-[11px] tracking-[0.22em] uppercase border-b border-foreground/6 ${
+                pathname === link.href ? "text-moss" : "text-foreground/40 hover:text-foreground/70"
               }`}
+              style={{
+                opacity: isOpen ? 1 : 0,
+                transform: isOpen ? "none" : "translateY(6px)",
+                transition: isOpen
+                  ? `opacity 0.3s ease ${100 + i * 45}ms, transform 0.3s ease ${100 + i * 45}ms, color 0.3s`
+                  : "opacity 0.1s ease, transform 0.1s ease, color 0.3s",
+              }}
             >
               {link.label}
             </Link>
           ))}
           <Link
             href="/contacto"
-            onClick={() => setIsOpen(false)}
-            className="mt-3 py-3 text-center bg-moss text-cream text-sm font-medium rounded-lg hover:bg-moss-dark transition-colors"
+            className="mt-4 inline-block text-center text-[11px] tracking-[0.22em] uppercase border border-foreground/15 text-foreground/40 px-5 py-3 rounded-sm hover:border-foreground/30 hover:text-foreground/65 transition-colors"
+            style={{
+              opacity: isOpen ? 1 : 0,
+              transform: isOpen ? "none" : "translateY(6px)",
+              transition: isOpen
+                ? `opacity 0.3s ease ${100 + links.length * 45}ms, transform 0.3s ease ${100 + links.length * 45}ms`
+                : "opacity 0.1s ease, transform 0.1s ease",
+            }}
           >
-            Orçamento
+            Contacto
           </Link>
         </div>
       </div>

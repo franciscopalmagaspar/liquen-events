@@ -1,17 +1,12 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+import GaleriaClient from "./GaleriaClient";
 
-const photos = [
-  { gradient: "from-moss-dark to-moss", label: "Conferência", size: "col-span-2 row-span-2" },
-  { gradient: "from-moss to-moss-light", label: "Casamento" },
-  { gradient: "from-[#1a1a2e] to-moss-dark", label: "Gala" },
-  { gradient: "from-moss/50 to-moss-dark/80", label: "Teambuilding", size: "col-span-2" },
-  { gradient: "from-moss-dark/70 to-moss/80", label: "Decoração" },
-  { gradient: "from-moss-light to-moss", label: "Catering" },
-  { gradient: "from-[#1a1a2e]/80 to-moss-dark/80", label: "Lançamento" },
-  { gradient: "from-moss to-[#1a1a2e]/60", label: "Jantar" },
-  { gradient: "from-moss-dark to-moss-light", label: "Aniversário", size: "col-span-2" },
-  { gradient: "from-moss/40 to-moss-dark/60", label: "Cocktail" },
-];
+export const metadata: Metadata = {
+  title: "Galeria",
+  description:
+    "Veja os momentos e detalhes dos eventos organizados pela Liquen Events em Évora e em todo o Portugal.",
+};
 
 export default function GaleriaPage() {
   return (
@@ -19,36 +14,19 @@ export default function GaleriaPage() {
       <PageHeader
         label="Os nossos momentos"
         title="Galeria"
-        description="Imagens que capturam a essência dos eventos que criámos."
+        description="Mais de 230 fotografias que capturam a essência dos eventos que criámos — casamentos, eventos corporativos, conferências e muito mais."
       />
 
-      <section className="py-24 bg-surface">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[180px] gap-3">
-            {photos.map((p, i) => (
-              <div
-                key={i}
-                className={`bg-gradient-to-br ${p.gradient} rounded-xl overflow-hidden relative group cursor-pointer ${p.size ?? ""}`}
-              >
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
-                <div className="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="text-xs font-medium tracking-widest uppercase text-cream/90 bg-black/40 px-3 py-1 rounded-full">
-                    {p.label}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <p className="text-center text-sm text-foreground/30 mt-12">
-            Fotografias reais dos nossos eventos disponíveis em breve.
-          </p>
+      <section className="py-20 bg-surface">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+          <GaleriaClient />
         </div>
       </section>
 
-      <section className="py-24 bg-surface-raised text-center border-t border-foreground/8">
-        <div className="max-w-xl mx-auto px-6">
-          <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-5">
+      <section className="py-24 bg-surface border-t border-foreground/8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-8 flex items-center gap-3">
+            <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
             Redes sociais
           </p>
           <h2
@@ -57,12 +35,17 @@ export default function GaleriaPage() {
           >
             Siga-nos no Instagram
           </h2>
-          <p className="text-foreground/45 mb-8 text-sm leading-relaxed">
+          <p className="text-foreground/40 text-sm leading-relaxed mb-10 max-w-md">
             Partilhamos os bastidores dos nossos eventos e inspirações diárias.
           </p>
-          <span className="inline-flex items-center gap-2 px-6 py-3 bg-moss text-cream font-medium rounded-lg text-sm tracking-wide">
-            @liquenevents
-          </span>
+          <a
+            href="https://www.instagram.com/liquen.events"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-moss text-cream font-medium text-sm tracking-widest uppercase hover:bg-moss-dark hover:gap-5 transition-all duration-300"
+          >
+            @liquen.events →
+          </a>
         </div>
       </section>
     </>

@@ -7,28 +7,167 @@
   --color-moss: #4a7c59;
   --color-moss-light: #6a9c7a;
   --color-moss-dark: #2d5c3e;
-  --color-surface: #090909;
-  --color-surface-raised: #111111;
-  --color-surface-elevated: #1c1c1c;
-  --color-foreground: #e0dcd6;
+  --color-surface: #080808;
+  --color-surface-raised: #0f0f0f;
+  --color-surface-elevated: #1a1a1a;
+  --color-foreground: #dedad4;
   --font-sans: var(--font-inter);
   --font-display: var(--font-playfair);
 }
 
+/* ── Selection ── */
+::selection {
+  background: rgba(74, 124, 89, 0.28);
+  color: #dedad4;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2d5c3e; }
+
+/* ── Smooth scroll ── */
+html { scroll-behavior: smooth; }
+
+/* ── Base ── */
+body {
+  background-color: #080808;
+  color: #dedad4;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Film grain overlay ── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+  opacity: 0.022;
+}
+
+/* ── Underline slide animation ── */
+.link-line {
+  position: relative;
+  display: inline-block;
+}
+.link-line::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-line:hover::after {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+/* Active nav link — permanent moss underline */
+.nav-active::after {
+  transform-origin: left;
+  transform: scaleX(1);
+  background: var(--color-moss);
+}
+
+/* ── Keyframes ── */
 @keyframes marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to   { transform: translateX(-50%); }
 }
 
-html {
-  scroll-behavior: smooth;
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-body {
-  background-color: #090909;
-  color: #e0dcd6;
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes lb-photo-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.lb-photo-in { animation: lb-photo-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* ── Hero CSS animations (no JS — always in viewport on load) ── */
+.anim-0 { animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.anim-1 { animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 180ms both; }
+.anim-2 { animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 360ms both; }
+.anim-3 { animation: fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 560ms both; }
 
 .animate-marquee {
-  animation: marquee 40s linear infinite;
+  animation: marquee 50s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* ── Scroll indicator ── */
+@keyframes scroll-line {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+.animate-scroll-line {
+  animation: scroll-line 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* ── Footer dot ping ── */
+@keyframes footer-ping {
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+.footer-ping { animation: footer-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
+/* ── Orçamento full-screen mode ── */
+body.orcamento-mode footer,
+body.orcamento-mode .whatsapp-fixed {
+  display: none !important;
+}
+
+/* ── Wizard step transitions ── */
+@keyframes step-forward {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes step-back {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-step-forward {
+  animation: step-forward 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-step-back {
+  animation: step-back 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-0, .anim-1, .anim-2, .anim-3 { animation: none; opacity: 1; }
+  .anim-glow, .anim-scroll-line, .animate-marquee, .animate-scroll-line, .footer-ping { animation: none; }
+  .animate-step-forward, .animate-step-back { animation: none; }
+}
+
+/* ── Print / PDF ── */
+@media print {
+  body::before { display: none !important; }
+  .no-print { display: none !important; }
+  nav, footer { display: none !important; }
+  body { background: #fff !important; color: #111 !important; }
 }

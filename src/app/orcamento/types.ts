@@ -1,0 +1,117 @@
+export type EventCategory = 'empresas' | 'particulares' | 'cultural';
+
+export type EventType =
+  | 'conferencias'
+  | 'teambuilding'
+  | 'lancamentos'
+  | 'jantares_empresa'
+  | 'casamentos'
+  | 'batizados'
+  | 'aniversarios'
+  | 'jantares_gala'
+  | 'cultural'
+  | 'exposicoes';
+
+export type LocationType =
+  | 'lisboa'
+  | 'porto'
+  | 'grande_cidade'
+  | 'pequena_cidade'
+  | 'internacional';
+
+export type BudgetRange =
+  | 'ate_5k'
+  | '5k_15k'
+  | '15k_30k'
+  | '30k_60k'
+  | '60k_plus';
+
+export type Urgency = 'standard' | 'rush' | 'urgente';
+
+export type QuoteStatus =
+  | 'pendente'
+  | 'em_revisao'
+  | 'cotado'
+  | 'aceite'
+  | 'rejeitado';
+
+export type PackageTier = 'essencial' | 'completo' | 'premium' | 'personalizado';
+
+export type AddonTier = 'essencial' | 'completo' | 'premium';
+
+export interface AddonCatalogItem {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  icon: string;
+  pricingType: 'fixed' | 'per_pax' | 'per_unit';
+  tiers: {
+    essencial: { label: string; price: number };
+    completo: { label: string; price: number };
+    premium: { label: string; price: number };
+  };
+  eventTypes?: EventType[];
+}
+
+export interface SelectedAddon {
+  id: string;
+  name: string;
+  tier: AddonTier;
+  price: number;
+  quantity: number;
+  pricingType: 'fixed' | 'per_pax' | 'per_unit';
+}
+
+export interface QuoteFormData {
+  category: EventCategory | null;
+  eventType: EventType | null;
+  eventName: string;
+  date: string;
+  endDate: string;
+  location: string;
+  locationType: LocationType;
+  guests: number;
+  duration: number;
+  isMultiDay: boolean;
+  packageTier: PackageTier;
+  addons: SelectedAddon[];
+  budgetRange: BudgetRange | null;
+  urgency: Urgency;
+  notes: string;
+  referralSource: string;
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  nif: string;
+  acceptTerms: boolean;
+  acceptMarketing: boolean;
+}
+
+export interface PriceBreakdown {
+  basePrice: number;
+  guestCost: number;
+  packageMultiplier: number;
+  locationSurcharge: number;
+  weekendSurcharge: number;
+  seasonSurcharge: number;
+  urgencySurcharge: number;
+  addonsCost: number;
+  subtotal: number;
+  iva: number;
+  total: number;
+  rangeMin: number;
+  rangeMax: number;
+  isEstimate: boolean;
+}
+
+export interface Quote extends QuoteFormData {
+  id: string;
+  submittedAt: string;
+  status: QuoteStatus;
+  priceBreakdown: PriceBreakdown;
+  quotedPrice?: number;
+  adminNotes?: string;
+  lastUpdated?: string;
+}

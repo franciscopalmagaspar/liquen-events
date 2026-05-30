@@ -1,177 +1,467 @@
-import PageHeader from "@/components/PageHeader";
+import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import AnimateIn from "@/components/AnimateIn";
+
+export const metadata: Metadata = {
+  title: "Serviços",
+  description:
+    "Eventos corporativos, casamentos, festas e muito mais. Conheça todos os serviços da Liquen Events, com soluções personalizadas adaptadas ao seu estilo e orçamento.",
+};
 
 const categories = [
   {
-    label: "Para empresas",
-    title: "Eventos Corporativos",
+    num: "01",
+    label: "Empresas",
+    subtitle: "Para empresas",
+    desc: "Elevamos a imagem da sua marca através de eventos que transformam equipas e celebram conquistas.",
+    cardAspect: "3/4",
+    gridCols: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+    panelTranslate: "72%",
     services: [
       {
         title: "Conferências & Congressos",
-        desc: "Organização completa de conferências empresariais, desde a logística ao audiovisual e gestão de convidados.",
-        features: ["Sala de conferências", "Audiovisual profissional", "Coffee breaks", "Gestão de inscrições"],
+        desc: "Organização completa de conferências empresariais, da logística ao audiovisual e gestão de convidados.",
+        features: ["Audiovisual profissional", "Coffee breaks", "Gestão de inscrições", "Sala de conferências"],
+        image: "/imagens/EW1_1330.jpg",
       },
       {
         title: "Teambuilding",
-        desc: "Actividades e experiências que unem equipas, fortalecem a cultura organizacional e criam memórias partilhadas.",
+        desc: "Actividades e experiências que unem equipas e fortalecem a cultura organizacional.",
         features: ["Actividades indoor e outdoor", "Facilitação profissional", "Catering personalizado", "Fotografia"],
+        image: "/imagens/EW1_0576.jpg",
       },
       {
         title: "Lançamentos de Produto",
-        desc: "Eventos de impacto para apresentar novos produtos ou serviços ao mercado com criatividade e precisão.",
+        desc: "Eventos de impacto para apresentar novos produtos ao mercado com criatividade e precisão.",
         features: ["Conceito criativo", "Cenografia", "Media & PR", "Conteúdo digital"],
+        image: "/imagens/EW1_0362.jpg",
       },
       {
         title: "Jantares de Empresa",
         desc: "Desde jantares de Natal a gala awards, criamos momentos de celebração corporativa memoráveis.",
         features: ["Decoração temática", "Menu personalizado", "Entretenimento", "Coordenação total"],
+        image: "/imagens/EW1_1392.jpg",
       },
     ],
   },
   {
-    label: "Para pessoas",
-    title: "Eventos Sociais",
+    num: "02",
+    label: "Celebrações",
+    subtitle: "Para particulares",
+    desc: "Os momentos mais importantes da sua vida, planeados ao pormenor com cuidado e elegância.",
+    cardAspect: "3/4",
+    gridCols: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+    panelTranslate: "72%",
     services: [
       {
         title: "Casamentos",
-        desc: "O vosso dia mais especial, planeado ao pormenor. Da escolha do espaço ao último detalhe da decoração.",
+        desc: "O vosso dia mais especial, planeado ao pormenor. Da escolha do espaço ao último detalhe.",
         features: ["Wedding planning completo", "Decoração floral", "Catering premium", "Coordenação do dia"],
+        image: "/imagens/DaniGui_Preview12.jpg",
       },
       {
         title: "Batizados & Comunhões",
-        desc: "Celebrações familiares íntimas e cheias de significado, organizadas com carinho e atenção.",
+        desc: "Celebrações familiares íntimas e cheias de significado, organizadas com carinho.",
         features: ["Decoração personalizada", "Catering familiar", "Animação infantil", "Fotografia"],
+        image: "/imagens/DaniGui_JantarFesta_11.jpg",
       },
       {
         title: "Festas de Aniversário",
-        desc: "Festas temáticas ou clássicas para todas as idades. Cada aniversário é uma história a contar.",
+        desc: "Festas temáticas ou clássicas para todas as idades. Cada aniversário é uma história.",
         features: ["Conceito temático", "Decoração completa", "Catering & bolo", "Entretenimento"],
+        image: "/imagens/DaniGui_JantarFesta_1.jpg",
       },
       {
         title: "Jantares de Gala",
-        desc: "Eventos sociais de prestígio com ambiente sofisticado, culinária de excelência e coordenação impecável.",
+        desc: "Eventos sociais de prestígio com ambiente sofisticado e coordenação impecável.",
         features: ["Mesa posta premium", "Chef convidado", "Wine pairing", "Animação cultural"],
+        image: "/imagens/JOAO_E_PEDRO_1Y1A3170.jpg",
+      },
+    ],
+  },
+  {
+    num: "03",
+    label: "Cultura",
+    subtitle: "Eventos culturais",
+    desc: "Experiências que transcendem o evento e ficam na memória colectiva.",
+    cardAspect: "16/9",
+    gridCols: "grid-cols-1 sm:grid-cols-2",
+    panelTranslate: "58%",
+    services: [
+      {
+        title: "Eventos Culturais",
+        desc: "Experiências culturais únicas criadas com criatividade, dedicação e atenção a cada pormenor.",
+        features: ["Conceito criativo", "Decoração temática", "Produção completa", "Coordenação total"],
+        image: "/imagens/20_10_2025_0295.jpg",
+      },
+      {
+        title: "Exposições & Inaugurações",
+        desc: "Abertura de espaços e exposições com ambiente cuidado e coordenação profissional.",
+        features: ["Cenografia", "Catering", "Gestão de convidados", "Fotografia"],
+        image: "/imagens/20_10_2025_0044.jpg",
       },
     ],
   },
 ];
 
 const process = [
-  { step: "01", title: "Briefing", desc: "Ouvimos a sua ideia, percebemos os seus objetivos e definimos o conceito." },
-  { step: "02", title: "Proposta", desc: "Apresentamos uma proposta detalhada com orçamento transparente." },
-  { step: "03", title: "Produção", desc: "Tratamos de tudo — fornecedores, logística, decoração e coordenação." },
-  { step: "04", title: "Execução", desc: "No dia do evento, estamos presentes para garantir que tudo corre na perfeição." },
+  {
+    step: "01",
+    title: "Briefing",
+    desc: "Ouvimos a sua ideia, percebemos os seus objetivos e definimos o conceito.",
+  },
+  {
+    step: "02",
+    title: "Proposta",
+    desc: "Apresentamos uma proposta detalhada com orçamento transparente e adaptado ao seu gosto.",
+  },
+  {
+    step: "03",
+    title: "Produção",
+    desc: "Tratamos de tudo — fornecedores, logística, decoração e coordenação.",
+  },
+  {
+    step: "04",
+    title: "Execução",
+    desc: "No dia do evento, estamos presentes para garantir que tudo corre na perfeição.",
+  },
 ];
 
 export default function ServicosPage() {
   return (
     <>
-      <PageHeader
-        label="O que oferecemos"
-        title="Os Nossos Serviços"
-        description="Cobrimos todos os tipos de eventos com a mesma dedicação e profissionalismo."
-      />
+      {/* ── Hero ── */}
+      <section className="relative min-h-screen flex items-end pb-0 pt-40 bg-surface overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 60% at -10% 80%, rgba(74,124,89,0.07) 0%, transparent 55%)",
+          }}
+        />
 
-      {categories.map((cat, ci) => (
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-16 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+            {/* Left: headline */}
+            <div className="lg:col-span-7">
+              <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-12 anim-0 flex items-center gap-3">
+                <span className="w-6 h-px bg-moss flex-shrink-0" />
+                O que oferecemos
+              </p>
+              <h1
+                className="text-foreground font-bold leading-[0.87] tracking-tight mb-14 anim-1"
+                style={{
+                  fontFamily: "var(--font-playfair)",
+                  fontSize: "clamp(52px, 8.5vw, 116px)",
+                }}
+              >
+                Cada evento,
+                <br />
+                uma história
+                <br />
+                <span className="text-moss">por contar.</span>
+              </h1>
+              <div className="border-t border-foreground/8 pt-10 anim-2">
+                <p className="text-foreground/38 text-base leading-[1.8] max-w-sm mb-8">
+                  Especializados em eventos privados, corporativos, culturais e casamentos
+                  — soluções personalizadas adaptadas ao seu estilo, gosto e orçamento.
+                </p>
+                <Link
+                  href="/contacto"
+                  className="inline-flex items-center gap-3 text-sm text-foreground/45 hover:text-foreground/75 transition-colors duration-300 group"
+                >
+                  <span
+                    className="w-8 h-px bg-foreground/20 flex-shrink-0"
+                    style={{ transition: "width 0.4s cubic-bezier(0.16,1,0.3,1)" }}
+                  />
+                  Pedir orçamento
+                </Link>
+              </div>
+            </div>
+
+            {/* Right: image mosaic */}
+            <div className="lg:col-span-5 anim-2">
+              <div
+                className="grid grid-cols-2 gap-2"
+                style={{ height: "clamp(360px, 58vh, 600px)" }}
+              >
+                <div className="relative overflow-hidden row-span-2">
+                  <Image
+                    src="/imagens/DaniGui_Preview12.jpg"
+                    alt="Casamentos"
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 20vw"
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+                <div className="relative overflow-hidden">
+                  <Image
+                    src="/imagens/EW1_1392.jpg"
+                    alt="Eventos corporativos"
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 15vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+                </div>
+                <div className="relative overflow-hidden">
+                  <Image
+                    src="/imagens/20_10_2025_0295.jpg"
+                    alt="Eventos culturais"
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 15vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Category strip */}
+          <div className="flex items-center gap-10 mt-14 pt-6 border-t border-foreground/8 anim-3">
+            {["Empresas", "Celebrações", "Cultura"].map((cat, i) => (
+              <span
+                key={cat}
+                className="text-foreground/22 text-[10px] tracking-[0.4em] uppercase hover:text-foreground/55 transition-colors duration-300 cursor-default"
+              >
+                <span className="text-moss/40 mr-2 font-mono">0{i + 1}</span>
+                {cat}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Service categories ── */}
+      {categories.map((cat) => (
         <section
-          key={cat.title}
-          className={`py-24 ${ci % 2 === 0 ? "bg-surface" : "bg-surface-raised"} border-b border-foreground/8`}
+          key={cat.num}
+          className="py-32 bg-surface border-t border-foreground/8"
+          id={cat.label.toLowerCase()}
         >
           <div className="max-w-7xl mx-auto px-6 lg:px-16">
-            <div className="mb-14">
-              <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-3">
-                {cat.label}
-              </p>
-              <h2
-                className="text-foreground text-3xl font-bold"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                {cat.title}
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-foreground/8 border border-foreground/8 rounded-2xl overflow-hidden">
-              {cat.services.map((s) => (
-                <div
-                  key={s.title}
-                  className={`p-8 ${ci % 2 === 0 ? "bg-surface" : "bg-surface-raised"} hover:bg-surface-elevated transition-colors`}
+            {/* Category header */}
+            <AnimateIn>
+              <div className="relative mb-20">
+                <span
+                  className="absolute -top-6 -left-2 select-none pointer-events-none font-bold leading-none"
+                  style={{
+                    fontFamily: "var(--font-playfair)",
+                    fontSize: "clamp(100px, 18vw, 220px)",
+                    color: "rgba(222,218,212,0.025)",
+                  }}
+                  aria-hidden
                 >
-                  <h3
-                    className="text-foreground text-lg font-bold mb-3"
-                    style={{ fontFamily: "var(--font-playfair)" }}
+                  {cat.num}
+                </span>
+                <div className="relative pt-4">
+                  <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-5 flex items-center gap-3">
+                    <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
+                    {cat.subtitle}
+                  </p>
+                  <h2
+                    className="text-foreground font-bold leading-none mb-6"
+                    style={{
+                      fontFamily: "var(--font-playfair)",
+                      fontSize: "clamp(40px, 5.5vw, 76px)",
+                    }}
                   >
-                    {s.title}
-                  </h3>
-                  <p className="text-foreground/45 text-sm leading-relaxed mb-5">{s.desc}</p>
-                  <ul className="flex flex-col gap-2">
-                    {s.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2 text-xs text-foreground/50">
-                        <span className="w-1 h-1 rounded-full bg-moss flex-shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                    {cat.label}
+                  </h2>
+                  <p className="text-foreground/33 text-sm leading-[1.8] max-w-md">
+                    {cat.desc}
+                  </p>
                 </div>
+              </div>
+            </AnimateIn>
+
+            {/* Cards grid */}
+            <div className={`grid gap-2 ${cat.gridCols}`}>
+              {cat.services.map((s, si) => (
+                <AnimateIn key={s.title} delay={si * 55}>
+                  <div
+                    className="group relative overflow-hidden cursor-default bg-surface-raised"
+                    style={{ aspectRatio: cat.cardAspect }}
+                  >
+                    <Image
+                      src={s.image}
+                      alt={s.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+
+                    {/* Gradient deepens on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent transition-all duration-500 group-hover:from-black/92 group-hover:via-black/50" />
+
+                    {/* Content panel — slides up on hover */}
+                    <div
+                      className="absolute inset-x-0 bottom-0 p-6 transition-transform duration-500 ease-out group-hover:translate-y-0"
+                      style={{ transform: `translateY(${cat.panelTranslate})` }}
+                    >
+                      <p className="text-moss/65 text-[9px] tracking-[0.45em] font-mono uppercase mb-2">
+                        {String(si + 1).padStart(2, "0")}
+                      </p>
+                      <h3
+                        className="text-cream font-bold leading-tight mb-4"
+                        style={{
+                          fontFamily: "var(--font-playfair)",
+                          fontSize: "clamp(17px, 1.5vw, 22px)",
+                        }}
+                      >
+                        {s.title}
+                      </h3>
+                      <p className="text-cream/42 text-xs leading-relaxed mb-4">{s.desc}</p>
+                      <ul className="flex flex-col gap-2">
+                        {s.features.map((f) => (
+                          <li key={f} className="flex items-center gap-2.5 text-xs text-cream/32">
+                            <span className="w-1 h-1 rounded-full bg-moss/65 flex-shrink-0" />
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Top-right index */}
+                    <div className="absolute top-4 right-4">
+                      <span className="text-cream/18 text-[9px] tracking-[0.3em] font-mono">
+                        {cat.num}.{String(si + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                  </div>
+                </AnimateIn>
               ))}
             </div>
           </div>
         </section>
       ))}
 
-      {/* Process */}
-      <section className="py-24 bg-surface border-b border-foreground/8">
+      {/* ── Photo strip (edge-to-edge) ── */}
+      <section className="bg-surface border-t border-foreground/8">
+        <AnimateIn from="fade">
+          <div
+            className="grid grid-cols-3 gap-px"
+            style={{ height: "clamp(180px, 28vw, 400px)" }}
+          >
+            {[
+              { src: "/imagens/EW1_0688.jpg", label: "Eventos Corporativos" },
+              { src: "/imagens/DaniGui_Preview19.jpg", label: "Casamentos" },
+              { src: "/imagens/DaniGui_JantarFesta_17.jpg", label: "Celebrações" },
+            ].map((item, i) => (
+              <div key={i} className="relative overflow-hidden group">
+                <Image
+                  src={item.src}
+                  alt={item.label}
+                  fill
+                  sizes="33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/35 group-hover:bg-black/15 transition-colors duration-500" />
+                <div className="absolute inset-0 flex items-end p-5">
+                  <span className="text-[9px] tracking-[0.4em] uppercase text-white/55 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {item.label}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </AnimateIn>
+      </section>
+
+      {/* ── Process ── */}
+      <section className="py-32 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <div className="mb-16">
-            <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-5">
+          <AnimateIn>
+            <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-20 flex items-center gap-3">
+              <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
               Como trabalhamos
             </p>
-            <h2
-              className="text-foreground text-4xl font-bold"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              O Nosso Processo
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-foreground/8 border border-foreground/8 rounded-2xl overflow-hidden">
-            {process.map((p) => (
-              <div key={p.step} className="p-10 bg-surface">
-                <div
-                  className="text-foreground/12 text-5xl font-bold mb-6"
-                  style={{ fontFamily: "var(--font-playfair)" }}
-                >
-                  {p.step}
+          </AnimateIn>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-foreground/[0.06]">
+            {process.map((p, i) => (
+              <AnimateIn key={p.step} delay={i * 70}>
+                <div className="relative bg-surface p-10 lg:p-12 overflow-hidden group hover:bg-surface-raised transition-colors duration-300">
+                  {/* Giant decorative step number */}
+                  <span
+                    className="absolute -top-3 -right-1 select-none pointer-events-none font-bold leading-none"
+                    style={{
+                      fontFamily: "var(--font-playfair)",
+                      fontSize: "clamp(80px, 10vw, 140px)",
+                      color: "rgba(222,218,212,0.038)",
+                    }}
+                    aria-hidden
+                  >
+                    {p.step}
+                  </span>
+                  <div className="relative">
+                    <p className="text-moss/55 text-[9px] tracking-[0.45em] font-mono uppercase mb-6">
+                      {p.step}
+                    </p>
+                    <h3
+                      className="text-foreground text-2xl font-bold mb-4"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      {p.title}
+                    </h3>
+                    <p className="text-foreground/33 text-sm leading-[1.8]">{p.desc}</p>
+                  </div>
                 </div>
-                <h3
-                  className="text-foreground text-lg font-semibold mb-3"
-                  style={{ fontFamily: "var(--font-playfair)" }}
-                >
-                  {p.title}
-                </h3>
-                <p className="text-foreground/45 text-sm leading-relaxed">{p.desc}</p>
-              </div>
+              </AnimateIn>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-32 bg-surface text-center">
-        <div className="max-w-2xl mx-auto px-6">
-          <h2
-            className="text-foreground text-4xl sm:text-5xl font-bold mb-6 leading-tight"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            Tem um evento<br />
-            <em className="not-italic text-moss">em mente?</em>
-          </h2>
-          <p className="text-foreground/45 mb-10">
-            Peça-nos um orçamento sem compromisso e vemos como podemos ajudar.
-          </p>
-          <Link
-            href="/contacto"
-            className="inline-flex items-center gap-2 px-10 py-5 bg-moss text-cream font-semibold rounded-xl hover:bg-moss-dark transition-colors text-sm tracking-wide"
-          >
-            Pedir Orçamento →
-          </Link>
+      {/* ── CTA ── */}
+      <section className="relative py-44 bg-surface border-t border-foreground/8 overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 65% 80% at 0% 105%, rgba(74,124,89,0.11) 0%, transparent 58%)",
+          }}
+        />
+        <div className="max-w-7xl mx-auto px-6 lg:px-16 relative">
+          <AnimateIn>
+            <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-10 flex items-center gap-3">
+              <span className="w-5 h-px bg-moss flex-shrink-0" />
+              <span className="text-moss/65">Próximo passo</span>
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={80}>
+            <h2
+              className="text-foreground font-bold leading-[0.9] tracking-tight mb-16 max-w-3xl"
+              style={{
+                fontFamily: "var(--font-playfair)",
+                fontSize: "clamp(48px, 7vw, 100px)",
+              }}
+            >
+              Tem um evento
+              <br />
+              <span className="text-moss">em mente?</span>
+            </h2>
+          </AnimateIn>
+          <AnimateIn delay={180}>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/contacto"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-moss text-cream font-medium hover:bg-moss-dark hover:gap-5 transition-all duration-300 text-sm tracking-widest uppercase shadow-lg shadow-moss/15"
+              >
+                Pedir Orçamento →
+              </Link>
+              <Link
+                href="/portfolio"
+                className="inline-flex items-center gap-3 px-8 py-4 border border-foreground/12 text-foreground/45 font-medium hover:border-foreground/25 hover:text-foreground/75 transition-all duration-300 text-sm tracking-widest uppercase"
+              >
+                Ver o nosso portfolio
+              </Link>
+            </div>
+          </AnimateIn>
         </div>
       </section>
     </>

@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import Link from "next/link";
+import Image from "next/image";
+import AnimateIn from "@/components/AnimateIn";
+
+export const metadata: Metadata = {
+  title: "Sobre",
+  description:
+    "Conheça a Liquen Events — empresa especializada em organização de eventos com sede em Évora. Eventos corporativos, casamentos, celebrações e muito mais.",
+};
 
 const values = [
   {
@@ -20,13 +29,6 @@ const values = [
   },
 ];
 
-const team = [
-  { name: "Ana Ferreira", role: "Fundadora & Directora Criativa" },
-  { name: "João Santos", role: "Gestor de Eventos Corporativos" },
-  { name: "Mariana Costa", role: "Coordenadora de Eventos Sociais" },
-  { name: "Pedro Alves", role: "Director de Produção" },
-];
-
 export default function SobrePage() {
   return (
     <>
@@ -37,142 +39,192 @@ export default function SobrePage() {
       />
 
       {/* Story */}
-      <section className="py-24 bg-surface">
+      <section className="py-28 bg-surface">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
-            <div>
-              <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-5">
-                A Nossa História
-              </p>
-              <h2
-                className="text-foreground text-4xl font-bold mb-8 leading-tight"
-                style={{ fontFamily: "var(--font-playfair)" }}
-              >
-                Nascemos da Paixão por Criar Momentos Únicos
-              </h2>
-              <div className="flex flex-col gap-4 text-foreground/55 text-base leading-relaxed">
-                <p>
-                  A Liquen Events foi fundada em 2014 com uma missão simples: criar
-                  eventos que ficam na memória. O nome inspira-se no líquen — um
-                  organismo resistente, adaptável e belo, que cresce onde outros
-                  não conseguem.
+            <AnimateIn from="left">
+              <div>
+                <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-10 flex items-center gap-3">
+                  <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
+                  A Nossa História
                 </p>
-                <p>
-                  Da mesma forma, a nossa equipa prospera nos desafios. Cada evento
-                  diferente é uma oportunidade de crescer, aprender e superar
-                  expectativas.
-                </p>
-                <p>
-                  Ao longo dos anos, construímos uma reputação sólida baseada em
-                  resultados excepcionais e relações duradouras com os nossos
-                  clientes.
-                </p>
+                <div className="flex flex-col gap-5 text-foreground/45 text-base leading-[1.85]">
+                  <p>
+                    A Líquen Events é uma empresa especializada em planear e executar
+                    eventos únicos, transformando as suas ideias em experiências memoráveis.
+                    Com sede em Évora, atuamos em todo o território nacional.
+                  </p>
+                  <p>
+                    Trabalhamos lado a lado consigo, oferecendo soluções personalizadas
+                    adaptadas ao seu estilo, gosto e orçamento — para eventos privados,
+                    corporativos, culturais e casamentos.
+                  </p>
+                  <p>
+                    A nossa equipa criativa e dedicada tem uma missão clara:
+                    organizamos eventos, eternizamos memórias.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-xl h-52 bg-moss/20 flex items-center justify-center text-moss text-xs tracking-widest uppercase font-medium">
-                Desde 2014
+            </AnimateIn>
+            <AnimateIn from="right" delay={120}>
+              <div className="flex flex-col gap-8">
+                {/* Mission — editorial left-border quote */}
+                <div className="border-l-2 border-moss/50 pl-8 py-2">
+                  <p className="text-foreground/25 text-[10px] tracking-[0.38em] uppercase mb-4">A nossa missão</p>
+                  <p
+                    className="text-foreground/70 text-2xl leading-snug"
+                    style={{ fontFamily: "var(--font-playfair)" }}
+                  >
+                    Organizamos eventos,<br />eternizamos memórias.
+                  </p>
+                </div>
+                {/* Stats — flat grid */}
+                <div className="grid grid-cols-2 gap-px bg-foreground/[0.06]">
+                  <div className="bg-surface flex flex-col items-center justify-center py-10 gap-1.5">
+                    <p
+                      className="text-moss text-4xl font-bold leading-none"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      100+
+                    </p>
+                    <p className="text-foreground/28 text-[10px] tracking-[0.28em] uppercase">Eventos</p>
+                  </div>
+                  <div className="bg-surface flex flex-col items-center justify-center py-10 gap-1.5">
+                    <p
+                      className="text-moss text-4xl font-bold leading-none"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      16+
+                    </p>
+                    <p className="text-foreground/28 text-[10px] tracking-[0.28em] uppercase">Clientes</p>
+                  </div>
+                </div>
               </div>
-              <div className="rounded-xl h-52 bg-surface-elevated flex items-center justify-center text-foreground/30 text-xs tracking-widest uppercase font-medium">
-                Lisboa
-              </div>
-              <div className="rounded-xl h-52 bg-surface-elevated flex items-center justify-center text-foreground/30 text-xs tracking-widest uppercase font-medium">
-                Portugal
-              </div>
-              <div className="rounded-xl h-52 bg-moss/10 flex items-center justify-center text-moss text-xs tracking-widest uppercase font-medium">
-                500+ Eventos
-              </div>
-            </div>
+            </AnimateIn>
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-24 bg-surface-raised border-y border-foreground/8">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <div className="mb-16">
-            <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-5">
-              O que nos guia
-            </p>
-            <h2
-              className="text-foreground text-4xl font-bold"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              Os Nossos Valores
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-foreground/8 border border-foreground/8 rounded-2xl overflow-hidden">
-            {values.map((v, i) => (
-              <div key={v.title} className="p-8 bg-surface-raised">
-                <div
-                  className="text-foreground/15 text-4xl font-bold mb-6"
-                  style={{ fontFamily: "var(--font-playfair)" }}
-                >
-                  0{i + 1}
-                </div>
-                <h3
-                  className="text-foreground text-lg font-semibold mb-3"
-                  style={{ fontFamily: "var(--font-playfair)" }}
-                >
-                  {v.title}
-                </h3>
-                <p className="text-sm text-foreground/45 leading-relaxed">{v.desc}</p>
+      {/* Photo strip — edge-to-edge */}
+      <section className="bg-surface border-t border-foreground/8">
+        <AnimateIn from="fade">
+          <div
+            className="grid grid-cols-2 lg:grid-cols-4 gap-px"
+            style={{ height: "clamp(180px, 28vw, 380px)" }}
+          >
+            {[
+              { src: "/imagens/DaniGui_Preview19.jpg", label: "Casamento" },
+              { src: "/imagens/EW1_1395.jpg", label: "Corporativo" },
+              { src: "/imagens/JOAO_E_PEDRO_1Y1A3179.jpg", label: "Casamento" },
+              { src: "/imagens/20_10_2025_0375.jpg", label: "Evento" },
+            ].map((item, i) => (
+              <div key={i} className="relative overflow-hidden group">
+                <Image
+                  src={item.src}
+                  alt={item.label}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500" />
               </div>
             ))}
+          </div>
+        </AnimateIn>
+      </section>
+
+      {/* Values */}
+      <section className="py-28 bg-surface border-t border-foreground/8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <AnimateIn>
+            <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-20 flex items-center gap-3">
+              <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
+              O que nos guia
+            </p>
+          </AnimateIn>
+          <div>
+            {values.map((v, i) => (
+              <AnimateIn key={v.title} delay={i * 60}>
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-20 py-10 border-t border-foreground/8">
+                  <div className="lg:col-span-1 flex items-start gap-4">
+                    <span className="text-foreground/15 text-xs font-mono mt-1">0{i + 1}</span>
+                    <h3
+                      className="text-foreground text-lg font-bold"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      {v.title}
+                    </h3>
+                  </div>
+                  <p className="lg:col-span-4 text-foreground/40 text-sm leading-relaxed max-w-xl">
+                    {v.desc}
+                  </p>
+                </div>
+              </AnimateIn>
+            ))}
+            <div className="border-t border-foreground/8" />
           </div>
         </div>
       </section>
 
       {/* Team */}
-      <section className="py-24 bg-surface">
+      <section className="py-28 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <div className="mb-16">
-            <p className="text-moss text-xs tracking-[0.25em] uppercase font-medium mb-5">
+          <AnimateIn>
+            <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-20 flex items-center gap-3">
+              <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
               As pessoas
             </p>
-            <h2
-              className="text-foreground text-4xl font-bold"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              A Nossa Equipa
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {team.map((member) => (
-              <div key={member.name} className="group p-8 bg-surface-raised rounded-2xl border border-foreground/8 hover:border-moss/30 transition-colors">
-                <div
-                  className="w-14 h-14 rounded-full bg-moss/15 mb-5 flex items-center justify-center text-moss text-xl font-bold group-hover:bg-moss/25 transition-colors"
+          </AnimateIn>
+          <AnimateIn delay={80}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-foreground/[0.06]">
+              {/* Left — identity */}
+              <div className="bg-surface p-12 lg:p-16">
+                <h3
+                  className="text-foreground font-bold leading-none mb-3"
+                  style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(32px, 4vw, 52px)" }}
+                >
+                  Catarina Gaspar
+                </h3>
+                <p className="text-foreground/38 text-sm mb-8">Fundadora & CEO</p>
+                <p className="text-foreground/22 text-[10px] tracking-[0.35em] uppercase flex items-center gap-2">
+                  <span className="w-1 h-1 rounded-full bg-moss flex-shrink-0" />
+                  Évora, Portugal
+                </p>
+              </div>
+              {/* Right — quote */}
+              <div className="bg-surface p-12 lg:p-16 border-t lg:border-t-0 border-foreground/[0.06]">
+                <span className="block text-moss/25 text-6xl font-bold leading-none mb-6" style={{ fontFamily: "var(--font-playfair)" }}>&ldquo;</span>
+                <p
+                  className="text-foreground/55 text-lg leading-[1.7]"
                   style={{ fontFamily: "var(--font-playfair)" }}
                 >
-                  {member.name.charAt(0)}
-                </div>
-                <h3 className="text-foreground font-semibold text-base mb-1">{member.name}</h3>
-                <p className="text-sm text-moss/80">{member.role}</p>
+                  Cada evento é uma oportunidade única de criar algo extraordinário. É o que nos move todos os dias.
+                </p>
               </div>
-            ))}
-          </div>
+            </div>
+          </AnimateIn>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-32 bg-surface text-center border-t border-foreground/8">
-        <div className="max-w-2xl mx-auto px-6">
-          <h2
-            className="text-foreground text-4xl sm:text-5xl font-bold mb-6 leading-tight"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            Vamos trabalhar<br />
-            <em className="not-italic text-moss">juntos?</em>
-          </h2>
-          <p className="text-foreground/45 mb-10">
-            Conte-nos o seu próximo evento e nós tratamos do resto.
-          </p>
-          <Link
-            href="/contacto"
-            className="inline-flex items-center gap-2 px-10 py-5 bg-moss text-cream font-semibold rounded-xl hover:bg-moss-dark transition-colors text-sm tracking-wide"
-          >
-            Entrar em Contacto →
-          </Link>
+      <section className="py-40 bg-surface border-t border-foreground/8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <AnimateIn>
+            <h2
+              className="text-foreground text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-12 max-w-2xl"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Vamos trabalhar juntos?
+            </h2>
+          </AnimateIn>
+          <AnimateIn delay={150}>
+            <Link
+              href="/contacto"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-moss text-cream font-medium rounded-sm hover:bg-moss-dark hover:gap-5 transition-all duration-300 text-sm tracking-widest uppercase"
+            >
+              Entrar em Contacto →
+            </Link>
+          </AnimateIn>
         </div>
       </section>
     </>

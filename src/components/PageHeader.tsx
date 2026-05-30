@@ -6,21 +6,33 @@ interface PageHeaderProps {
 
 export default function PageHeader({ label, title, description }: PageHeaderProps) {
   return (
-    <section className="pt-32 pb-16 px-6 lg:px-16 bg-surface border-b border-foreground/8">
+    <section className="pt-44 pb-20 px-6 lg:px-16 bg-surface border-b border-foreground/6">
       <div className="max-w-7xl mx-auto">
-        <p className="text-foreground/35 text-xs tracking-[0.3em] uppercase mb-6">
-          {label}
-        </p>
+        <div className="flex items-center gap-4 mb-16 anim-0">
+          <span className="block w-8 h-px bg-moss/50 flex-shrink-0" />
+          <p className="text-foreground/28 text-[10px] tracking-[0.5em] uppercase">
+            {label}
+          </p>
+        </div>
+
         <h1
-          className="text-foreground text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6"
-          style={{ fontFamily: "var(--font-playfair)" }}
+          className="text-foreground font-bold leading-[0.86] tracking-tight anim-1"
+          style={{
+            fontFamily: "var(--font-playfair)",
+            fontSize: "clamp(56px, 9vw, 120px)",
+          }}
         >
           {title}
         </h1>
+
         {description && (
-          <p className="text-foreground/50 text-lg max-w-2xl leading-relaxed">
-            {description}
-          </p>
+          <>
+            <div className="border-t border-foreground/8 mt-12 pt-10 anim-2">
+              <p className="text-foreground/35 text-base max-w-xl leading-[1.8]">
+                {description}
+              </p>
+            </div>
+          </>
         )}
       </div>
     </section>
