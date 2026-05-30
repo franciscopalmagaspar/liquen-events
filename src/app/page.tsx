@@ -15,25 +15,25 @@ const services = [
   {
     title: "Eventos Corporativos",
     desc: "Conferências, teambuildings, lançamentos e jantares de empresa que fortalecem marcas e unem equipas.",
-    image: "/imagens/EW1_1392.jpg",
+    image: "/imagens/EW1_1408.jpg",
     href: "/servicos#empresas",
   },
   {
     title: "Casamentos & Celebrações",
     desc: "O seu dia mais especial, planeado ao pormenor. Soluções personalizadas adaptadas ao seu estilo, gosto e orçamento.",
-    image: "/imagens/DaniGui_Preview12.jpg",
+    image: "/imagens/DaniGui_Preview20.jpg",
     href: "/servicos#celebrações",
   },
   {
     title: "Eventos Culturais",
     desc: "Experiências culturais únicas e memoráveis, criadas com criatividade e dedicação.",
-    image: "/imagens/20_10_2025_0295.jpg",
+    image: "/imagens/20_10_2025_0358.jpg",
     href: "/servicos#cultura",
   },
   {
     title: "Eventos Privados",
     desc: "Festas, aniversários e celebrações familiares organizadas com carinho e atenção a cada detalhe.",
-    image: "/imagens/DaniGui_JantarFesta_1.jpg",
+    image: "/imagens/DaniGui_JantarFesta_27.jpg",
     href: "/servicos#celebrações",
   },
 ];
@@ -98,12 +98,30 @@ export default function Home() {
             Organizamos Eventos · Eternizamos Memórias
           </p>
           <h1
-            className="text-white text-[clamp(52px,9vw,128px)] font-bold leading-[0.85] tracking-tight mb-16 anim-1"
+            className="text-white text-[clamp(52px,9vw,128px)] font-bold leading-[0.9] tracking-tight mb-16"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
-            Eventos que<br />
-            ficam na<br />
-            <span className="text-moss">memória.</span>
+            {(
+              [
+                { words: ["Eventos", "que"], delay: 180 },
+                { words: ["ficam", "na"],    delay: 360 },
+                { words: ["memória."],       delay: 520, moss: true },
+              ] as { words: string[]; delay: number; moss?: boolean }[]
+            ).map(({ words, delay, moss }) => (
+              <span key={words.join("")} className="block">
+                {words.map((word, i) => (
+                  <span
+                    key={word + i}
+                    className={`inline-block${moss ? " text-moss" : ""}`}
+                    style={{
+                      animation: `word-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${delay + i * 110}ms both`,
+                    }}
+                  >
+                    {word}{i < words.length - 1 ? " " : ""}
+                  </span>
+                ))}
+              </span>
+            ))}
           </h1>
           <div className="border-t border-white/10 pt-8 grid grid-cols-1 sm:grid-cols-2 gap-8 items-end anim-2">
             <p className="text-white/55 text-base leading-relaxed max-w-sm">
@@ -177,6 +195,7 @@ export default function Home() {
                   href={s.href}
                   className="group relative block rounded-2xl overflow-hidden"
                   style={{ aspectRatio: "4/3" }}
+                  data-cursor="Ver"
                 >
                   <Image
                     src={s.image}
@@ -229,7 +248,7 @@ export default function Home() {
           <div className="flex flex-col gap-3">
             {featured.map((p, i) => (
               <AnimateIn key={p.title} delay={i * 60}>
-                <div className="group grid grid-cols-1 lg:grid-cols-5 overflow-hidden rounded-2xl border border-foreground/6 hover:border-foreground/15 transition-all duration-300 cursor-pointer bg-surface-raised">
+                <div className="group grid grid-cols-1 lg:grid-cols-5 overflow-hidden rounded-2xl border border-foreground/6 hover:border-foreground/15 transition-all duration-300 bg-surface-raised" data-cursor="Ver">
                   {/* Thumbnail with category overlay */}
                   <div
                     className="lg:col-span-2 relative overflow-hidden"
@@ -318,7 +337,7 @@ export default function Home() {
       {/* ── CTA ── */}
       <section className="relative py-44 overflow-hidden">
         <Image
-          src="/imagens/JOAO_E_PEDRO_1Y1A3170.jpg"
+          src="/imagens/J&P-DJI_20250628164714_0165_D.jpg"
           alt="Líquen Events — celebração"
           fill
           sizes="100vw"

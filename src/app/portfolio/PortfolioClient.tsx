@@ -92,7 +92,7 @@ export default function PortfolioClient() {
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           {filtered.map((p, i) => (
             <AnimateIn key={p.title} delay={i * 60}>
-              <div className="group py-20 border-t border-foreground/8">
+              <div className="group py-20 border-t border-foreground/8" data-cursor="Ver">
                 <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-10 lg:gap-20">
 
                   {/* Image — dominant, 60 % width */}
