@@ -89,21 +89,50 @@ export default async function ProjectPage({
         </div>
       </section>
 
-      {/* ── Description ── */}
+      {/* ── Narrative + ficha técnica ── */}
       <section className="py-24 bg-surface">
-        <div className="max-w-3xl mx-auto px-6 lg:px-16">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-16 lg:gap-24">
+
+          {/* Narrative */}
           <AnimateIn>
-            <p className="text-foreground/55 text-xl leading-[1.8]" style={{ fontFamily: "var(--font-playfair)" }}>
+            <p className="text-foreground/25 text-[10px] tracking-[0.4em] uppercase mb-8 flex items-center gap-3">
+              <span className="w-5 h-px bg-moss/50" /> O projeto
+            </p>
+            <p className="text-foreground/60 leading-[1.85]" style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(20px, 2.4vw, 28px)" }}>
               {p.longDesc ?? p.desc}
             </p>
-          </AnimateIn>
-          <AnimateIn delay={120}>
             <div className="flex flex-wrap gap-2 mt-10">
               {p.tags.map((tag) => (
                 <span key={tag} className="text-xs px-3 py-1.5 border border-foreground/12 text-foreground/40 rounded-full tracking-wide">
                   {tag}
                 </span>
               ))}
+            </div>
+          </AnimateIn>
+
+          {/* Ficha técnica */}
+          <AnimateIn delay={120}>
+            <div className="lg:sticky lg:top-28 border border-foreground/10 rounded-xl divide-y divide-foreground/8 bg-surface-raised/40">
+              {[
+                { label: "Categoria", value: p.category },
+                { label: "Local", value: p.location },
+                { label: "Ano", value: p.year },
+                { label: "Serviços", value: p.tags.join(" · ") },
+              ].map((row) => (
+                <div key={row.label} className="px-6 py-5">
+                  <p className="text-foreground/22 text-[10px] tracking-[0.35em] uppercase mb-2">{row.label}</p>
+                  <p className="text-foreground/75 text-sm">{row.value}</p>
+                </div>
+              ))}
+              <div className="px-6 py-6">
+                <Link
+                  href="/contacto"
+                  className="group inline-flex items-center gap-2.5 text-[11px] tracking-[0.2em] uppercase text-moss hover:gap-4 transition-all duration-300"
+                >
+                  Quero algo assim
+                  <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+                </Link>
+              </div>
             </div>
           </AnimateIn>
         </div>
