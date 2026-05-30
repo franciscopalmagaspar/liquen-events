@@ -461,6 +461,43 @@ export default function ServicosPage() {
         </div>
       </section>
 
+      {/* ── SEO content — texto rico em palavras-chave ── */}
+      <section className="py-28 bg-surface border-t border-foreground/8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-20">
+            <AnimateIn>
+              <h2
+                className="text-foreground font-bold leading-[1.05]"
+                style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 3.8vw, 48px)" }}
+              >
+                Uma empresa de eventos para Évora, Lisboa e todo o Portugal
+              </h2>
+            </AnimateIn>
+            <AnimateIn delay={120}>
+              <div className="flex flex-col gap-5 text-foreground/45 text-[15px] leading-[1.85]">
+                <p>
+                  Seja um <strong className="text-foreground/70 font-medium">casamento</strong> íntimo
+                  numa herdade do Alentejo, uma <strong className="text-foreground/70 font-medium">conferência
+                  corporativa</strong> em Lisboa ou uma celebração cultural em Évora, a Líquen Events
+                  trata de tudo — conceito, decoração, catering, fornecedores, logística e coordenação
+                  no dia.
+                </p>
+                <p>
+                  Trabalhamos com uma rede de fornecedores de confiança em todo o país e adaptamos
+                  cada proposta ao seu estilo, à dimensão do evento e ao seu orçamento. O nosso
+                  objetivo é simples: que só tenha de viver o momento, enquanto nós cuidamos de cada
+                  pormenor.
+                </p>
+                <p>
+                  Da primeira reunião à última vela acesa, somos um parceiro único e dedicado para o
+                  seu evento — com a sensibilidade do Alentejo e a exigência de uma equipa profissional.
+                </p>
+              </div>
+            </AnimateIn>
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
       <section className="relative py-44 bg-surface border-t border-foreground/8 overflow-hidden">
         <div
