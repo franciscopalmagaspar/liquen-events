@@ -6,6 +6,7 @@ import { isAuthed } from "@/lib/admin-auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 /**
  * Smart daily digest. Meant to be hit by a scheduled cron (Vercel Cron or
