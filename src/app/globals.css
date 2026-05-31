@@ -63,6 +63,19 @@ body {
 .pb-safe {
   padding-bottom: env(safe-area-inset-bottom);
 }
+/* Safety net: never allow accidental horizontal scroll on small screens */
+body {
+  overflow-x: clip;
+}
+/* Tactile feedback on touch devices (there's no hover to rely on) */
+@media (hover: none) and (pointer: coarse) {
+  a:active,
+  button:active,
+  [role="button"]:active {
+    opacity: 0.65;
+    transition: opacity 0.06s ease;
+  }
+}
 
 /* ── Film grain overlay ── */
 body::before {
