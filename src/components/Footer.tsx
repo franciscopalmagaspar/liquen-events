@@ -7,7 +7,6 @@ import { WHATSAPP_HREF } from "@/data";
 const pages = [
   ["Sobre", "/sobre"],
   ["Serviços", "/servicos"],
-  ["Portfolio", "/portfolio"],
   ["Galeria", "/galeria"],
   ["Clientes", "/clientes"],
   ["Contacto", "/contacto"],

@@ -162,10 +162,10 @@ export default function Home() {
               Pedir Orçamento →
             </Link>
             <Link
-              href="/portfolio"
+              href="/galeria"
               className="link-line text-xs text-white/45 hover:text-white/75 transition-colors tracking-[0.2em] uppercase"
             >
-              Ver portfolio
+              Ver galeria
             </Link>
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function Home() {
                 Trabalho selecionado
               </p>
               <Link
-                href="/portfolio"
+                href="/galeria"
                 className="group text-xs text-foreground/30 hover:text-foreground/60 transition-colors flex items-center gap-1.5"
               >
                 Ver tudo
@@ -272,7 +272,7 @@ export default function Home() {
                   className={`${span} ${i === 0 ? "col-span-2 row-span-2" : ""}`}
                 >
                   <Link
-                    href={`/portfolio/${p.slug}`}
+                    href="/galeria"
                     className="group relative block w-full h-full overflow-hidden rounded-xl"
                   >
                     <Image
@@ -532,10 +532,10 @@ export default function Home() {
                   Iniciar projeto →
                 </Link>
                 <Link
-                  href="/portfolio"
+                  href="/galeria"
                   className="inline-flex items-center gap-2 px-6 py-3.5 border border-foreground/12 text-foreground/40 font-medium hover:border-foreground/28 hover:text-foreground/70 transition-all duration-300 text-xs tracking-widest uppercase"
                 >
-                  Ver portfolio
+                  Ver galeria
                 </Link>
               </div>
             </div>

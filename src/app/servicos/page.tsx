@@ -5,9 +5,7 @@ import { blurFor } from "@/lib/blur";
 import AnimateIn from "@/components/AnimateIn";
 import { BreadcrumbJsonLd, ServiceJsonLd } from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
-import CountUp from "@/components/CountUp";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
-import { clients } from "@/data";
 
 export const metadata: Metadata = pageMetadata({
   title: "Serviços — Casamentos e Eventos Corporativos no Alentejo",
@@ -23,17 +21,6 @@ export const metadata: Metadata = pageMetadata({
     "organização de festas Alentejo",
   ],
 });
-
-type StatItem =
-  | { kind: "count"; to: number; suffix: string; label: string }
-  | { kind: "static"; value: string; label: string };
-
-const stats: StatItem[] = [
-  { kind: "count", to: 100, suffix: "+", label: "Eventos realizados" },
-  { kind: "count", to: 16, suffix: "+", label: "Clientes empresariais" },
-  { kind: "count", to: 8, suffix: "+", label: "Anos de experiência" },
-  { kind: "static", value: "5★", label: "Avaliação dos clientes" },
-];
 
 const navItems = [
   { label: "Empresas", id: "empresas" },
@@ -547,34 +534,33 @@ export default function ServicosPage() {
         </div>
       </section>
 
-      {/* ── Stats bar ── */}
+      {/* ── Photo band (event backgrounds) ── */}
       <section className="bg-surface border-t border-foreground/8">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-foreground/[0.055]">
-            {stats.map((stat, i) => (
-              <AnimateIn key={i} delay={i * 90}>
-                <div className="bg-surface px-5 py-8 md:px-8 md:py-16 flex flex-col items-center text-center">
-                  <p
-                    className="text-foreground font-bold leading-none mb-3"
-                    style={{
-                      fontFamily: "var(--font-playfair)",
-                      fontSize: "clamp(40px, 5.5vw, 72px)",
-                    }}
-                  >
-                    {stat.kind === "count" ? (
-                      <CountUp to={stat.to} suffix={stat.suffix} />
-                    ) : (
-                      stat.value
-                    )}
-                  </p>
-                  <p className="text-foreground/28 text-[10px] tracking-[0.45em] uppercase">
-                    {stat.label}
-                  </p>
-                </div>
-              </AnimateIn>
+        <AnimateIn from="fade">
+          <div
+            className="grid grid-cols-2 lg:grid-cols-4 gap-px"
+            style={{ height: "clamp(280px, 46vw, 520px)" }}
+          >
+            {[
+              "/imagens/M&F0152.jpg",
+              "/imagens/DJI_20250913190635_0120_D.jpg",
+              "/imagens/20_10_2025_0407.jpg",
+              "/imagens/DaniGui_Adois_61.jpg",
+            ].map((src) => (
+              <div key={src} className="relative overflow-hidden group">
+                <Image
+                  src={src}
+                  {...blurFor(src)}
+                  alt="Evento organizado pela Líquen Events"
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-[1.1s] ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/15 group-hover:bg-black/0 transition-colors duration-500" />
+              </div>
             ))}
           </div>
-        </div>
+        </AnimateIn>
       </section>
 
       {/* ── Photo strip (edge-to-edge) ── */}
@@ -582,9 +568,9 @@ export default function ServicosPage() {
         <AnimateIn from="fade">
           <div className="grid grid-cols-3 gap-px" style={{ height: "clamp(150px, 35vw, 400px)" }}>
             {[
-              { src: "/imagens/EW1_1100.jpg", label: "Eventos Corporativos" },
-              { src: "/imagens/DaniGui_Preview19.jpg", label: "Casamentos" },
-              { src: "/imagens/DaniGui_JantarFesta_17.jpg", label: "Celebrações" },
+              { src: "/imagens/EW1_1408.jpg", label: "Eventos Corporativos" },
+              { src: "/imagens/JOAO_E_PEDRO_1Y1A3204.jpg", label: "Casamentos" },
+              { src: "/imagens/20_10_2025_0358.jpg", label: "Celebrações" },
             ].map((item, i) => (
               <div key={i} className="relative overflow-hidden group">
                 <Image
@@ -845,13 +831,13 @@ export default function ServicosPage() {
         <AnimateIn from="fade">
           <div className="grid grid-cols-3 gap-px" style={{ height: "clamp(160px, 35vw, 440px)" }}>
             {[
-              { src: "/imagens/EW1_1100.jpg", label: "Corporativo", anchor: "#empresas" },
+              { src: "/imagens/EW1_1342.jpg", label: "Corporativo", anchor: "#empresas" },
               {
-                src: "/imagens/DaniGui_Preview19.jpg",
+                src: "/imagens/Natalia e Jonathan-167.jpg",
                 label: "Casamentos",
                 anchor: "#celebracoes",
               },
-              { src: "/imagens/DaniGui_JantarFesta_17.jpg", label: "Cultura", anchor: "#cultura" },
+              { src: "/imagens/20_10_2025_0244.jpg", label: "Cultura", anchor: "#cultura" },
             ].map((item) => (
               <a key={item.src} href={item.anchor} className="relative overflow-hidden group block">
                 <Image
@@ -877,69 +863,38 @@ export default function ServicosPage() {
       {/* ── Testimonials ── */}
       <TestimonialsCarousel />
 
-      {/* ── Clients ── */}
-      <section className="py-12 md:py-24 bg-surface border-t border-foreground/8">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <AnimateIn>
-            <p className="text-foreground/25 text-[10px] tracking-[0.5em] uppercase mb-14 flex items-center gap-3">
-              <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
-              Alguns dos nossos clientes
-            </p>
-          </AnimateIn>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-px bg-foreground/[0.05]">
-            {clients.map((name, i) => (
-              <AnimateIn key={name} delay={i * 22}>
-                <div className="bg-surface flex items-center justify-center px-4 py-6 sm:px-6 sm:py-9 hover:bg-surface-raised transition-colors duration-300">
-                  <span className="text-foreground/25 text-[9px] tracking-[0.38em] uppercase text-center leading-relaxed">
-                    {name}
-                  </span>
-                </div>
-              </AnimateIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SEO content ── */}
-      <section className="py-16 md:py-28 bg-surface border-t border-foreground/8">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-20">
+      {/* ── SEO content — image + short text ── */}
+      <section className="bg-surface border-t border-foreground/8">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-28 order-2 lg:order-1">
             <AnimateIn>
+              <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-6 flex items-center gap-3">
+                <span className="w-5 h-px bg-moss/50 flex-shrink-0" />
+                Onde atuamos
+              </p>
               <h2
-                className="text-foreground font-bold leading-[1.05]"
-                style={{
-                  fontFamily: "var(--font-playfair)",
-                  fontSize: "clamp(28px, 3.8vw, 48px)",
-                }}
+                className="text-foreground font-bold leading-[1.05] mb-8"
+                style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(28px, 4vw, 52px)" }}
               >
-                Uma empresa de eventos para Évora, Lisboa e todo o Portugal
+                Évora, Lisboa e todo o Portugal
               </h2>
-            </AnimateIn>
-            <AnimateIn delay={120}>
-              <div className="flex flex-col gap-5 text-foreground/42 text-[15px] leading-[1.9]">
-                <p>
-                  Seja um <strong className="text-foreground/70 font-medium">casamento</strong>{" "}
-                  íntimo numa herdade do Alentejo, uma{" "}
-                  <strong className="text-foreground/70 font-medium">
-                    conferência corporativa
-                  </strong>{" "}
-                  em Lisboa ou uma celebração cultural em Évora, a Líquen Events trata de tudo —
-                  conceito, decoração, catering, fornecedores, logística e coordenação no dia.
-                </p>
-                <p>
-                  Trabalhamos com uma rede de fornecedores de confiança em todo o país e adaptamos
-                  cada proposta ao seu estilo, à dimensão do evento e ao seu orçamento. O nosso
-                  objetivo é simples: que só tenha de viver o momento, enquanto nós cuidamos de cada
-                  pormenor.
-                </p>
-                <p>
-                  Da primeira reunião à última vela acesa, somos um parceiro único e dedicado para o
-                  seu evento — com a sensibilidade do Alentejo e a exigência de uma equipa
-                  profissional.
-                </p>
-              </div>
+              <p className="text-foreground/45 text-base lg:text-lg leading-[1.8] max-w-md">
+                Casamentos, eventos corporativos e celebrações — do conceito à execução, com a
+                sensibilidade do Alentejo e a exigência de uma equipa profissional.
+              </p>
             </AnimateIn>
           </div>
+          <AnimateIn from="right" className="relative min-h-[320px] lg:min-h-[560px] overflow-hidden order-1 lg:order-2">
+            <Image
+              src="/imagens/JOAO_E_PEDRO_1Y1A3439.jpg"
+              {...blurFor("/imagens/JOAO_E_PEDRO_1Y1A3439.jpg")}
+              alt="Evento Líquen Events em Portugal"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-black/20" />
+          </AnimateIn>
         </div>
       </section>
 
@@ -985,10 +940,10 @@ export default function ServicosPage() {
                 Pedir Orçamento →
               </Link>
               <Link
-                href="/portfolio"
+                href="/galeria"
                 className="inline-flex items-center gap-3 px-8 py-4 border border-foreground/12 text-foreground/42 font-medium hover:border-foreground/25 hover:text-foreground/72 transition-all duration-300 text-sm tracking-widest uppercase"
               >
-                Ver o nosso portfolio
+                Ver a galeria
               </Link>
             </div>
           </AnimateIn>
