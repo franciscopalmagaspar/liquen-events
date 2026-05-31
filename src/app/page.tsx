@@ -415,67 +415,60 @@ export default function Home() {
       <TestimonialsCarousel />
 
       {/* ── SEO content — organização de eventos em Évora, Lisboa e Portugal ── */}
-      <section className="py-14 md:py-28 bg-surface border-t border-foreground/8">
-        <div className="max-w-7xl mx-auto px-6 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.3fr] gap-12 lg:gap-20">
+      <section className="bg-surface border-t border-foreground/8">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Image */}
+          <AnimateIn from="left" className="relative min-h-[300px] lg:min-h-[640px] overflow-hidden">
+            <Image
+              src="/imagens/DaniGui_Adois_61.jpg"
+              alt="Organização de eventos no Alentejo — Líquen Events"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+              {...blurFor("/imagens/DaniGui_Adois_61.jpg")}
+            />
+            <div className="absolute inset-0 bg-black/20" />
+          </AnimateIn>
+
+          {/* Text — trimmed */}
+          <div className="flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-28">
             <AnimateIn>
-              <div>
-                <p className="text-foreground/30 text-xs tracking-[0.3em] uppercase mb-6 flex items-center gap-3">
-                  <span className="w-6 h-px bg-moss rounded-full flex-shrink-0" />
-                  Onde atuamos
-                </p>
-                <h2
-                  className="text-foreground font-bold leading-[1.05]"
-                  style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(30px, 4vw, 52px)" }}
-                >
-                  Organização de eventos em Évora, Lisboa e todo o Portugal
-                </h2>
-              </div>
+              <p className="text-foreground/30 text-xs tracking-[0.3em] uppercase mb-6 flex items-center gap-3">
+                <span className="w-6 h-px bg-moss rounded-full flex-shrink-0" />
+                Onde atuamos
+              </p>
+              <h2
+                className="text-foreground font-bold leading-[1.05] mb-8"
+                style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(30px, 4vw, 56px)" }}
+              >
+                Eventos em Évora,
+                <br />
+                Lisboa e todo o Portugal
+              </h2>
+              <p className="text-foreground/45 text-base lg:text-lg leading-[1.8] max-w-lg">
+                Casamentos, eventos corporativos e celebrações — do conceito à execução, tratamos de
+                cada detalhe para que só tenha de viver o momento.
+              </p>
             </AnimateIn>
             <AnimateIn delay={120}>
-              <div className="flex flex-col gap-5 text-foreground/45 text-[15px] leading-[1.85] lg:pt-14">
-                <p>
-                  A <strong className="text-foreground/70 font-medium">Líquen Events</strong> é uma
-                  empresa de organização de eventos com sede em Évora, no coração do Alentejo.
-                  Criamos <strong className="text-foreground/70 font-medium">casamentos</strong>,{" "}
-                  <strong className="text-foreground/70 font-medium">eventos corporativos</strong>,
-                  conferências, festas e celebrações em Évora, Lisboa e em todo o território
-                  nacional.
-                </p>
-                <p>
-                  Desde o conceito à execução, tratamos de cada detalhe — decoração, catering,
-                  fornecedores, logística e coordenação no dia — para que só tenha de viver o
-                  momento. Cada evento é planeado à medida do seu estilo, gosto e orçamento.
-                </p>
-                <p>
-                  Quer esteja a planear um casamento no Alentejo, um evento de empresa em Lisboa ou
-                  uma celebração privada em qualquer ponto de Portugal, a nossa equipa criativa
-                  transforma a sua visão numa experiência memorável.
-                </p>
+              <div className="mt-10 flex flex-wrap gap-2.5">
+                {[
+                  "Casamentos no Alentejo",
+                  "Eventos corporativos em Lisboa",
+                  "Conferências em Évora",
+                  "Festas privadas",
+                  "Eventos culturais",
+                ].map((t) => (
+                  <span
+                    key={t}
+                    className="text-xs tracking-wide text-foreground/40 border border-foreground/12 rounded-full px-4 py-2"
+                  >
+                    {t}
+                  </span>
+                ))}
               </div>
             </AnimateIn>
           </div>
-
-          {/* Areas served — internal-link friendly chips */}
-          <AnimateIn delay={200}>
-            <div className="mt-14 pt-10 border-t border-foreground/8 flex flex-wrap gap-x-3 gap-y-3">
-              {[
-                "Casamentos no Alentejo",
-                "Eventos corporativos em Lisboa",
-                "Conferências em Évora",
-                "Festas privadas",
-                "Eventos culturais",
-                "Wedding planning",
-              ].map((t) => (
-                <span
-                  key={t}
-                  className="text-xs tracking-wide text-foreground/40 border border-foreground/12 rounded-full px-4 py-2"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </AnimateIn>
         </div>
       </section>
 
