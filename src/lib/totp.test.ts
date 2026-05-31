@@ -1,8 +1,9 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { totp, verifyTotp, generateTotpSecret } from "./totp";
 
-// RFC 6238 secret "12345678901234567890" (ASCII) in base32.
-const RFC_SECRET = "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ";
+// RFC 6238 secret "12345678901234567890" (ASCII) in base32 — a PUBLIC test
+// vector from the standard, not a real secret. gitleaks:allow
+const RFC_SECRET = "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ"; // gitleaks:allow
 
 afterEach(() => vi.useRealTimers());
 
