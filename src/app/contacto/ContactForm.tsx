@@ -158,7 +158,7 @@ function Pill({
     <button
       type="button"
       onClick={onClick}
-      className={`px-4 py-2.5 rounded-sm text-xs tracking-[0.18em] uppercase border transition-all duration-200 ${
+      className={`px-4 py-3 sm:py-2.5 rounded-sm text-xs tracking-[0.18em] uppercase border transition-all duration-200 ${
         selected
           ? "bg-moss border-moss text-cream"
           : "border-foreground/15 text-foreground/38 hover:border-foreground/30 hover:text-foreground/65"
@@ -200,7 +200,7 @@ function NavBtn({
 
 function ProgressBar({ step }: { step: number }) {
   return (
-    <div className="flex items-center gap-0 mb-14">
+    <div className="flex items-center gap-0 mb-9 sm:mb-14">
       {stepLabels.map((label, i) => (
         <div key={label} className="flex items-center flex-1 min-w-0">
           <div className="flex items-center gap-2.5 flex-shrink-0">
@@ -225,7 +225,7 @@ function ProgressBar({ step }: { step: number }) {
           </div>
           {i < stepLabels.length - 1 && (
             <div
-              className={`flex-1 h-px mx-3 lg:mx-5 transition-all duration-500 ${
+              className={`flex-1 h-px mx-2 sm:mx-3 lg:mx-5 transition-all duration-500 ${
                 i + 1 < step ? "bg-moss/40" : "bg-foreground/8"
               }`}
             />

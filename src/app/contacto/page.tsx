@@ -48,7 +48,7 @@ export default function ContactoPage() {
       <ContactForm />
 
       {/* ── Depoimentos ── */}
-      <section className="py-24 bg-surface border-t border-foreground/8">
+      <section className="py-16 sm:py-24 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
             <p className="text-foreground/30 text-xs tracking-[0.3em] uppercase mb-16 flex items-center gap-3">
@@ -76,7 +76,7 @@ export default function ContactoPage() {
       </section>
 
       {/* ── O que acontece a seguir ── */}
-      <section className="py-28 bg-surface border-t border-foreground/8">
+      <section className="py-16 sm:py-28 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
             <p className="text-foreground/25 text-[10px] tracking-[0.48em] uppercase mb-20 flex items-center gap-3">
@@ -109,7 +109,7 @@ export default function ContactoPage() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="py-28 bg-surface border-t border-foreground/8">
+      <section className="py-16 sm:py-28 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-20 items-start">
@@ -135,7 +135,7 @@ export default function ContactoPage() {
       </section>
 
       {/* ── WhatsApp CTA ── */}
-      <section className="py-32 bg-moss-dark relative overflow-hidden border-t border-moss/20">
+      <section className="py-20 sm:py-32 bg-moss-dark relative overflow-hidden border-t border-moss/20">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse 80% 80% at 105% 110%, rgba(74,124,89,0.5) 0%, transparent 55%)" }}
