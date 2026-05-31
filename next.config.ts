@@ -51,8 +51,11 @@ const nextConfig: NextConfig = {
       },
       {
         key: "Permissions-Policy",
-        value: "camera=(), microphone=(), geolocation=()",
+        value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
       },
+      // Isolate the browsing context and block legacy cross-domain policy files.
+      { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+      { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
     ];
 
     return [
