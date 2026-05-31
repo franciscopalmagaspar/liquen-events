@@ -90,7 +90,7 @@ export default async function ProjectPage({
       </section>
 
       {/* ── Narrative + ficha técnica ── */}
-      <section className="py-24 bg-surface">
+      <section className="py-16 sm:py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-16 lg:gap-24">
 
           {/* Narrative */}
@@ -157,7 +157,7 @@ export default async function ProjectPage({
       </section>
 
       {/* ── Other projects ── */}
-      <section className="py-24 bg-surface border-t border-foreground/8">
+      <section className="py-16 sm:py-24 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <p className="text-foreground/25 text-[10px] tracking-[0.4em] uppercase mb-10 flex items-center gap-3">
             <span className="w-5 h-px bg-moss/50" /> Outros projetos
@@ -180,7 +180,7 @@ export default async function ProjectPage({
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-32 bg-surface border-t border-foreground/8">
+      <section className="py-20 sm:py-32 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <h2 className="text-foreground font-bold leading-tight mb-10 max-w-2xl" style={{ fontFamily: "var(--font-playfair)", fontSize: "clamp(32px, 5vw, 64px)" }}>
             O próximo evento pode ser o seu.

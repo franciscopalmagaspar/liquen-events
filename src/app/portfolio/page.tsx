@@ -27,7 +27,7 @@ export default function PortfolioPage() {
 
       <PortfolioClient />
 
-      <section className="py-40 bg-surface border-t border-foreground/8">
+      <section className="py-24 sm:py-40 bg-surface border-t border-foreground/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-16">
           <AnimateIn>
             <h2

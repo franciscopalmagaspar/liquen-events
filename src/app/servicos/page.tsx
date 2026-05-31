@@ -526,7 +526,7 @@ export default function ServicosPage() {
 
           {/* Bottom nav */}
           <div className="flex items-center justify-between mt-12 pt-5 border-t border-foreground/8 anim-3">
-            <div className="flex items-center gap-8 sm:gap-12">
+            <div className="flex items-center gap-5 sm:gap-12">
               {navItems.map((cat, i) => (
                 <a
                   key={cat.id}
@@ -628,7 +628,7 @@ export default function ServicosPage() {
       {/* ── Service categories ── */}
       <div className="relative">
         {/* Sticky nav */}
-        <div className="sticky top-16 z-30 bg-surface/[0.97] backdrop-blur-md border-b border-foreground/[0.06]">
+        <div className="sticky top-[calc(60px+env(safe-area-inset-top))] z-30 bg-surface/[0.97] backdrop-blur-md border-b border-foreground/[0.06]">
           <div className="max-w-7xl mx-auto px-6 lg:px-16">
             <div className="flex items-center gap-5 sm:gap-8 h-11 overflow-x-auto scroll-hide">
               {navItems.map((cat, i) => (
