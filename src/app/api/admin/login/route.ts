@@ -8,14 +8,17 @@ import {
   checkTotp,
 } from "@/lib/admin-auth";
 import { rateLimit, clientIp, sweep } from "@/lib/rate-limit";
+import { log } from "@/lib/logger";
 
 export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
+  const ip = clientIp(request);
   // Throttle brute-force attempts on the login endpoint.
   sweep();
-  const limited = rateLimit(`login:${clientIp(request)}`, 10, 60_000);
+  const limited = rateLimit(`login:${ip}`, 8, 60_000);
   if (!limited.ok) {
+    log.warn("admin login rate-limited", { ip });
     return NextResponse.json(
       { error: "Demasiadas tentativas. Aguarde um momento." },
       { status: 429, headers: { "Retry-After": String(limited.retryAfter ?? 60) } }
@@ -36,6 +39,7 @@ export async function POST(request: NextRequest) {
 
   const user = verifyCredentials(name, password);
   if (!user) {
+    log.warn("admin login failed", { ip, name, reason: "credentials" });
     return NextResponse.json({ error: "Credenciais incorretas" }, { status: 401 });
   }
 
@@ -48,6 +52,7 @@ export async function POST(request: NextRequest) {
       );
     }
     if (!checkTotp(user.name, code)) {
+      log.warn("admin login failed", { ip, name: user.name, reason: "totp" });
       return NextResponse.json(
         { needs2fa: true, error: "Código de verificação inválido." },
         { status: 401 },
@@ -55,6 +60,7 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  log.info("admin login ok", { ip, name: user.name, mfa: totpRequired(user.name) });
   const res = NextResponse.json({ ok: true });
   const cookieBase = {
     secure: process.env.NODE_ENV === "production",

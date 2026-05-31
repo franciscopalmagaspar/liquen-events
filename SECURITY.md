@@ -13,12 +13,17 @@ open public issues for security reports.
 
 ### Authentication & sessions (`src/lib/admin-auth.ts`)
 - Passwords are verified against **bcrypt** hashes — never stored or compared in plaintext.
+- Optional **two-factor authentication (TOTP, RFC 6238)** — `src/lib/totp.ts`,
+  verified against the official RFC test vectors; per-user (`ADMIN_USERS.totpSecret`)
+  or global (`ADMIN_TOTP_SECRET`). Login is a two-step flow when enabled.
 - Sessions are **HMAC-signed, expiring tokens** (tamper-proof); changing the name
   or expiry invalidates the signature.
-- Stored in an **httpOnly, Secure (prod), SameSite=Lax** cookie.
+- Stored in an **httpOnly, Secure (prod), SameSite=Lax**, `__Host-`-prefixed cookie.
 - Supports per-user accounts via `ADMIN_USERS`; secrets come from environment
   variables (`SESSION_SECRET`, `ADMIN_PASSWORD_HASH`). Missing critical secrets
   are flagged loudly at startup (`src/lib/env.ts`).
+- The login endpoint is **rate-limited** and writes an **audit log** for every
+  attempt (success/failure/2FA, with client IP).
 
 ### Authorisation
 - Every admin API route is gated by `isAuthed()`. The only public endpoints are

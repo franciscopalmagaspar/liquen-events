@@ -60,6 +60,7 @@ const nextConfig: NextConfig = {
       },
       // Isolate the browsing context and block legacy cross-domain policy files.
       { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+      { key: "Cross-Origin-Resource-Policy", value: "same-site" },
       { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
     ];
 
