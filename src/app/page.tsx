@@ -138,10 +138,8 @@ export default function Home() {
                 {words.map((word, i) => (
                   <span
                     key={word + i}
-                    className={`inline-block${moss ? " text-moss" : ""}`}
-                    style={{
-                      animation: `word-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${delay + i * 110}ms both`,
-                    }}
+                    className={`inline-block word-rise${moss ? " text-moss" : ""}`}
+                    style={{ "--word-delay": `${delay + i * 110}ms` } as React.CSSProperties}
                   >
                     {word}
                   </span>
