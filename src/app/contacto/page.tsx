@@ -3,6 +3,8 @@ import ContactForm from "./ContactForm";
 import FAQ from "./FAQ";
 import FaqJsonLd from "./FaqJsonLd";
 import AnimateIn from "@/components/AnimateIn";
+import Image from "next/image";
+import { blurFor } from "@/lib/blur";
 import Link from "next/link";
 import { pageMetadata } from "@/lib/page-metadata";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
@@ -73,6 +75,31 @@ export default function ContactoPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* ── Image band ── */}
+      <section className="bg-surface border-t border-foreground/8">
+        <AnimateIn from="fade">
+          <div className="grid grid-cols-3 gap-px" style={{ height: "clamp(180px, 38vw, 460px)" }}>
+            {[
+              "/imagens/Natalia e Jonathan-315.jpg",
+              "/imagens/JOAO_E_PEDRO_1Y1A3450.jpg",
+              "/imagens/M&F0658.jpg",
+            ].map((src) => (
+              <div key={src} className="relative overflow-hidden group">
+                <Image
+                  src={src}
+                  {...blurFor(src)}
+                  alt="Evento organizado pela Líquen Events"
+                  fill
+                  sizes="33vw"
+                  className="object-cover transition-transform duration-[1.1s] ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors duration-500" />
+              </div>
+            ))}
+          </div>
+        </AnimateIn>
       </section>
 
       {/* ── O que acontece a seguir ── */}
