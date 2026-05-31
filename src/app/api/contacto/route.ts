@@ -17,6 +17,11 @@ export async function POST(request: NextRequest) {
     }
 
     const raw = await request.json().catch(() => null);
+    // Honeypot: a real visitor never fills the hidden "website" field. If it's
+    // set, this is a bot — pretend success and drop it silently.
+    if (raw && typeof raw === 'object' && (raw as Record<string, unknown>).website) {
+      return NextResponse.json({ status: 'ok' });
+    }
     const parsed = contactSchema.safeParse(raw);
     if (!parsed.success) {
       return NextResponse.json({ error: firstError(parsed.error) }, { status: 400 });

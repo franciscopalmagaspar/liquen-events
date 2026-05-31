@@ -20,7 +20,12 @@ import type { NextRequest } from "next/server";
  *                       [{"name":"Catarina","passwordHash":"$2b$10$..."}]
  *  - ADMIN_PASSWORD_HASH bcrypt hash for the shared-password fallback.
  */
-export const ADMIN_COOKIE = "liquen_admin";
+// In production the session cookie uses the __Host- prefix: the browser then
+// guarantees it was set with Secure, Path=/ and no Domain — preventing cookie
+// injection/fixation from subdomains or non-HTTPS origins. (Dev is plain HTTP,
+// where __Host- cookies are rejected, so we only prefix in production.)
+export const ADMIN_COOKIE =
+  process.env.NODE_ENV === "production" ? "__Host-liquen_admin" : "liquen_admin";
 export const ADMIN_NAME_COOKIE = "liquen_user";
 
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 30; // 30 days

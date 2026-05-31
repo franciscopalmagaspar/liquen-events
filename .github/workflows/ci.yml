@@ -29,6 +29,9 @@ jobs:
         # platform-specific optional deps (a known cross-platform npm quirk).
         run: npm ci || npm install
 
+      - name: Audit dependencies (fail on high/critical)
+        run: npm audit --audit-level=high
+
       - name: Lint
         run: npm run lint
 

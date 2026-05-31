@@ -255,6 +255,7 @@ export default function ContactForm() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState<FormData>(EMPTY);
+  const [website, setWebsite] = useState(""); // honeypot — must stay empty
 
   function set(key: keyof FormData, value: string) {
     setForm((f) => ({ ...f, [key]: value }));
@@ -268,7 +269,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contacto", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, website }),
       });
       if (!res.ok) throw new Error("falha");
       setSent(true);
@@ -501,6 +502,17 @@ export default function ContactForm() {
                       submit();
                     }}
                   >
+                    {/* Honeypot — hidden from humans, bots tend to fill it */}
+                    <input
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                      value={website}
+                      onChange={(e) => setWebsite(e.target.value)}
+                      className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                    />
                     {/* Step 1 — Tipo */}
                     {step === 1 && (
                       <div>
