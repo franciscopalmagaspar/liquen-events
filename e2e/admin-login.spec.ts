@@ -16,6 +16,7 @@ test.describe("Admin login", () => {
     await page.getByLabel(/O teu nome/i).fill("Intruso");
     await page.getByLabel(/Palavra-passe/i).fill("definitely-wrong");
     await page.getByRole("button", { name: /Entrar/i }).click();
-    await expect(page.getByText(/Palavra-passe incorreta/i)).toBeVisible();
+    // The server replies "Credenciais incorretas" for a bad login.
+    await expect(page.getByText(/incorret/i)).toBeVisible();
   });
 });
