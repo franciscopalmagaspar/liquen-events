@@ -413,7 +413,7 @@ export default function ServicosPage() {
       </div>
 
       {/* ── Hero ── */}
-      <section className="relative min-h-screen flex items-end pb-0 pt-24 md:pt-36 bg-surface overflow-hidden">
+      <section className="relative min-h-[100svh] flex items-end pb-0 pt-24 md:pt-36 bg-surface overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{

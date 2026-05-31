@@ -46,6 +46,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Mobile base ── */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  /* No grey flash on tap, no rubber-band white at the edges */
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+/* Safe-area helpers for fixed / edge elements (notch & home indicator) */
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 /* ── Film grain overlay ── */
 body::before {
   content: "";

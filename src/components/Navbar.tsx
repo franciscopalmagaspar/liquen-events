@@ -30,7 +30,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 pt-safe transition-all duration-500 ${
         scrolled ? "border-b border-foreground/[0.07] backdrop-blur-sm" : ""
       }`}
     >
@@ -80,9 +80,10 @@ export default function Navbar() {
           </div>
 
           <button
-            className="md:hidden p-2 -mr-2"
+            className="md:hidden p-3 -mr-2"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Menu"
+            aria-expanded={isOpen}
           >
             <span
               className={`block w-[18px] h-px bg-foreground/60 transition-all duration-300 mb-1.5 ${isOpen ? "rotate-45 translate-y-2" : ""}`}
@@ -98,7 +99,7 @@ export default function Navbar() {
       </div>
 
       <div
-        className={`md:hidden overflow-hidden transition-all duration-400 bg-surface/96 backdrop-blur-md border-t border-foreground/6 ${
+        className={`md:hidden overflow-y-auto overscroll-contain transition-all duration-400 bg-surface/96 backdrop-blur-md border-t border-foreground/6 ${
           isOpen ? "max-h-[80vh] pb-8" : "max-h-0"
         }`}
       >

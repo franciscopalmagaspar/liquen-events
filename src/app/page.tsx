@@ -110,7 +110,7 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative min-h-screen flex flex-col justify-center px-6 lg:px-16 py-24 lg:py-32 overflow-hidden">
+      <section className="relative min-h-[100svh] flex flex-col justify-center px-6 lg:px-16 py-24 lg:py-32 overflow-hidden">
         <Image
           src="/imagens/JOAO_E_PEDRO_DJI_20250628213855_0002_D.jpg"
           alt="Líquen Events — evento aéreo"
