@@ -21,22 +21,22 @@ const steps = [
   {
     step: "01",
     title: "Recebemos o seu pedido",
-    desc: "Analisamos os detalhes que partilhou e preparamos uma resposta personalizada ao seu evento.",
+    desc: "Analisamos o seu pedido e preparamos uma resposta à medida.",
   },
   {
     step: "02",
     title: "Entramos em contacto",
-    desc: "Em menos de 24 horas marcamos uma conversa para perceber melhor a sua visão e os seus objetivos.",
+    desc: "Em menos de 24 horas, marcamos uma conversa.",
   },
   {
     step: "03",
     title: "Proposta à medida",
-    desc: "Criamos uma proposta detalhada com orçamento transparente, adaptada ao seu estilo e expectativas.",
+    desc: "Proposta detalhada, com orçamento transparente.",
   },
   {
     step: "04",
     title: "Começamos a criar",
-    desc: "Com tudo aprovado, a nossa equipa trata de cada detalhe para que o seu evento seja verdadeiramente inesquecível.",
+    desc: "Tratamos de cada detalhe para um evento inesquecível.",
   },
 ];
 

@@ -45,22 +45,22 @@ const process = [
   {
     step: "01",
     title: "Briefing",
-    desc: "Ouvimos a sua ideia, percebemos os seus objetivos e definimos o conceito.",
+    desc: "Ouvimos a sua ideia e definimos o conceito.",
   },
   {
     step: "02",
     title: "Proposta",
-    desc: "Apresentamos uma proposta detalhada com orçamento transparente e adaptado ao seu gosto.",
+    desc: "Proposta detalhada, com orçamento transparente.",
   },
   {
     step: "03",
     title: "Produção",
-    desc: "Tratamos de tudo — fornecedores, logística, decoração e coordenação.",
+    desc: "Fornecedores, logística, decoração e coordenação.",
   },
   {
     step: "04",
     title: "Execução",
-    desc: "No dia do evento, estamos presentes para garantir que tudo corre na perfeição.",
+    desc: "Presentes no dia, para tudo correr na perfeição.",
   },
 ];
 
@@ -68,22 +68,22 @@ const differentiators = [
   {
     num: "01",
     title: "Coordenação Total",
-    desc: "Do primeiro contacto ao último momento do dia. Um único ponto de contacto que trata de tudo para que não se preocupe com nada.",
+    desc: "Um único ponto de contacto, do primeiro olá ao último brinde.",
   },
   {
     num: "02",
     title: "À Sua Medida",
-    desc: "Não há dois eventos iguais. Cada projeto nasce de uma conversa e é construído à volta das suas expectativas, estilo e orçamento.",
+    desc: "Cada projeto construído à volta da sua visão, estilo e orçamento.",
   },
   {
     num: "03",
     title: "Rede de Excelência",
-    desc: "Parceiros e fornecedores criteriosamente selecionados ao longo de anos. Qualidade e confiança garantidas em cada detalhe.",
+    desc: "Fornecedores de confiança, selecionados ao longo de anos.",
   },
   {
     num: "04",
     title: "Presença Total",
-    desc: "No dia do evento, estamos sempre presentes. Coordenação in-loco para garantir que cada momento corre na perfeição.",
+    desc: "Coordenação no local para que cada momento corra na perfeição.",
   },
 ];
 
