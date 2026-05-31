@@ -8,7 +8,6 @@ import { jsonLd } from "@/lib/jsonld";
  *  - Organization / LocalBusiness (EventPlanning) with geo + areas served
  *  - WebSite (enables sitelinks search box potential)
  *  - Service catalog (weddings, corporate, social) for service-intent queries
- *  - AggregateRating from real client testimonials
  *
  * This is what helps the site surface for "empresa de eventos Évora",
  * "wedding planner Alentejo", etc., and earn rich results.
@@ -50,12 +49,11 @@ export default function StructuredData() {
         areaServed: "PT",
         availableLanguage: ["Portuguese", "English"],
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5",
-        reviewCount: "16",
-        bestRating: "5",
-      },
+      // NB: no `aggregateRating` here. Google only honours review snippets that
+      // are backed by genuine, visible reviews on the page; a self-serving
+      // rating on an Organization/LocalBusiness is ignored and risks a manual
+      // action. Add it back via real `Review` items (e.g. Google Business
+      // Profile) when those are available.
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "Serviços de organização de eventos",
@@ -82,10 +80,5 @@ export default function StructuredData() {
 
   const data = { "@context": "https://schema.org", "@graph": graph };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: jsonLd(data) }}
-    />
-  );
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(data) }} />;
 }
