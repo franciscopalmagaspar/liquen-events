@@ -5,6 +5,8 @@ import { rateLimit, clientIp, sweep } from '@/lib/rate-limit';
 import { contactSchema, firstError } from '@/lib/validation';
 import { log } from '@/lib/logger';
 
+export const maxDuration = 30;
+
 export async function POST(request: NextRequest) {
   try {
     sweep();
