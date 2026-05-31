@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Self-contained server bundle so the app can run in any container/cloud
+  // (Vercel ignores this and uses its own build).
+  output: "standalone",
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [360, 480, 640, 768, 1024, 1280, 1536, 1920],
