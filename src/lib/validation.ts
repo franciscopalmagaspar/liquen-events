@@ -40,6 +40,19 @@ export const contactSchema = z
   })
   .passthrough();
 
+// Web Push subscription — sanitise this network-provided object into a strict,
+// known-good shape before it is ever persisted.
+export const pushSubscriptionSchema = z.object({
+  endpoint: z
+    .string()
+    .regex(/^https:\/\/[^\s]+$/i, "endpoint inválido")
+    .max(1000),
+  keys: z.object({
+    p256dh: z.string().min(1).max(300),
+    auth: z.string().min(1).max(300),
+  }),
+});
+
 /** Returns the first human-readable error, for a clean 400 response. */
 export function firstError(err: z.ZodError): string {
   return err.issues[0]?.message ?? "Dados inválidos";

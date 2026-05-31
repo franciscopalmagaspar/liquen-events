@@ -2,6 +2,7 @@ import webpush from "web-push";
 import { promises as fs } from "fs";
 import path from "path";
 import { getSupabase } from "./supabase";
+import { pushSubscriptionSchema } from "./validation";
 
 /**
  * Web Push delivery + subscription storage.
@@ -52,17 +53,25 @@ async function fileWrite(subs: PushSub[]): Promise<void> {
 }
 
 export async function saveSubscription(sub: PushSub): Promise<void> {
+  // Sanitise the network-provided subscription into a strict, known-good object
+  // before it is persisted (validates the endpoint is an https URL, caps sizes).
+  const parsed = pushSubscriptionSchema.parse(sub);
+  const safe: PushSub = {
+    endpoint: parsed.endpoint,
+    keys: { p256dh: parsed.keys.p256dh, auth: parsed.keys.auth },
+  };
+
   const sb = getSupabase();
   if (sb) {
     const { error } = await sb
       .from(TABLE)
-      .upsert({ endpoint: sub.endpoint, keys: sub.keys }, { onConflict: "endpoint" });
+      .upsert({ endpoint: safe.endpoint, keys: safe.keys }, { onConflict: "endpoint" });
     if (error) throw error;
     return;
   }
   const subs = await fileRead();
-  if (!subs.some((s) => s.endpoint === sub.endpoint)) {
-    subs.push(sub);
+  if (!subs.some((s) => s.endpoint === safe.endpoint)) {
+    subs.push(safe);
     await fileWrite(subs);
   }
 }

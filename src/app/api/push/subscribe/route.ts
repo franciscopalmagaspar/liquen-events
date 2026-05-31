@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAuthed } from "@/lib/admin-auth";
 import { saveSubscription, removeSubscription, pushConfigured } from "@/lib/push";
+import { pushSubscriptionSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
 
@@ -16,11 +17,12 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   if (!isAuthed(request)) return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
   try {
-    const sub = await request.json();
-    if (!sub?.endpoint || !sub?.keys) {
+    const raw = await request.json().catch(() => null);
+    const parsed = pushSubscriptionSchema.safeParse(raw);
+    if (!parsed.success) {
       return NextResponse.json({ error: "Subscrição inválida" }, { status: 400 });
     }
-    await saveSubscription({ endpoint: sub.endpoint, keys: sub.keys });
+    await saveSubscription(parsed.data);
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[push subscribe]", err);
